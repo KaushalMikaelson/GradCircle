@@ -9,13 +9,73 @@ const navItems = [
   { label: "Team", target: "team" }
 ];
 
-const whyCards = [
-  ["01", "Cultivate Genuine Curiosity", "Step outside the standard curriculum to dive deeply into subjects you are truly passionate about."],
-  ["02", "Build Advanced Critical Thinking", "Question assumptions, analyze complex data, and formulate evidence-based conclusions."],
-  ["03", "Enhance Academic Communication", "Synthesize literature, structure formal arguments, and articulate findings clearly."],
-  ["04", "Develop Academic Resilience", "Overcome intellectual roadblocks, iterate on ideas, and respond effectively to constructive feedback."],
-  ["05", "Elevate College Admissions Profiles", "Create a completed research manuscript as a powerful differentiator for top-tier universities."]
+const programsData = [
+  {
+    id: "psychology",
+    category: "Psychology",
+    title: "Psychology & Behavioral Neuroscience",
+    subtitle: "Conduct behavioral studies, cognitive analysis, mental health research, and psychological experiments.",
+    image: "/programs/Carousel - Psychology.png",
+    pdf: "/programs/Internship Details - Psychology.pdf",
+    tags: ["Cognitive Science", "Behavioral Analysis", "Experimental Design", "Neuropsychology"]
+  },
+  {
+    id: "finance",
+    category: "Finance",
+    title: "Corporate Finance & Investment Banking",
+    subtitle: "Analyze capital markets, financial statements, valuation methodologies, and investment portfolios.",
+    image: "/programs/Carousel - Finance.png",
+    pdf: "/programs/Internship Details - Finance.pdf",
+    tags: ["Financial Valuation", "Capital Markets", "Portfolio Analysis", "Risk Assessment"]
+  },
+  {
+    id: "healthcare",
+    category: "Healthcare",
+    title: "Healthcare, Public Health & Medical Research",
+    subtitle: "Investigate clinical research methodologies, epidemiology, public health policies, and medical innovation.",
+    image: "/programs/Carousel - Healthcare.png",
+    pdf: "/programs/Internship Details - Healthcare.pdf",
+    tags: ["Clinical Research", "Epidemiology", "Medical Ethics", "Healthcare Systems"]
+  },
+  {
+    id: "law",
+    category: "Law",
+    title: "Corporate Law & International Policy",
+    subtitle: "Examine legal frameworks, intellectual property, international human rights law, and jurisprudence.",
+    image: "/programs/Carousel - Law.png",
+    pdf: "/programs/Internship Details - Law.pdf",
+    tags: ["Constitutional Law", "IP & Corporate Law", "Legal Writing", "Case Analysis"]
+  },
+  {
+    id: "business-strategy",
+    category: "Business & Strategy",
+    title: "Business Strategy & Management Consulting",
+    subtitle: "Explore competitive analysis, corporate growth strategies, venture creation, and strategic planning.",
+    image: "/programs/Carousel - Business & Strategy.png",
+    pdf: "/programs/Internship Details - Business and Strategy.pdf",
+    tags: ["Corporate Strategy", "Venture Growth", "Market Research", "Financial Modeling"]
+  },
+  {
+    id: "data-science",
+    category: "Data Science & AI",
+    title: "Data Science, Machine Learning & AI",
+    subtitle: "Develop predictive models, perform big data analytics, and implement machine learning algorithms.",
+    image: "/programs/Carousel - Data Science & AI.png",
+    pdf: "/programs/Internship Details - Data Science and AI.pdf",
+    tags: ["Python & ML", "Neural Networks", "Data Visualization", "AI Ethics"]
+  },
+  {
+    id: "brand-management",
+    category: "Brand Management",
+    title: "Brand Management & Strategic Marketing",
+    subtitle: "Master brand architecture, positioning, digital campaign strategies, and consumer behavior analysis.",
+    image: "/programs/Carousel - Brand Management.png",
+    pdf: "/programs/Internship Details - Brand Management.pdf",
+    tags: ["Brand Positioning", "Digital Campaigns", "Consumer Behavior", "Market Analysis"]
+  }
 ];
+
+const categories = ["All Programs", "Psychology", "Finance", "Healthcare", "Law", "Brand Management"];
 
 const differenceCards = [
   ["Real Academic Rigor", "Overcome intellectual roadblocks, iterate on ideas, and respond effectively to constructive feedback.", "/apex-assets/academic-rigor.webp"],
@@ -99,10 +159,13 @@ function Logo({ className = "logo-img" }) {
   return <img className={className} src="/apex-assets/Logo.webp" alt="GradCircle | ApexScholars" />;
 }
 
-function NavBar({ scrolled, active, onMenu }) {
+function NavBar({ scrolled, active, onMenu, loaded }) {
   return (
-    <header className={`navbar-header ${scrolled ? "scrolled-fixed" : ""}`}>
-      <div className="navbar-logo">
+    <header
+      className={`navbar-header ${scrolled ? "scrolled-fixed" : ""} ${loaded ? "is-visible" : "scroll-reveal reveal-hero-header"}`}
+      style={{ transitionDelay: "0.05s" }}
+    >
+      <div className="navbar-logo" onClick={() => scrollToId("home")}>
         <Logo />
       </div>
       <div className="navbar-right-group desktop-only">
@@ -159,39 +222,72 @@ function MobileDrawer({ open, close }) {
   );
 }
 
-function Hero({ scrolled, active, openMenu, drawerOpen, closeDrawer }) {
+function Hero({ scrolled, active, openMenu, drawerOpen, closeDrawer, loaded }) {
   return (
     <section id="home" className="hero-wrapper">
       <div className="hero-content">
-        <NavBar scrolled={scrolled} active={active} onMenu={openMenu} />
+        <NavBar scrolled={scrolled} active={active} onMenu={openMenu} loaded={loaded} />
         <MobileDrawer open={drawerOpen} close={closeDrawer} />
         <div className={`navbar-spacer ${scrolled ? "navbar-spacer--active" : ""}`} />
-        <div className="hero-card-wrapper scroll-reveal">
+        <div
+          className={`hero-card-wrapper ${loaded ? "is-visible" : "scroll-reveal reveal-hero-card"}`}
+          style={{ transitionDelay: "0.15s" }}
+        >
           <div className="hero-card-coded">
-            <div className="hc-brand-pill">
+            <div
+              className={`hc-brand-pill ${loaded ? "is-visible" : "scroll-reveal reveal-hero-pill"}`}
+              style={{ transitionDelay: "0.25s" }}
+            >
               <span className="hc-brand-dot" />
               <span className="hc-brand-label">The GradCircle ApexScholars</span>
               <span className="hc-brand-dot" />
             </div>
-            <h1 className="hc-main-title">RESEARCH PROGRAM</h1>
-            <p className="hc-sub-line">Transform your curiosity into university-level research.</p>
-            <p className="hc-accent-line">Build the foundation for future innovation.</p>
-            <div className="hc-info-strip">
+            <h1
+              className={`hc-main-title ${loaded ? "is-visible" : "scroll-reveal reveal-hero-title"}`}
+              style={{ transitionDelay: "0.35s" }}
+            >
+              RESEARCH PROGRAM
+            </h1>
+            <p
+              className={`hc-sub-line ${loaded ? "is-visible" : "scroll-reveal reveal-hero-sub"}`}
+              style={{ transitionDelay: "0.45s" }}
+            >
+              Transform your curiosity into university-level research.
+            </p>
+            <p
+              className={`hc-accent-line ${loaded ? "is-visible" : "scroll-reveal reveal-hero-accent"}`}
+              style={{ transitionDelay: "0.55s" }}
+            >
+              Build the foundation for future innovation.
+            </p>
+            <div
+              className={`hc-info-strip ${loaded ? "is-visible" : "scroll-reveal reveal-hero-strip"}`}
+              style={{ transitionDelay: "0.65s" }}
+            >
               <p className="hc-info-line">Personalized Virtual Research Program for Students (Grades 8–12)</p>
               <p className="hc-info-line hc-info-line--bold">Guided by PhD Mentors from IITs, IIMs, and IISc</p>
             </div>
           </div>
         </div>
-        <div className="hero-cta-group scroll-reveal">
+        <div
+          className={`hero-cta-group ${loaded ? "is-visible" : "scroll-reveal reveal-hero-cta"}`}
+          style={{ transitionDelay: "0.75s" }}
+        >
           <button className="btn-primary-pill" onClick={() => scrollToId("enquire")}>Apply Now</button>
           <button className="btn-secondary-pill">Download Brochure</button>
         </div>
-        <div className="sponsors-row scroll-reveal">
-          <div className="sponsor-block">
+        <div className="sponsors-row">
+          <div
+            className={`sponsor-block ${loaded ? "is-visible" : "scroll-reveal reveal-sponsor"}`}
+            style={{ transitionDelay: "0.85s" }}
+          >
             <img className="sponsor-img" src="/apex-assets/sponsor-1.webp" alt="Knowledge Partner: Bennett University – The Times Group" />
           </div>
           <div className="sponsor-divider" />
-          <div className="sponsor-block">
+          <div
+            className={`sponsor-block ${loaded ? "is-visible" : "scroll-reveal reveal-sponsor"}`}
+            style={{ transitionDelay: "0.95s" }}
+          >
             <img className="sponsor-img" src="/apex-assets/sponsor-2.webp" alt="Program Co-certified by GradCircle & Bennett University" />
           </div>
         </div>
@@ -202,7 +298,7 @@ function Hero({ scrolled, active, openMenu, drawerOpen, closeDrawer }) {
 
 function SectionHeader({ sub, title, desc, classes }) {
   return (
-    <div className={`${classes.header} scroll-reveal`}>
+    <div className={`${classes.header} scroll-reveal reveal-header`}>
       <span className={classes.sub}>{sub}</span>
       <h2 className={classes.title}>{title}</h2>
       {desc ? <p className={classes.desc}>{desc}</p> : null}
@@ -210,34 +306,111 @@ function SectionHeader({ sub, title, desc, classes }) {
   );
 }
 
-function WhyResearch() {
+function ProgramExplorer() {
+  const [activeCategory, setActiveCategory] = useState("All Programs");
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const filteredPrograms = useMemo(() => {
+    return programsData.filter((p) => {
+      const matchesCategory = activeCategory === "All Programs" || p.category === activeCategory;
+      const q = searchQuery.toLowerCase().trim();
+      const matchesSearch =
+        !q ||
+        p.title.toLowerCase().includes(q) ||
+        p.subtitle.toLowerCase().includes(q) ||
+        p.category.toLowerCase().includes(q) ||
+        p.tags.some((t) => t.toLowerCase().includes(q));
+      return matchesCategory && matchesSearch;
+    });
+  }, [activeCategory, searchQuery]);
+
   return (
-    <section id="program" className="why-research-section">
-      <SectionHeader
-        sub="Beyond Grades"
-        title="Why Research Matters"
-        desc="Independent research takes you beyond classroom learning, fostering the enquiry mindset and holistic growth."
-        classes={{ header: "why-header", sub: "why-subheading", title: "why-title", desc: "why-description" }}
-      />
-      <div className="why-cards-container">
-        <div className="why-row why-row-top">
-          {whyCards.slice(0, 3).map(([num, title, text], i) => (
-            <div className={`why-card scroll-reveal ${i === 0 ? "active" : ""}`} key={title}>
-              <div className={`why-card-number ${i === 0 ? "active-number" : ""}`}>{num}</div>
-              <h3 className="why-card-title">{title}</h3>
-              <p className="why-card-text">{text}</p>
-            </div>
-          ))}
+    <section id="program" className="program-explorer-section">
+      <div className="program-explorer-container">
+        <SectionHeader
+          sub="Explore Our Offerings"
+          title="Featured Programs & Internships"
+          desc="Filter by discipline or search across our specialized research tracks guided by PhD mentors."
+          classes={{ header: "program-header", sub: "program-subheading", title: "program-title", desc: "program-description" }}
+        />
+
+        {/* Dark Filter & Search Bar - Matching Image */}
+        <div className="program-filter-bar scroll-reveal reveal-header">
+          <div className="program-search-box">
+            <input
+              type="text"
+              className="program-search-input"
+              placeholder="Search industries, projects, or keywords..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+          </div>
+          <div className="program-filter-pills">
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                className={`filter-pill ${activeCategory === cat ? "active" : ""}`}
+                onClick={() => setActiveCategory(cat)}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
         </div>
-        <div className="why-row why-row-bottom">
-          {whyCards.slice(3).map(([num, title, text]) => (
-            <div className="why-card scroll-reveal" key={title}>
-              <div className="why-card-number">{num}</div>
-              <h3 className="why-card-title">{title}</h3>
-              <p className="why-card-text">{text}</p>
-            </div>
-          ))}
-        </div>
+
+        {/* Program Cards Grid */}
+        {filteredPrograms.length > 0 ? (
+          <div className="program-cards-grid">
+            {filteredPrograms.map((prog, i) => (
+              <div
+                className="program-card-item scroll-reveal reveal-why-card"
+                key={prog.id}
+                style={{ transitionDelay: `${i * 0.08}s` }}
+              >
+                <div className="program-card-banner">
+                  <img className="program-card-img" src={prog.image} alt={prog.title} />
+                </div>
+                <div className="program-card-body">
+                  <span className="program-card-category">{prog.category}</span>
+                  <h3 className="program-card-title">{prog.title}</h3>
+                  <p className="program-card-subtitle">{prog.subtitle}</p>
+                  <div className="program-card-tags">
+                    {prog.tags.map((tag) => (
+                      <span className="program-tag-pill" key={tag}>{tag}</span>
+                    ))}
+                  </div>
+                  <div className="program-card-actions">
+                    <a
+                      className="btn-card-outline"
+                      href={prog.pdf}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Download Details
+                    </a>
+                    <button className="btn-card-primary" onClick={() => scrollToId("enquire")}>
+                      Apply Now
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="no-programs-found">
+            <h3 className="no-programs-title">No Programs Found</h3>
+            <p className="no-programs-desc">No research tracks match &quot;{searchQuery}&quot;. Try resetting filters or searching with another keyword.</p>
+            <button
+              className="btn-primary-pill"
+              onClick={() => {
+                setActiveCategory("All Programs");
+                setSearchQuery("");
+              }}
+            >
+              Reset Filters
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );
@@ -255,8 +428,9 @@ function ApexDifference() {
       <div className="apex-diff-list">
         {differenceCards.map(([title, text, img], i) => (
           <div
-            className={`apex-diff-card scroll-reveal ${active === i ? "active" : ""}`}
+            className={`apex-diff-card scroll-reveal reveal-apex-card ${active === i ? "active" : ""}`}
             key={title}
+            style={{ transitionDelay: `${i * 0.08}s` }}
             onMouseEnter={() => setActive(i)}
           >
             <div className={`apex-diff-icon-badge ${active === i ? "active-badge" : ""}`}>
@@ -284,14 +458,25 @@ function Sprint() {
         classes={{ header: "sprint-header", sub: "sprint-subheading", title: "sprint-title", desc: "sprint-instruction" }}
       />
       <div className="sprint-timeline-container">
-        <div className="sprint-timeline-line" />
+        <div className="sprint-timeline-line scroll-reveal" />
         <div className="sprint-phases-list">
           {sprintPhases.map(([num, label, title, details], i) => (
-            <div className="sprint-phase-row scroll-reveal" key={title} onMouseEnter={() => setActive(i)} onClick={() => setActive(i)}>
-              <div className={`sprint-node ${active === i ? "active-node" : ""}`}>
+            <div
+              className="sprint-phase-row"
+              key={title}
+              onMouseEnter={() => setActive(i)}
+              onClick={() => setActive(i)}
+            >
+              <div
+                className={`sprint-node scroll-reveal reveal-sprint-node ${active === i ? "active-node" : ""}`}
+                style={{ transitionDelay: `${i * 0.08}s` }}
+              >
                 <span className="sprint-node-number">{num}</span>
               </div>
-              <div className={`sprint-card ${active === i ? "active-card" : ""}`}>
+              <div
+                className={`sprint-card scroll-reveal reveal-sprint-card ${active === i ? "active-card" : ""}`}
+                style={{ transitionDelay: `${i * 0.08 + 0.04}s` }}
+              >
                 <span className="sprint-phase-label">{label}</span>
                 <h3 className="sprint-phase-title">{title}</h3>
                 {active === i && details ? <p className="sprint-phase-details">{details}</p> : null}
@@ -314,16 +499,24 @@ function Areas() {
         classes={{ header: "areas-header", sub: "areas-subheading", title: "areas-title", desc: "areas-description" }}
       />
       <div className="areas-grid">
-        {Object.entries(areas).map(([title, items]) => {
+        {Object.entries(areas).map(([title, items], gridIdx) => {
           const humanities = title.startsWith("Humanities");
           return (
-            <div className="area-card scroll-reveal" key={title}>
+            <div
+              className={`area-card scroll-reveal ${humanities ? "reveal-humanities-card" : "reveal-stem-card"}`}
+              key={title}
+              style={{ transitionDelay: `${gridIdx * 0.12}s` }}
+            >
               <div className={`area-card-banner ${humanities ? "humanities-banner" : "stem-banner"}`}>
                 <h3>{title}</h3>
               </div>
               <ul className="area-list">
-                {items.map((item) => (
-                  <li className="area-item" key={item}>
+                {items.map((item, i) => (
+                  <li
+                    className={`area-item scroll-reveal ${humanities ? "reveal-humanities-item" : "reveal-stem-item"}`}
+                    key={item}
+                    style={{ transitionDelay: `${(i + 1) * 0.05}s` }}
+                  >
                     <span className={`bullet ${humanities ? "humanities-bullet" : "stem-bullet"}`} />
                     <span className="area-name">{item}</span>
                   </li>
@@ -348,15 +541,19 @@ function Deliverables() {
       />
       <div className="deliverables-grid-container">
         <div className="deliverables-row deliverables-row-top">
-          {deliverables.slice(0, 3).map(([title, text]) => <DeliverableCard key={title} title={title} text={text} />)}
+          {deliverables.slice(0, 3).map(([title, text], i) => (
+            <DeliverableCard key={title} title={title} text={text} delay={i * 0.08} />
+          ))}
         </div>
         <div className="deliverables-row deliverables-row-bottom">
-          {deliverables.slice(3).map(([title, text]) => <DeliverableCard key={title} title={title} text={text} />)}
+          {deliverables.slice(3).map(([title, text], i) => (
+            <DeliverableCard key={title} title={title} text={text} delay={(i + 3) * 0.08} />
+          ))}
         </div>
       </div>
-      <div className="certificate-subsection scroll-reveal">
+      <div className="certificate-subsection">
         <span className="certificate-subheading">Sample Certificate</span>
-        <div className="certificate-card">
+        <div className="certificate-card scroll-reveal reveal-certificate">
           <img className="certificate-img" src="/apex-assets/certificate-sample.webp" alt="Sample Certificate of Completion - GradCircle & Bennett University" />
         </div>
       </div>
@@ -364,12 +561,14 @@ function Deliverables() {
   );
 }
 
-function DeliverableCard({ title, text }) {
+function DeliverableCard({ title, text, delay }) {
   return (
-    <div className="deliverable-card scroll-reveal">
-      <span className="deliverable-accent-bar" />
-      <h3 className="deliverable-card-title">{title}</h3>
-      <p className="deliverable-card-desc">{text}</p>
+    <div className="deliverable-card scroll-reveal reveal-deliverable-card" style={{ transitionDelay: `${delay}s` }}>
+      <span className="deliverable-accent-bar reveal-deliverable-bar" />
+      <div className="scroll-reveal reveal-deliverable-content">
+        <h3 className="deliverable-card-title">{title}</h3>
+        <p className="deliverable-card-desc">{text}</p>
+      </div>
     </div>
   );
 }
@@ -383,9 +582,13 @@ function Logistics() {
           title="Program Logistics & Investment"
           classes={{ header: "logistics-header", sub: "logistics-subheading", title: "logistics-title" }}
         />
-        <div className="logistics-card scroll-reveal">
-          {logistics.map(([label, value, sub]) => (
-            <div className="logistics-row" key={label}>
+        <div className="logistics-card scroll-reveal reveal-logistics-card">
+          {logistics.map(([label, value, sub], i) => (
+            <div
+              className="logistics-row scroll-reveal reveal-logistics-row"
+              key={label}
+              style={{ transitionDelay: `${i * 0.08}s` }}
+            >
               <div className="logistics-label-col"><span className="logistics-label">{label}</span></div>
               <div className="logistics-value-col">
                 <span className={`logistics-value ${label === "PROGRAM FEE" ? "fee-value" : ""}`}>{value}</span>
@@ -394,7 +597,7 @@ function Logistics() {
             </div>
           ))}
         </div>
-        <div className="logistics-cta">
+        <div className="logistics-cta scroll-reveal reveal-logistics-cta">
           <button className="btn-primary-pill" onClick={() => scrollToId("enquire")}>Apply Now</button>
         </div>
       </div>
@@ -411,7 +614,7 @@ function Founders() {
         classes={{ header: "founders-header", sub: "founders-subheading", title: "founders-title" }}
       />
       <div className="founders-container">
-        <div className="gradcircle-info-card scroll-reveal">
+        <div className="gradcircle-info-card scroll-reveal reveal-gradcircle-info">
           <div className="gradcircle-logo-col">
             <img src="/apex-assets/GC_Logo.webp" alt="GradCircle Logo" style={{ width: 256, maxWidth: "100%", height: "auto" }} />
           </div>
@@ -419,9 +622,19 @@ function Founders() {
           <p className="gradcircle-info-text">Founded by alumni from MIT (USA), Yale, and IIT Delhi, GradCircle is a premier educational organization dedicated to experiential learning and future-readiness.</p>
         </div>
         <div className="founders-cards-grid">
-          <div className="founder-card-item scroll-reveal"><img className="founder-card-img" src="/apex-assets/founder-prashant.webp" alt="Prashant Tibrewal – MIT Alum & Experience Career Coach" /></div>
-          <div className="founder-card-item scroll-reveal"><img className="founder-card-img" src="/apex-assets/founder-aditi.webp" alt="Aditi Arya Kotak – Yale University Alum & Miss India 2015" /></div>
-          <div className="founder-card-item scroll-reveal"><img className="founder-card-img" src="/apex-assets/founder-neelabh.webp" alt="Neelabh Prabhat – IIT Delhi Alum & Ex-Citybank" /></div>
+          {[
+            ["/apex-assets/founder-prashant.webp", "Prashant Tibrewal – MIT Alum & Experience Career Coach"],
+            ["/apex-assets/founder-aditi.webp", "Aditi Arya Kotak – Yale University Alum & Miss India 2015"],
+            ["/apex-assets/founder-neelabh.webp", "Neelabh Prabhat – IIT Delhi Alum & Ex-Citybank"]
+          ].map(([src, alt], i) => (
+            <div
+              className="founder-card-item scroll-reveal reveal-founder-card"
+              key={src}
+              style={{ transitionDelay: `${i * 0.1}s` }}
+            >
+              <img className="founder-card-img" src={src} alt={alt} />
+            </div>
+          ))}
         </div>
       </div>
     </section>
@@ -441,15 +654,15 @@ function TrustedSchools() {
   const right = useMemo(() => [...schoolsRight, ...schoolsRight], []);
   return (
     <section className="trusted-schools-section">
-      <div className="schools-header scroll-reveal">
+      <div className="schools-header scroll-reveal reveal-header">
         <span className="schools-subheading">GradCircle Programs Trusted</span>
         <h2 className="schools-title">by Students from 300+ Schools</h2>
       </div>
-      <div className="marquee-wrapper">
+      <div className="marquee-wrapper scroll-reveal reveal-marquee">
         <div className="marquee-track marquee-track-left">{left.map((school, i) => <SchoolLogo key={`${school[0]}-${i}`} school={school} />)}</div>
         <div className="marquee-track marquee-track-right">{right.map((school, i) => <SchoolLogo key={`${school[0]}-${i}`} school={school} />)}</div>
       </div>
-      <div className="ready-cta-subsection scroll-reveal">
+      <div className="ready-cta-subsection scroll-reveal reveal-header">
         <h2 className="ready-cta-title">Ready to start your research journey?</h2>
         <p className="ready-cta-subtitle">Spots fill up quickly on a rolling basis.</p>
         <div className="ready-cta-buttons">
@@ -474,8 +687,12 @@ function Enquire() {
           ["01", "Submit Your Profile", "Fill out our brief online application detailing your academic interests."],
           ["02", "Mentor Matching", "Our academic board will match you with a specialized mentor based on your proposed research area."],
           ["03", "Acceptance & Onboarding", "Receive your official acceptance, complete your registration, and begin your research journey!"]
-        ].map(([num, title, desc]) => (
-          <div className="enquire-step-card scroll-reveal" key={title}>
+        ].map(([num, title, desc], i) => (
+          <div
+            className="enquire-step-card scroll-reveal reveal-step-card"
+            key={title}
+            style={{ transitionDelay: `${i * 0.08}s` }}
+          >
             <span className="step-badge">{num}</span>
             <div className="step-content">
               <h3 className="step-title">{title}</h3>
@@ -484,7 +701,7 @@ function Enquire() {
           </div>
         ))}
       </div>
-      <div className="enquire-form-card scroll-reveal">
+      <div className="enquire-form-card scroll-reveal reveal-form-card">
         <FormGroup label="Full Name" />
         <div className="form-row">
           <FormGroup label="Contact" flex />
@@ -599,8 +816,11 @@ export default function Page() {
   const [scrolled, setScrolled] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [active, setActive] = useState("home");
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
+    setLoaded(true);
+
     const onScroll = () => {
       setScrolled(window.scrollY > 90);
       const visible = navItems
@@ -613,6 +833,15 @@ export default function Page() {
     window.addEventListener("scroll", onScroll, { passive: true });
 
     const revealItems = Array.from(document.querySelectorAll(".scroll-reveal"));
+
+    // Immediately reveal elements near or in the viewport
+    revealItems.forEach((item) => {
+      const rect = item.getBoundingClientRect();
+      if (rect.top < window.innerHeight + 300) {
+        item.classList.add("is-visible");
+      }
+    });
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -622,13 +851,19 @@ export default function Page() {
           }
         });
       },
-      { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+      { threshold: 0.01, rootMargin: "300px 0px 200px 0px" }
     );
     revealItems.forEach((item) => observer.observe(item));
+
+    // Safety fallback: reveal all elements so no content remains permanently hidden
+    const fallbackTimer = setTimeout(() => {
+      document.querySelectorAll(".scroll-reveal").forEach((el) => el.classList.add("is-visible"));
+    }, 600);
 
     return () => {
       window.removeEventListener("scroll", onScroll);
       observer.disconnect();
+      clearTimeout(fallbackTimer);
     };
   }, []);
 
@@ -640,8 +875,9 @@ export default function Page() {
         openMenu={() => setDrawerOpen(true)}
         drawerOpen={drawerOpen}
         closeDrawer={() => setDrawerOpen(false)}
+        loaded={loaded}
       />
-      <WhyResearch />
+      <ProgramExplorer />
       <ApexDifference />
       <Sprint />
       <Areas />
