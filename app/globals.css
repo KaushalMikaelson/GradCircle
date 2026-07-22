@@ -1728,3 +1728,343 @@ a {
   .footer-branding-block { min-height: 204px; }
   .footer-columns-grid { min-height: 272px; }
 }
+
+/* ==========================================================================
+   COMPREHENSIVE MOBILE VIEW OPTIMIZATIONS (<640px & <480px)
+   ========================================================================== */
+@media (max-width: 640px) {
+  /* Prevent any horizontal page overflow */
+  html, body {
+    overflow-x: hidden !important;
+    width: 100vw;
+  }
+
+  /* Section Padding Standardisation for Phones */
+  .program-explorer-section,
+  .apex-difference-section,
+  .sprint-section,
+  .research-areas-section,
+  .deliverables-section,
+  .logistics-section,
+  .founders-section,
+  .trusted-schools-section,
+  .enquire-section {
+    padding-top: 44px !important;
+    padding-bottom: 56px !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  /* Headings & Section Subheadings */
+  .program-subheading,
+  .apex-diff-subheading,
+  .sprint-subheading,
+  .areas-subheading,
+  .deliverables-subheading,
+  .logistics-subheading,
+  .founders-subheading,
+  .schools-subheading,
+  .enquire-subheading {
+    font-size: 20px !important;
+    margin-bottom: 6px !important;
+  }
+
+  .program-title,
+  .apex-diff-title,
+  .sprint-title,
+  .areas-title,
+  .deliverables-title,
+  .logistics-title,
+  .founders-title,
+  .schools-title,
+  .ready-cta-title,
+  .enquire-title {
+    font-size: 26px !important;
+    line-height: 1.25 !important;
+    margin-bottom: 12px !important;
+  }
+
+  .program-description,
+  .areas-description,
+  .deliverables-description,
+  .ready-cta-subtitle {
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+  }
+
+  /* Hero Section */
+  .hero-wrapper {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+    padding-bottom: 40px !important;
+    min-height: auto !important;
+  }
+  .hero-card-coded {
+    padding: 24px 16px 20px !important;
+    border-radius: 16px !important;
+  }
+  .hc-brand-pill {
+    padding: 6px 14px !important;
+    gap: 6px !important;
+  }
+  .hc-brand-label {
+    font-size: 11.5px !important;
+    letter-spacing: 0.8px !important;
+  }
+  .hc-main-title {
+    font-size: clamp(20px, 6.5vw, 30px) !important;
+    line-height: 1.25 !important;
+    margin-top: 10px !important;
+  }
+  .hc-sub-line, .hc-accent-line {
+    font-size: 13px !important;
+    line-height: 1.45 !important;
+  }
+  .hc-info-strip {
+    margin-top: 14px !important;
+    padding: 10px 14px !important;
+    border-radius: 12px !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 6px !important;
+  }
+  .hc-info-line {
+    font-size: 11.5px !important;
+    text-align: center !important;
+  }
+  .sponsors-row {
+    margin-top: 16px !important;
+    gap: 12px !important;
+  }
+  .sponsor-img {
+    height: 40px !important;
+  }
+
+  /* Search & Filter Bar Design (Rule Compliance) */
+  .program-filter-bar {
+    padding: 10px 12px !important;
+    gap: 10px !important;
+    border-radius: 14px !important;
+    margin-bottom: 24px !important;
+    background: #0d111a !important;
+    border: 1.5px solid #1c2232 !important;
+  }
+  .program-search-box {
+    width: 100% !important;
+  }
+  .program-search-input {
+    height: 44px !important;
+    font-size: 13px !important;
+    padding: 0 14px !important;
+    background: #121722 !important;
+    border: 1px solid #232938 !important;
+    border-radius: 8px !important;
+  }
+  .program-filter-pills {
+    width: 100% !important;
+    gap: 6px !important;
+    overflow-x: auto !important;
+    flex-wrap: nowrap !important;
+    padding-bottom: 4px !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+  }
+  .program-filter-pills::-webkit-scrollbar {
+    display: none !important;
+  }
+  .filter-pill {
+    padding: 7px 12px !important;
+    font-size: 12.5px !important;
+    border-radius: 8px !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* Program Cards */
+  .program-cards-grid {
+    gap: 16px !important;
+  }
+  .program-card-body {
+    padding: 16px 14px !important;
+  }
+  .program-card-title {
+    font-size: 16.5px !important;
+    line-height: 1.35 !important;
+    margin-bottom: 12px !important;
+  }
+  .program-card-actions {
+    flex-direction: row !important;
+    gap: 8px !important;
+    width: 100% !important;
+  }
+  .btn-card-outline, .btn-card-primary {
+    padding: 9px 10px !important;
+    font-size: 12.5px !important;
+    flex: 1 !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+
+  /* Apex Difference */
+  .apex-diff-list {
+    gap: 12px !important;
+  }
+  .apex-diff-card {
+    padding: 14px 16px !important;
+    gap: 12px !important;
+    border-radius: 14px !important;
+  }
+  .apex-diff-icon-badge {
+    width: 48px !important;
+    height: 48px !important;
+    border-radius: 12px !important;
+  }
+  .apex-diff-icon {
+    width: 26px !important;
+    height: 26px !important;
+  }
+  .apex-diff-card-title {
+    font-size: 15.5px !important;
+    margin-bottom: 3px !important;
+  }
+  .apex-diff-card-desc {
+    font-size: 13px !important;
+    line-height: 1.45 !important;
+  }
+
+  /* Sprint Timeline */
+  .sprint-timeline-line {
+    left: 17px !important;
+    top: 20px !important;
+    bottom: 20px !important;
+    width: 2px !important;
+  }
+  .sprint-phase-row {
+    gap: 12px !important;
+  }
+  .sprint-node {
+    width: 36px !important;
+    height: 36px !important;
+    border-width: 2px !important;
+  }
+  .sprint-node-number {
+    font-size: 16px !important;
+  }
+  .sprint-card {
+    padding: 14px 16px !important;
+    border-radius: 14px !important;
+  }
+  .sprint-phase-label {
+    font-size: 11.5px !important;
+  }
+  .sprint-phase-title {
+    font-size: 15.5px !important;
+  }
+  .sprint-phase-details {
+    font-size: 13px !important;
+    margin-top: 6px !important;
+  }
+
+  /* Research Areas */
+  .area-card-banner {
+    padding: 14px 18px !important;
+  }
+  .area-card-banner h3 {
+    font-size: 15px !important;
+  }
+  .area-item {
+    padding: 12px 18px !important;
+    gap: 10px !important;
+  }
+  .area-name {
+    font-size: 13.5px !important;
+  }
+
+  /* Deliverables */
+  .deliverable-card {
+    padding: 14px 16px 14px 20px !important;
+    min-height: auto !important;
+  }
+  .deliverable-card-title {
+    font-size: 15px !important;
+  }
+  .deliverable-card-desc {
+    font-size: 12.5px !important;
+  }
+
+  /* Logistics Table */
+  .logistics-card {
+    border-radius: 14px !important;
+  }
+  .logistics-row {
+    padding: 14px 16px !important;
+    gap: 4px !important;
+  }
+  .logistics-label {
+    font-size: 12.5px !important;
+  }
+  .logistics-value {
+    font-size: 13.5px !important;
+  }
+  .fee-value {
+    font-size: 18px !important;
+  }
+
+  /* Founders */
+  .gradcircle-info-card {
+    padding: 16px !important;
+    gap: 12px !important;
+    border-radius: 14px !important;
+  }
+  .gradcircle-info-text {
+    font-size: 13px !important;
+  }
+  .founder-card-item {
+    border-radius: 16px !important;
+    max-width: 320px !important;
+    margin: 0 auto !important;
+  }
+
+  /* Enquire Form */
+  .enquire-form-card {
+    padding: 24px 16px !important;
+    border-radius: 16px !important;
+  }
+  .form-group {
+    margin-bottom: 14px !important;
+    gap: 6px !important;
+  }
+  .form-input, .form-select {
+    height: 44px !important;
+    font-size: 13.5px !important;
+    padding: 0 12px !important;
+    border-radius: 8px !important;
+  }
+  .btn-submit {
+    width: 100% !important;
+    min-width: unset !important;
+    padding: 12px 24px !important;
+    font-size: 15px !important;
+  }
+
+  /* Footer */
+  .footer-section {
+    padding-top: 44px !important;
+    padding-bottom: 28px !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+  .footer-sponsors-row {
+    gap: 12px !important;
+  }
+  .footer-sponsor-badge {
+    padding: 8px 16px !important;
+    border-radius: 12px !important;
+  }
+  .footer-sponsor-img-1 { height: 42px !important; }
+  .footer-sponsor-img-2 { height: 48px !important; }
+  .footer-sponsor-img-3 { height: 40px !important; }
+  .footer-columns-grid {
+    gap: 24px !important;
+    padding: 20px 0 28px !important;
+  }
+}
