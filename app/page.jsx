@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 const navItems = [
   { label: "Home", target: "home" },
@@ -418,8 +418,27 @@ function ProgramExplorer() {
 
 function ApexDifference() {
   const [active, setActive] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.15 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section className="apex-difference-section">
+    <section ref={sectionRef} className="apex-difference-section">
       <SectionHeader
         sub="The Apex Difference"
         title={<>Why Parents & Students<br />Choose Apex Scholars</>}
@@ -428,9 +447,9 @@ function ApexDifference() {
       <div className="apex-diff-list">
         {differenceCards.map(([title, text, img], i) => (
           <div
-            className={`apex-diff-card scroll-reveal reveal-apex-card is-visible ${active === i ? "active" : ""}`}
+            className={`apex-diff-card ${isVisible ? "is-visible" : ""} ${active === i ? "active" : ""}`}
             key={title}
-            style={{ transitionDelay: `${i * 0.08}s` }}
+            style={{ transitionDelay: `${i * 0.15}s` }}
             onMouseEnter={() => setActive(i)}
           >
             <div className={`apex-diff-icon-badge ${active === i ? "active-badge" : ""}`}>
@@ -820,9 +839,6 @@ export default function Page() {
 
   useEffect(() => {
     setLoaded(true);
-    if (typeof document !== "undefined") {
-      document.body.classList.add("is-loaded");
-    }
 
     const onScroll = () => {
       setScrolled(window.scrollY > 90);
@@ -845,6 +861,7 @@ export default function Page() {
       }
     });
 
+    // One-shot observer for regular scroll-reveal elements
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
