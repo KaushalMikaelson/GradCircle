@@ -68,7 +68,8 @@ a {
   transform: translateY(24px);
 }
 
-.scroll-reveal.is-visible {
+.scroll-reveal.is-visible,
+body.is-loaded .scroll-reveal {
   opacity: 1 !important;
   transform: translate(0) scale(1) rotate(0deg) rotateX(0deg) rotateY(0deg) !important;
   filter: none !important;

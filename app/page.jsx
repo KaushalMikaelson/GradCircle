@@ -363,7 +363,7 @@ function ProgramExplorer() {
           <div className="program-cards-grid">
             {filteredPrograms.map((prog, i) => (
               <div
-                className="program-card-item scroll-reveal reveal-why-card"
+                className="program-card-item scroll-reveal reveal-why-card is-visible"
                 key={prog.id}
                 style={{ transitionDelay: `${i * 0.08}s` }}
               >
@@ -428,7 +428,7 @@ function ApexDifference() {
       <div className="apex-diff-list">
         {differenceCards.map(([title, text, img], i) => (
           <div
-            className={`apex-diff-card scroll-reveal reveal-apex-card ${active === i ? "active" : ""}`}
+            className={`apex-diff-card scroll-reveal reveal-apex-card is-visible ${active === i ? "active" : ""}`}
             key={title}
             style={{ transitionDelay: `${i * 0.08}s` }}
             onMouseEnter={() => setActive(i)}
@@ -468,13 +468,13 @@ function Sprint() {
               onClick={() => setActive(i)}
             >
               <div
-                className={`sprint-node scroll-reveal reveal-sprint-node ${active === i ? "active-node" : ""}`}
+                className={`sprint-node scroll-reveal reveal-sprint-node is-visible ${active === i ? "active-node" : ""}`}
                 style={{ transitionDelay: `${i * 0.08}s` }}
               >
                 <span className="sprint-node-number">{num}</span>
               </div>
               <div
-                className={`sprint-card scroll-reveal reveal-sprint-card ${active === i ? "active-card" : ""}`}
+                className={`sprint-card scroll-reveal reveal-sprint-card is-visible ${active === i ? "active-card" : ""}`}
                 style={{ transitionDelay: `${i * 0.08 + 0.04}s` }}
               >
                 <span className="sprint-phase-label">{label}</span>
@@ -820,6 +820,9 @@ export default function Page() {
 
   useEffect(() => {
     setLoaded(true);
+    if (typeof document !== "undefined") {
+      document.body.classList.add("is-loaded");
+    }
 
     const onScroll = () => {
       setScrolled(window.scrollY > 90);
