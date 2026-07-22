@@ -373,12 +373,6 @@ function ProgramExplorer() {
                 <div className="program-card-body">
                   <span className="program-card-category">{prog.category}</span>
                   <h3 className="program-card-title">{prog.title}</h3>
-                  <p className="program-card-subtitle">{prog.subtitle}</p>
-                  <div className="program-card-tags">
-                    {prog.tags.map((tag) => (
-                      <span className="program-tag-pill" key={tag}>{tag}</span>
-                    ))}
-                  </div>
                   <div className="program-card-actions">
                     <a
                       className="btn-card-outline"
