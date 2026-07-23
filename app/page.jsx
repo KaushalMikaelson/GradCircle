@@ -84,14 +84,6 @@ const differenceCards = [
   ["Exclusive Publication Outcomes", "Opportunity to publish in the Bennett Journal.", "/apex-assets/publication-outcomes.webp"]
 ];
 
-const sprintPhases = [
-  ["01", "Phase 1 • Weeks 1-2", "Research Question & Direction", "Define your research topic, formulate core hypotheses, and establish project scope with your PhD mentor."],
-  ["02", "Phase 2 • Weeks 3-4", "Research Design & Methodology"],
-  ["03", "Phase 3 • Weeks 5-6", "Research, Analysis & Writing"],
-  ["04", "Phase 4 • Weeks 7-8", "Manuscript Development & Review"],
-  ["05", "Phase 5 • Weeks 9-10", "Publication Submission & Presentation"]
-];
-
 const areas = {
   STEM: ["Mathematics", "Data Science", "Biology, Chemistry & Physics", "Astrophysics", "Architecture & Design", "Computer Science & Engineering", "Neuroscience & Medicine", "Environmental Studies"],
   "Humanities & Social Sciences": ["Economics & Business", "Psychology & Sociology", "Philosophy & Gender Studies", "History, Law & International Relations", "Education, Linguistics & Classics"]
@@ -200,10 +192,11 @@ function MobileDrawer({ open, close }) {
         </div>
         <nav className="mobile-drawer-nav">
           <ul className="mobile-drawer-links">
-            {navItems.map((item) => (
+            {navItems.map((item, idx) => (
               <li
                 key={item.target}
                 className="mobile-nav-item"
+                style={{ animation: open ? `drawerItemSlide 0.35s ease-out ${idx * 0.06}s both` : "none" }}
                 onClick={() => {
                   close();
                   scrollToId(item.target);
@@ -363,9 +356,9 @@ function ProgramExplorer() {
           <div className="program-cards-grid">
             {filteredPrograms.map((prog, i) => (
               <div
-                className="program-card-item scroll-reveal reveal-why-card is-visible"
+                className="program-card-item scroll-reveal reveal-why-card"
                 key={prog.id}
-                style={{ transitionDelay: `${i * 0.08}s` }}
+                style={{ transitionDelay: `${(i % 3) * 0.08}s` }}
               >
                 <div className="program-card-banner">
                   <img className="program-card-img" src={prog.image} alt={prog.title} />
@@ -455,48 +448,6 @@ function ApexDifference() {
             </div>
           </div>
         ))}
-      </div>
-    </section>
-  );
-}
-
-function Sprint() {
-  const [active, setActive] = useState(0);
-  return (
-    <section className="sprint-section">
-      <SectionHeader
-        sub="How It Works"
-        title="The 10-Week Research Sprint"
-        desc="Click or hover over a phase to track your progress through the sprint."
-        classes={{ header: "sprint-header", sub: "sprint-subheading", title: "sprint-title", desc: "sprint-instruction" }}
-      />
-      <div className="sprint-timeline-container">
-        <div className="sprint-timeline-line scroll-reveal" />
-        <div className="sprint-phases-list">
-          {sprintPhases.map(([num, label, title, details], i) => (
-            <div
-              className="sprint-phase-row"
-              key={title}
-              onMouseEnter={() => setActive(i)}
-              onClick={() => setActive(i)}
-            >
-              <div
-                className={`sprint-node scroll-reveal reveal-sprint-node is-visible ${active === i ? "active-node" : ""}`}
-                style={{ transitionDelay: `${i * 0.08}s` }}
-              >
-                <span className="sprint-node-number">{num}</span>
-              </div>
-              <div
-                className={`sprint-card scroll-reveal reveal-sprint-card is-visible ${active === i ? "active-card" : ""}`}
-                style={{ transitionDelay: `${i * 0.08 + 0.04}s` }}
-              >
-                <span className="sprint-phase-label">{label}</span>
-                <h3 className="sprint-phase-title">{title}</h3>
-                {active === i && details ? <p className="sprint-phase-details">{details}</p> : null}
-              </div>
-            </div>
-          ))}
-        </div>
       </div>
     </section>
   );
@@ -845,39 +796,30 @@ export default function Page() {
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
 
-    const revealItems = Array.from(document.querySelectorAll(".scroll-reveal"));
-
-    // Immediately reveal elements near or in the viewport
-    revealItems.forEach((item) => {
-      const rect = item.getBoundingClientRect();
-      if (rect.top < window.innerHeight + 300) {
-        item.classList.add("is-visible");
-      }
-    });
-
-    // One-shot observer for regular scroll-reveal elements
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add("is-visible");
-            observer.unobserve(entry.target);
           }
         });
       },
-      { threshold: 0.01, rootMargin: "300px 0px 200px 0px" }
+      { threshold: 0.08, rootMargin: "0px 0px -40px 0px" }
     );
-    revealItems.forEach((item) => observer.observe(item));
 
-    // Safety fallback: reveal all elements so no content remains permanently hidden
-    const fallbackTimer = setTimeout(() => {
-      document.querySelectorAll(".scroll-reveal").forEach((el) => el.classList.add("is-visible"));
-    }, 600);
+    const revealItems = document.querySelectorAll(".scroll-reveal");
+    revealItems.forEach((item) => {
+      const rect = item.getBoundingClientRect();
+      // Immediately reveal items currently visible in the hero / upper fold
+      if (rect.top < window.innerHeight - 30) {
+        item.classList.add("is-visible");
+      }
+      observer.observe(item);
+    });
 
     return () => {
       window.removeEventListener("scroll", onScroll);
       observer.disconnect();
-      clearTimeout(fallbackTimer);
     };
   }, []);
 
@@ -893,7 +835,6 @@ export default function Page() {
       />
       <ProgramExplorer />
       <ApexDifference />
-      <Sprint />
       <Areas />
       <Deliverables />
       <Logistics />
