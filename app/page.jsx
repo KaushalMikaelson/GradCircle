@@ -15,8 +15,8 @@ const programsData = [
     category: "Psychology",
     title: "Psychology & Behavioral Neuroscience",
     subtitle: "Conduct behavioral studies, cognitive analysis, mental health research, and psychological experiments.",
-    image: "/programs/Carousel - Psychology.png",
-    pdf: "/programs/Internship Details - Psychology.pdf",
+    image: "/pdf/Carousel - Psychology.svg",
+    pdf: "/pdf/Internship Details - Psychology.pdf",
     tags: ["Cognitive Science", "Behavioral Analysis", "Experimental Design", "Neuropsychology"]
   },
   {
@@ -24,8 +24,8 @@ const programsData = [
     category: "Finance",
     title: "Corporate Finance & Investment Banking",
     subtitle: "Analyze capital markets, financial statements, valuation methodologies, and investment portfolios.",
-    image: "/programs/Carousel - Finance.png",
-    pdf: "/programs/Internship Details - Finance.pdf",
+    image: "/pdf/Carousel - Finance.svg",
+    pdf: "/pdf/Internship Details - Finance.pdf",
     tags: ["Financial Valuation", "Capital Markets", "Portfolio Analysis", "Risk Assessment"]
   },
   {
@@ -33,8 +33,8 @@ const programsData = [
     category: "Healthcare",
     title: "Healthcare, Public Health & Medical Research",
     subtitle: "Investigate clinical research methodologies, epidemiology, public health policies, and medical innovation.",
-    image: "/programs/Carousel - Healthcare.png",
-    pdf: "/programs/Internship Details - Healthcare.pdf",
+    image: "/pdf/Carousel - Healthcare.svg",
+    pdf: "/pdf/Internship Details - Healthcare.pdf",
     tags: ["Clinical Research", "Epidemiology", "Medical Ethics", "Healthcare Systems"]
   },
   {
@@ -42,8 +42,8 @@ const programsData = [
     category: "Law",
     title: "Corporate Law & International Policy",
     subtitle: "Examine legal frameworks, intellectual property, international human rights law, and jurisprudence.",
-    image: "/programs/Carousel - Law.png",
-    pdf: "/programs/Internship Details - Law.pdf",
+    image: "/pdf/Carousel - Law.svg",
+    pdf: "/pdf/Internship Details - Law.pdf",
     tags: ["Constitutional Law", "IP & Corporate Law", "Legal Writing", "Case Analysis"]
   },
   {
@@ -51,8 +51,8 @@ const programsData = [
     category: "Business & Strategy",
     title: "Business Strategy & Management Consulting",
     subtitle: "Explore competitive analysis, corporate growth strategies, venture creation, and strategic planning.",
-    image: "/programs/Carousel - Business & Strategy.png",
-    pdf: "/programs/Internship Details - Business and Strategy.pdf",
+    image: "/pdf/Carousel - Business & Strategy.svg",
+    pdf: "/pdf/Internship Details - Business and Strategy.pdf",
     tags: ["Corporate Strategy", "Venture Growth", "Market Research", "Financial Modeling"]
   },
   {
@@ -60,8 +60,8 @@ const programsData = [
     category: "Data Science & AI",
     title: "Data Science, Machine Learning & AI",
     subtitle: "Develop predictive models, perform big data analytics, and implement machine learning algorithms.",
-    image: "/programs/Carousel - Data Science & AI.png",
-    pdf: "/programs/Internship Details - Data Science and AI.pdf",
+    image: "/pdf/Carousel - Data Science & AI.svg",
+    pdf: "/pdf/Internship Details - Data Science and AI.pdf",
     tags: ["Python & ML", "Neural Networks", "Data Visualization", "AI Ethics"]
   },
   {
@@ -69,8 +69,8 @@ const programsData = [
     category: "Brand Management",
     title: "Brand Management & Strategic Marketing",
     subtitle: "Master brand architecture, positioning, digital campaign strategies, and consumer behavior analysis.",
-    image: "/programs/Carousel - Brand Management.png",
-    pdf: "/programs/Internship Details - Brand Management.pdf",
+    image: "/pdf/Carousel - Brand Management.svg",
+    pdf: "/pdf/Internship Details - Brand Management.pdf",
     tags: ["Brand Positioning", "Digital Campaigns", "Consumer Behavior", "Market Analysis"]
   }
 ];

@@ -194,11 +194,11 @@ a {
 /* Scroll reveal core style - Starts with subtle initial state and reveals smoothly */
 .scroll-reveal {
   opacity: 0;
-  will-change: opacity, transform, filter;
-  transition: opacity 0.65s cubic-bezier(0.2, 0.8, 0.2, 1),
-              transform 0.65s cubic-bezier(0.2, 0.8, 0.2, 1),
-              filter 0.65s cubic-bezier(0.2, 0.8, 0.2, 1);
   transform: translateY(24px);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 /* Bidirectional scroll animation — resets and replays every time element enters viewport */
@@ -208,7 +208,6 @@ a {
   transition:
     opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
     transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
 }
 
 .repeat-reveal.is-visible {
@@ -219,8 +218,9 @@ a {
 /* Only reveal when IntersectionObserver adds is-visible */
 .scroll-reveal.is-visible {
   opacity: 1 !important;
-  transform: translate(0) scale(1) rotate(0deg) rotateX(0deg) rotateY(0deg);
+  transform: translate3d(0, 0, 0) scale(1) !important;
   filter: none !important;
+  will-change: auto !important;
 }
 
 /* Allow CSS animations to override transform on elements with has-anim */
@@ -255,13 +255,13 @@ a {
 .reveal-form-card { transform: translateY(30px) scale(0.97); }
 .reveal-hero-header { transform: translateY(-20px); }
 .reveal-hero-card { transform: translateY(30px); }
-.reveal-hero-pill { transform: translateY(-8px); filter: blur(6px); }
-.reveal-hero-title { transform: translateY(16px); filter: blur(12px); }
-.reveal-hero-sub { transform: translateY(8px); filter: blur(6px); }
-.reveal-hero-accent { transform: translateY(8px); filter: blur(6px); }
-.reveal-hero-strip { transform: translateY(12px); filter: blur(6px); }
+.reveal-hero-pill { transform: translateY(-8px); }
+.reveal-hero-title { transform: translateY(16px); }
+.reveal-hero-sub { transform: translateY(8px); }
+.reveal-hero-accent { transform: translateY(8px); }
+.reveal-hero-strip { transform: translateY(12px); }
 .reveal-hero-cta { transform: translateY(16px); }
-.reveal-sponsor { transform: translateY(12px); filter: blur(4px); }
+.reveal-sponsor { transform: translateY(12px); }
 
 /* Line grow animation */
 .sprint-timeline-line {
@@ -887,21 +887,27 @@ button:active {
 
 .program-card-banner {
   width: 100%;
-  height: 200px;
+  height: auto;
   background: #0a1728;
   position: relative;
   overflow: hidden;
 }
 
 .program-card-img {
-  object-fit: cover;
   width: 100%;
-  height: 100%;
-  transition: transform 0.4s ease;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: translateZ(0);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .program-card-item:hover .program-card-img {
-  transform: scale(1.05);
+  transform: scale(1.03) translateZ(0);
 }
 
 .program-card-body {
