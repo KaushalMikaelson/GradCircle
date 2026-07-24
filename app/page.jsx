@@ -415,7 +415,8 @@ function ApexDifference() {
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
-          observer.disconnect();
+        } else {
+          setIsVisible(false);
         }
       },
       { threshold: 0.15 }
@@ -801,6 +802,8 @@ export default function Page() {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add("is-visible");
+          } else {
+            entry.target.classList.remove("is-visible");
           }
         });
       },
