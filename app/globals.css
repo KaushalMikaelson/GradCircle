@@ -1062,14 +1062,19 @@ button:active {
   border-radius: 20px;
   flex-direction: column;
   justify-content: space-between;
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s, border-color 0.3s;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease;
   display: flex;
   overflow: hidden;
   box-shadow: 0 6px 20px #003a6c0d;
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
+  -webkit-font-smoothing: antialiased;
 }
 
 .program-card-item:hover {
-  transform: translateY(-6px);
+  transform: translate3d(0, -6px, 0);
   border-color: #fc6a1766;
   box-shadow: 0 18px 45px #003a6c24, 0 4px 16px #fc6a171a;
 }
@@ -1088,15 +1093,15 @@ button:active {
   display: block;
   object-fit: contain;
   image-rendering: -webkit-optimize-contrast;
-  image-rendering: crisp-edges;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-  transform: translateZ(0);
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translate3d(0, 0, 0);
+  transition: filter 0.35s ease, transform 0.35s ease;
+  will-change: filter, transform;
 }
 
 .program-card-item:hover .program-card-img {
-  transform: scale(1.03) translateZ(0);
+  filter: brightness(1.05) contrast(1.02);
 }
 
 .program-card-body {
@@ -1312,21 +1317,25 @@ button:active {
   position: relative;
   box-shadow: 0 4px 15px #00000008;
   opacity: 0;
-  transform: translateY(40px);
+  transform: translate3d(0, 40px, 0);
   transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
               transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
               box-shadow 0.3s ease,
               border-color 0.3s ease;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
 .apex-diff-card.is-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: translate3d(0, 0, 0);
 }
 
 .apex-diff-card.active {
   border-color: #0000;
-  transform: translateY(-6px);
+  transform: translate3d(0, -6px, 0);
   box-shadow: 0 18px 40px #003a6c2a;
 }
 .apex-diff-card.active:before {
@@ -1759,14 +1768,19 @@ button:active {
   border-radius: 20px;
   flex-direction: column;
   align-items: center;
-  transition: box-shadow 0.35s, border-color 0.35s, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: box-shadow 0.35s ease, border-color 0.35s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   display: flex;
   position: relative;
   overflow: hidden;
   box-shadow: 0 10px 30px #003a6c14;
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
+  -webkit-font-smoothing: antialiased;
 }
 .founder-card-item:hover {
-  transform: translateY(-6px) scale(1.02);
+  transform: translate3d(0, -6px, 0);
   border-color: #0000;
   box-shadow: 0 0 30px #fc6a1780, 0 16px 45px #fc6a174d, 0 24px 60px #00264d2e;
 }
@@ -1775,10 +1789,14 @@ button:active {
   width: 100%;
   height: auto;
   display: block;
-  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: filter 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: filter;
+  image-rendering: -webkit-optimize-contrast;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 .founder-card-item:hover .founder-card-img {
-  transform: scale(1.04);
+  filter: brightness(1.04) contrast(1.02);
 }
 
 @media (max-width: 860px) {
