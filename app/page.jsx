@@ -321,6 +321,7 @@ function ProgramExplorer() {
   const [searchQuery, setSearchQuery] = useState("");
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
+  const pillsRowRef = useRef(null);
 
   useEffect(() => {
     function handleClickOutside(e) {
@@ -331,6 +332,13 @@ function ProgramExplorer() {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+
+  const scrollPills = (direction) => {
+    if (pillsRowRef.current) {
+      const amount = direction === "left" ? -300 : 300;
+      pillsRowRef.current.scrollBy({ left: amount, behavior: "smooth" });
+    }
+  };
 
   const filteredPrograms = useMemo(() => {
     return programsData.filter((p) => {
@@ -365,7 +373,7 @@ function ProgramExplorer() {
           classes={{ header: "program-header", sub: "program-subheading", title: "program-title", desc: "program-description" }}
         />
 
-        {/* Dark Filter & Search Bar - Search Box & Pills Row */}
+        {/* Dark Filter & Search Bar - Search Box & Pills Row with Desktop Scroll Arrows */}
         <div className="program-filter-bar scroll-reveal reveal-header">
           <div className="program-search-box">
             <input
@@ -408,7 +416,16 @@ function ProgramExplorer() {
               )}
             </div>
 
-            <div className="program-filter-pills">
+            <button
+              className="pills-scroll-arrow pills-scroll-arrow-left"
+              onClick={() => scrollPills("left")}
+              aria-label="Scroll left"
+              type="button"
+            >
+              ‹
+            </button>
+
+            <div className="program-filter-pills" ref={pillsRowRef}>
               {categories.filter((cat) => cat !== "All Programs").map((cat) => (
                 <button
                   key={cat}
@@ -419,6 +436,15 @@ function ProgramExplorer() {
                 </button>
               ))}
             </div>
+
+            <button
+              className="pills-scroll-arrow pills-scroll-arrow-right"
+              onClick={() => scrollPills("right")}
+              aria-label="Scroll right"
+              type="button"
+            >
+              ›
+            </button>
           </div>
         </div>
 
