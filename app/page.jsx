@@ -75,7 +75,24 @@ const programsData = [
   }
 ];
 
-const categories = ["All Programs", "Psychology", "Finance", "Healthcare", "Law", "Brand Management"];
+const categories = [
+  "All Programs",
+  "Psychology",
+  "Finance",
+  "Healthcare",
+  "Law",
+  "Brand Management",
+  "Cognitive Science",
+  "Financial Valuation",
+  "Clinical Research",
+  "AI Ethics",
+  "Corporate Strategy",
+  "Neuropsychology",
+  "Digital Campaigns",
+  "Legal Writing",
+  "Portfolio Analysis",
+  "Data Visualization"
+];
 
 const differenceCards = [
   ["Real Academic Rigor", "Overcome intellectual roadblocks, iterate on ideas, and respond effectively to constructive feedback.", "/apex-assets/academic-rigor.webp"],
@@ -305,14 +322,23 @@ function ProgramExplorer() {
 
   const filteredPrograms = useMemo(() => {
     return programsData.filter((p) => {
-      const matchesCategory = activeCategory === "All Programs" || p.category === activeCategory;
       const q = searchQuery.toLowerCase().trim();
+      const cat = activeCategory.toLowerCase();
+      const matchesCategory =
+        activeCategory === "All Programs" ||
+        p.category.toLowerCase() === cat ||
+        p.category.toLowerCase().includes(cat) ||
+        p.title.toLowerCase().includes(cat) ||
+        p.subtitle.toLowerCase().includes(cat) ||
+        p.tags.some((t) => t.toLowerCase().includes(cat));
+
       const matchesSearch =
         !q ||
         p.title.toLowerCase().includes(q) ||
         p.subtitle.toLowerCase().includes(q) ||
         p.category.toLowerCase().includes(q) ||
         p.tags.some((t) => t.toLowerCase().includes(q));
+
       return matchesCategory && matchesSearch;
     });
   }, [activeCategory, searchQuery]);
@@ -327,7 +353,7 @@ function ProgramExplorer() {
           classes={{ header: "program-header", sub: "program-subheading", title: "program-title", desc: "program-description" }}
         />
 
-        {/* Dark Filter & Search Bar - Matching Image */}
+        {/* Dark Filter & Search Bar - Single Horizontal Line with Pill Scroll */}
         <div className="program-filter-bar scroll-reveal reveal-header">
           <div className="program-search-box">
             <input
