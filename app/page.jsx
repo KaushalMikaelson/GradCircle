@@ -319,6 +319,18 @@ function SectionHeader({ sub, title, desc, classes }) {
 function ProgramExplorer() {
   const [activeCategory, setActiveCategory] = useState("All Programs");
   const [searchQuery, setSearchQuery] = useState("");
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
+
+  useEffect(() => {
+    function handleClickOutside(e) {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setDropdownOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   const filteredPrograms = useMemo(() => {
     return programsData.filter((p) => {
@@ -353,7 +365,7 @@ function ProgramExplorer() {
           classes={{ header: "program-header", sub: "program-subheading", title: "program-title", desc: "program-description" }}
         />
 
-        {/* Dark Filter & Search Bar - Single Horizontal Line with Pill Scroll */}
+        {/* Dark Filter & Search Bar - Search Box, Dropdown Popover, and Pill Scroll */}
         <div className="program-filter-bar scroll-reveal reveal-header">
           <div className="program-search-box">
             <input
@@ -364,8 +376,39 @@ function ProgramExplorer() {
               onChange={(e) => setSearchQuery(e.target.value)}
             />
           </div>
+
+          <div className="all-programs-dropdown-wrapper" ref={dropdownRef}>
+            <button
+              className={`filter-pill dropdown-trigger-pill ${activeCategory === "All Programs" ? "active" : ""}`}
+              onClick={() => setDropdownOpen((prev) => !prev)}
+            >
+              <span>{activeCategory}</span>
+              <span className={`dropdown-arrow ${dropdownOpen ? "open" : ""}`}>▾</span>
+            </button>
+            {dropdownOpen && (
+              <div className="program-dropdown-menu">
+                <div className="dropdown-menu-header">All Programs & Tracks ({categories.length - 1})</div>
+                <div className="dropdown-menu-list">
+                  {categories.map((item) => (
+                    <div
+                      key={item}
+                      className={`dropdown-item ${activeCategory === item ? "active" : ""}`}
+                      onClick={() => {
+                        setActiveCategory(item);
+                        setDropdownOpen(false);
+                      }}
+                    >
+                      <span className="dropdown-item-text">{item}</span>
+                      {activeCategory === item && <span className="dropdown-item-check">✓</span>}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+
           <div className="program-filter-pills">
-            {categories.map((cat) => (
+            {categories.filter((cat) => cat !== "All Programs").map((cat) => (
               <button
                 key={cat}
                 className={`filter-pill ${activeCategory === cat ? "active" : ""}`}
