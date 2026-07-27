@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 const navItems = [
   { label: "Home", target: "home" },
@@ -320,8 +320,18 @@ function ProgramExplorer() {
   const [activeCategory, setActiveCategory] = useState("All Programs");
   const [searchQuery, setSearchQuery] = useState("");
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
   const dropdownRef = useRef(null);
   const pillsRowRef = useRef(null);
+
+  const checkScroll = useCallback(() => {
+    if (pillsRowRef.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = pillsRowRef.current;
+      setCanScrollLeft(scrollLeft > 5);
+      setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 5);
+    }
+  }, []);
 
   useEffect(() => {
     function handleClickOutside(e) {
@@ -332,6 +342,19 @@ function ProgramExplorer() {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+
+  useEffect(() => {
+    const el = pillsRowRef.current;
+    if (el) {
+      checkScroll();
+      el.addEventListener("scroll", checkScroll, { passive: true });
+      window.addEventListener("resize", checkScroll);
+      return () => {
+        el.removeEventListener("scroll", checkScroll);
+        window.removeEventListener("resize", checkScroll);
+      };
+    }
+  }, [checkScroll]);
 
   const scrollPills = (direction) => {
     if (pillsRowRef.current) {
@@ -383,6 +406,16 @@ function ProgramExplorer() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
+            {searchQuery && (
+              <button
+                className="search-clear-btn"
+                onClick={() => setSearchQuery("")}
+                aria-label="Clear search"
+                type="button"
+              >
+                ✕
+              </button>
+            )}
           </div>
 
           <div className="program-pills-row">
@@ -416,30 +449,36 @@ function ProgramExplorer() {
               )}
             </div>
 
+            <div className="filter-divider" />
+
             <button
-              className="pills-scroll-arrow pills-scroll-arrow-left"
+              className={`pills-scroll-arrow pills-scroll-arrow-left ${!canScrollLeft ? "disabled" : ""}`}
               onClick={() => scrollPills("left")}
+              disabled={!canScrollLeft}
               aria-label="Scroll left"
               type="button"
             >
               ‹
             </button>
 
-            <div className="program-filter-pills" ref={pillsRowRef}>
-              {categories.filter((cat) => cat !== "All Programs").map((cat) => (
-                <button
-                  key={cat}
-                  className={`filter-pill ${activeCategory === cat ? "active" : ""}`}
-                  onClick={() => setActiveCategory(cat)}
-                >
-                  {cat}
-                </button>
-              ))}
+            <div className={`program-filter-pills-wrapper ${canScrollLeft ? "has-fade-left" : ""} ${canScrollRight ? "has-fade-right" : ""}`}>
+              <div className="program-filter-pills" ref={pillsRowRef}>
+                {categories.filter((cat) => cat !== "All Programs").map((cat) => (
+                  <button
+                    key={cat}
+                    className={`filter-pill ${activeCategory === cat ? "active" : ""}`}
+                    onClick={() => setActiveCategory(cat)}
+                  >
+                    {cat}
+                  </button>
+                ))}
+              </div>
             </div>
 
             <button
-              className="pills-scroll-arrow pills-scroll-arrow-right"
+              className={`pills-scroll-arrow pills-scroll-arrow-right ${!canScrollRight ? "disabled" : ""}`}
               onClick={() => scrollPills("right")}
+              disabled={!canScrollRight}
               aria-label="Scroll right"
               type="button"
             >
