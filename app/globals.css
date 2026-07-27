@@ -983,7 +983,16 @@ button:active {
   border: 1.5px solid #232938;
   color: #e2e8f0;
   height: 40px;
-  padding: 0 16px;
+  min-width: 240px;
+  padding: 0 24px;
+  justify-content: space-between;
+}
+
+.dropdown-arrow {
+  display: inline-block;
+  margin-left: 10px;
+  font-size: 12px;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .dropdown-trigger-pill.active {
