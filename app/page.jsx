@@ -357,7 +357,10 @@ function ProgramExplorer() {
     }
   }, [checkScroll]);
 
-  // Smooth Auto-Scroll Ticker for Category Filter Pills (Pauses on Hover)
+  const categoryList = useMemo(() => categories.filter((c) => c !== "All Programs"), []);
+  const duplicatedCategories = useMemo(() => [...categoryList, ...categoryList, ...categoryList], [categoryList]);
+
+  // True Infinite Auto-Scroll Ticker (Seamless Infinite Loop, Pauses on Hover)
   useEffect(() => {
     let animId;
     const step = () => {
@@ -365,8 +368,9 @@ function ProgramExplorer() {
         const el = pillsRowRef.current;
         if (el.scrollWidth > el.clientWidth) {
           el.scrollLeft += 0.6;
-          if (el.scrollLeft >= el.scrollWidth - el.clientWidth - 1) {
-            el.scrollLeft = 0;
+          const singleSetWidth = el.scrollWidth / 3;
+          if (el.scrollLeft >= singleSetWidth * 2) {
+            el.scrollLeft -= singleSetWidth;
           }
           checkScroll();
         }
@@ -491,9 +495,9 @@ function ProgramExplorer() {
 
             <div className={`program-filter-pills-wrapper ${canScrollLeft ? "has-fade-left" : ""} ${canScrollRight ? "has-fade-right" : ""}`}>
               <div className="program-filter-pills" ref={pillsRowRef}>
-                {categories.filter((cat) => cat !== "All Programs").map((cat) => (
+                {duplicatedCategories.map((cat, idx) => (
                   <button
-                    key={cat}
+                    key={`${cat}-${idx}`}
                     className={`filter-pill ${activeCategory === cat ? "active" : ""}`}
                     onClick={() => setActiveCategory(cat)}
                   >
