@@ -1262,17 +1262,17 @@ button:active {
 
 .program-card-banner {
   width: 100%;
-  height: auto;
-  background: #0a1728;
+  aspect-ratio: 1400 / 1600;
   position: relative;
   overflow: hidden;
+  background: #0a1728;
 }
 
 .program-card-img {
   width: 100%;
-  height: auto;
+  height: 100%;
   display: block;
-  object-fit: contain;
+  object-fit: cover;
   image-rendering: -webkit-optimize-contrast;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
@@ -1331,6 +1331,69 @@ button:active {
   padding: 4px 10px;
   font-size: 12px;
   font-weight: 600;
+}
+
+.program-card-dates-v2 {
+  margin-top: 14px;
+  margin-bottom: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.dates-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: #003a6c;
+}
+
+.dates-icon {
+  width: 14px;
+  height: 14px;
+  stroke: #fc6a17;
+  flex-shrink: 0;
+}
+
+.cohort-pills-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.cohort-chip {
+  background: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 8px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cohort-chip:hover {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+  transform: translateY(-1px);
+}
+
+.cohort-date {
+  font-size: 13.5px;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1.2;
+}
+
+.cohort-name {
+  font-size: 11px;
+  font-weight: 600;
+  color: #64748b;
+  line-height: 1.2;
 }
 
 .program-card-actions {
