@@ -322,6 +322,7 @@ function ProgramExplorer() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
+  const [isHovered, setIsHovered] = useState(false);
   const dropdownRef = useRef(null);
   const pillsRowRef = useRef(null);
 
@@ -355,6 +356,27 @@ function ProgramExplorer() {
       };
     }
   }, [checkScroll]);
+
+  // Smooth Auto-Scroll Ticker for Category Filter Pills (Pauses on Hover)
+  useEffect(() => {
+    let animId;
+    const step = () => {
+      if (pillsRowRef.current && !isHovered) {
+        const el = pillsRowRef.current;
+        if (el.scrollWidth > el.clientWidth) {
+          el.scrollLeft += 0.6;
+          if (el.scrollLeft >= el.scrollWidth - el.clientWidth - 1) {
+            el.scrollLeft = 0;
+          }
+          checkScroll();
+        }
+      }
+      animId = requestAnimationFrame(step);
+    };
+
+    animId = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(animId);
+  }, [isHovered, checkScroll]);
 
   const scrollPills = (direction) => {
     if (pillsRowRef.current) {
@@ -398,27 +420,27 @@ function ProgramExplorer() {
 
         {/* Dark Filter & Search Bar - Search Box & Pills Row with Desktop Scroll Arrows */}
         <div className="program-filter-bar scroll-reveal reveal-header">
-          <div className="program-search-box">
-            <input
-              type="text"
-              className="program-search-input"
-              placeholder="Search industries, projects, or keywords..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-            {searchQuery && (
-              <button
-                className="search-clear-btn"
-                onClick={() => setSearchQuery("")}
-                aria-label="Clear search"
-                type="button"
-              >
-                ✕
-              </button>
-            )}
-          </div>
+          <div className="program-top-row">
+            <div className="program-search-box">
+              <input
+                type="text"
+                className="program-search-input"
+                placeholder="Search industries, projects, or keywords..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+              {searchQuery && (
+                <button
+                  className="search-clear-btn"
+                  onClick={() => setSearchQuery("")}
+                  aria-label="Clear search"
+                  type="button"
+                >
+                  ✕
+                </button>
+              )}
+            </div>
 
-          <div className="program-pills-row">
             <div className="all-programs-dropdown-wrapper" ref={dropdownRef}>
               <button
                 className={`filter-pill dropdown-trigger-pill ${activeCategory === "All Programs" ? "active" : ""}`}
@@ -448,9 +470,15 @@ function ProgramExplorer() {
                 </div>
               )}
             </div>
+          </div>
 
-            <div className="filter-divider" />
-
+          <div
+            className="program-pills-row"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            onTouchStart={() => setIsHovered(true)}
+            onTouchEnd={() => setIsHovered(false)}
+          >
             <button
               className={`pills-scroll-arrow pills-scroll-arrow-left ${!canScrollLeft ? "disabled" : ""}`}
               onClick={() => scrollPills("left")}
