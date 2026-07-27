@@ -425,26 +425,6 @@ function ProgramExplorer() {
         {/* Dark Filter & Search Bar - Search Box & Pills Row with Desktop Scroll Arrows */}
         <div className="program-filter-bar scroll-reveal reveal-header">
           <div className="program-top-row">
-            <div className="program-search-box">
-              <input
-                type="text"
-                className="program-search-input"
-                placeholder="Search industries, projects, or keywords..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-              />
-              {searchQuery && (
-                <button
-                  className="search-clear-btn"
-                  onClick={() => setSearchQuery("")}
-                  aria-label="Clear search"
-                  type="button"
-                >
-                  ✕
-                </button>
-              )}
-            </div>
-
             <div className="all-programs-dropdown-wrapper" ref={dropdownRef}>
               <button
                 className={`filter-pill dropdown-trigger-pill ${activeCategory === "All Programs" ? "active" : ""}`}
@@ -472,6 +452,26 @@ function ProgramExplorer() {
                     ))}
                   </div>
                 </div>
+              )}
+            </div>
+
+            <div className="program-search-box">
+              <input
+                type="text"
+                className="program-search-input"
+                placeholder="Search industries, projects, or keywords..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+              {searchQuery && (
+                <button
+                  className="search-clear-btn"
+                  onClick={() => setSearchQuery("")}
+                  aria-label="Clear search"
+                  type="button"
+                >
+                  ✕
+                </button>
               )}
             </div>
           </div>
