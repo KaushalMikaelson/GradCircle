@@ -524,7 +524,7 @@ function ProgramExplorer() {
           <div className="program-cards-grid">
             {filteredPrograms.map((prog, i) => (
               <div
-                className="program-card-item scroll-reveal reveal-why-card"
+                className="program-card-item is-visible"
                 key={prog.id}
                 style={{ transitionDelay: `${(i % 3) * 0.08}s` }}
               >

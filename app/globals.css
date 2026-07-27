@@ -1153,6 +1153,68 @@ button:active {
   font-weight: 700;
 }
 
+/* Filter Bar Responsive */
+@media (max-width: 768px) {
+  .program-top-row {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .program-search-box {
+    width: 100%;
+  }
+
+  .dropdown-trigger-pill {
+    min-width: unset;
+    width: 100%;
+    height: 40px;
+    font-size: 14px;
+    border-radius: 8px;
+  }
+
+  .all-programs-dropdown-wrapper {
+    width: 100%;
+  }
+
+  .pills-scroll-arrow {
+    display: none;
+  }
+
+  .program-filter-pills {
+    padding: 2px 4px;
+  }
+}
+
+@media (max-width: 480px) {
+  .program-filter-bar {
+    padding: 12px;
+    gap: 10px;
+    border-radius: 10px;
+  }
+
+  .filter-pill {
+    height: 32px;
+    padding: 0 12px;
+    font-size: 13px;
+  }
+
+  .program-search-input {
+    height: 38px;
+    font-size: 13px;
+  }
+
+  .dropdown-trigger-pill {
+    height: 38px;
+    font-size: 13px;
+  }
+
+  .program-dropdown-menu {
+    width: calc(100vw - 48px);
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
 /* Program Cards Grid - Main Page Theme */
 .program-cards-grid {
   grid-template-columns: repeat(3, 1fr);
