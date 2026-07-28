@@ -693,7 +693,7 @@ button:active {
 .incubated-yellow-box {
   background: linear-gradient(180deg, #ffc700 0%, #ffb400 100%);
   border-radius: 20px;
-  padding: 24px 32px 28px;
+  padding: 24px 32px 0px;
   text-align: center;
   max-width: 860px;
   margin: 0 auto;
@@ -705,12 +705,13 @@ button:active {
   content: "";
   position: absolute;
   top: 6px;
-  bottom: 6px;
+  bottom: 28px;
   left: 6px;
   right: 6px;
   border: 2px dashed #e29b00;
   border-radius: 16px;
   pointer-events: none;
+  z-index: 1;
 }
 
 .incubated-box-title {
@@ -735,17 +736,17 @@ button:active {
 .incubated-logos-badge {
   background: #ffffff;
   border-radius: 16px;
-  padding: 12px 36px;
+  padding: 12px 40px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 28px;
   border: 1px solid rgba(0, 0, 0, 0.06);
-  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.22);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.2);
   position: relative;
   z-index: 10;
   margin-top: 10px;
-  margin-bottom: -48px;
+  margin-bottom: -28px;
   flex-wrap: wrap;
 }
 
