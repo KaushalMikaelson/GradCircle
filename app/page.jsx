@@ -4,9 +4,11 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 const navItems = [
   { label: "Home", target: "home" },
-  { label: "The Program", target: "program" },
-  { label: "Internships", target: "internships" },
-  { label: "Team", target: "team" }
+  { label: "Program", target: "program" },
+  { label: "Project Catalogue", target: "projects" },
+  { label: "Pricing", target: "pricing" },
+  { label: "Team", target: "team" },
+  { label: "Testimonials", target: "testimonials" }
 ];
 
 const programsData = [
@@ -15,7 +17,7 @@ const programsData = [
     category: "Psychology",
     title: "Psychology & Behavioral Neuroscience",
     subtitle: "Conduct behavioral studies, cognitive analysis, mental health research, and psychological experiments.",
-    image: "/pdf/WhatsApp - Psychology.jpeg",
+    image: "/pdf/Carousel - Psychology.svg",
     pdf: "/pdf/Internship Details - Psychology.pdf",
     tags: ["Cognitive Science", "Behavioral Analysis", "Experimental Design", "Neuropsychology"]
   },
@@ -24,7 +26,7 @@ const programsData = [
     category: "Finance",
     title: "Corporate Finance & Investment Banking",
     subtitle: "Analyze capital markets, financial statements, valuation methodologies, and investment portfolios.",
-    image: "/pdf/WhatsApp - Finance.jpeg",
+    image: "/pdf/Carousel - Finance.svg",
     pdf: "/pdf/Internship Details - Finance.pdf",
     tags: ["Financial Valuation", "Capital Markets", "Portfolio Analysis", "Risk Assessment"]
   },
@@ -33,7 +35,7 @@ const programsData = [
     category: "Healthcare",
     title: "Healthcare, Public Health & Medical Research",
     subtitle: "Investigate clinical research methodologies, epidemiology, public health policies, and medical innovation.",
-    image: "/pdf/WhatsApp - Healthcare.jpeg",
+    image: "/pdf/Carousel - Healthcare.svg",
     pdf: "/pdf/Internship Details - Healthcare.pdf",
     tags: ["Clinical Research", "Epidemiology", "Medical Ethics", "Healthcare Systems"]
   },
@@ -42,7 +44,7 @@ const programsData = [
     category: "Law",
     title: "Corporate Law & International Policy",
     subtitle: "Examine legal frameworks, intellectual property, international human rights law, and jurisprudence.",
-    image: "/pdf/WhatsApp - Law.jpeg",
+    image: "/pdf/Carousel - Law.svg",
     pdf: "/pdf/Internship Details - Law.pdf",
     tags: ["Constitutional Law", "IP & Corporate Law", "Legal Writing", "Case Analysis"]
   },
@@ -51,7 +53,7 @@ const programsData = [
     category: "Business & Strategy",
     title: "Business Strategy & Management Consulting",
     subtitle: "Explore competitive analysis, corporate growth strategies, venture creation, and strategic planning.",
-    image: "/pdf/WhatsApp - Business & Strategy.jpeg",
+    image: "/pdf/Carousel - Business & Strategy.svg",
     pdf: "/pdf/Internship Details - Business and Strategy.pdf",
     tags: ["Corporate Strategy", "Venture Growth", "Market Research", "Financial Modeling"]
   },
@@ -60,7 +62,7 @@ const programsData = [
     category: "Data Science & AI",
     title: "Data Science, Machine Learning & AI",
     subtitle: "Develop predictive models, perform big data analytics, and implement machine learning algorithms.",
-    image: "/pdf/WhatsApp - Data Science & AI.jpeg",
+    image: "/pdf/Carousel - Data Science & AI.svg",
     pdf: "/pdf/Internship Details - Data Science and AI.pdf",
     tags: ["Python & ML", "Neural Networks", "Data Visualization", "AI Ethics"]
   },
@@ -69,7 +71,7 @@ const programsData = [
     category: "Brand Management",
     title: "Brand Management & Strategic Marketing",
     subtitle: "Master brand architecture, positioning, digital campaign strategies, and consumer behavior analysis.",
-    image: "/pdf/WhatsApp - Brand Management.jpeg",
+    image: "/pdf/Carousel - Brand Management.svg",
     pdf: "/pdf/Internship Details - Brand Management.pdf",
     tags: ["Brand Positioning", "Digital Campaigns", "Consumer Behavior", "Market Analysis"]
   }
@@ -164,8 +166,8 @@ function scrollToId(id) {
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
-function Logo({ className = "logo-img" }) {
-  return <img className={className} src="/apex-assets/Logo.webp" alt="GradCircle | ApexScholars" />;
+function Logo({ className = "logo-img", style }) {
+  return <img className={className} src="/apex-assets/GC_Logo.webp" alt="GradCircle" style={{ height: "25px", width: "auto", objectFit: "contain", ...style }} />;
 }
 
 function NavBar({ scrolled, active, onMenu, loaded }) {
@@ -232,6 +234,42 @@ function MobileDrawer({ open, close }) {
   );
 }
 
+function IncubatedBanner({ loaded }) {
+  return (
+    <div className={`incubated-banner-wrapper ${loaded ? "is-visible" : "scroll-reveal reveal-hero-card"}`} style={{ transitionDelay: "0.2s" }}>
+      <div className="incubated-banner-card">
+        <p className="incubated-header-text">
+          4-week, mentor-led virtual internship with Industry-Inspired projects and practical career insights
+        </p>
+        <div className="incubated-yellow-box">
+          <h3 className="incubated-box-title">An MIT Incubated Company</h3>
+          <p className="incubated-box-sub">Founded by Alumni from:</p>
+          <div className="incubated-logos-badge">
+            <div className="uni-logo-item">
+              <img src="/pdf/mit.jpg" alt="MIT Management Sloan School" style={{ height: 36, width: "auto", objectFit: "contain" }} />
+            </div>
+            <div className="uni-logo-divider" />
+            <div className="uni-logo-item">
+              <img src="/pdf/yale.png" alt="Yale University" style={{ height: 38, width: "auto", objectFit: "contain" }} />
+              <span className="yale-text">Yale</span>
+            </div>
+            <div className="uni-logo-divider" />
+            <div className="uni-logo-item">
+              <img src="/pdf/iit.jpg" alt="IIT Delhi" style={{ height: 38, width: "auto", objectFit: "contain" }} />
+              <span className="iitd-text" style={{ fontSize: 20, fontWeight: 900, color: "#1e293b" }}>IIT Delhi</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="mentors-pathways-strip">
+        <span className="strip-highlight">100+ Mentors</span>
+        <span className="strip-sep">|</span>
+        <span className="strip-highlight">20+ Career Pathways</span>
+      </div>
+    </div>
+  );
+}
+
 function Hero({ scrolled, active, openMenu, drawerOpen, closeDrawer, loaded }) {
   return (
     <section id="home" className="hero-wrapper">
@@ -249,33 +287,33 @@ function Hero({ scrolled, active, openMenu, drawerOpen, closeDrawer, loaded }) {
               style={{ transitionDelay: "0.25s" }}
             >
               <span className="hc-brand-dot" />
-              <span className="hc-brand-label">The GradCircle ApexScholars</span>
+              <span className="hc-brand-label">Simulated Industry Internships (Grades 8–12)</span>
               <span className="hc-brand-dot" />
             </div>
             <h1
               className={`hc-main-title ${loaded ? "is-visible" : "scroll-reveal reveal-hero-title"}`}
               style={{ transitionDelay: "0.35s" }}
             >
-              RESEARCH PROGRAM
+              SIMULATED INDUSTRY INTERNSHIPS
             </h1>
             <p
               className={`hc-sub-line ${loaded ? "is-visible" : "scroll-reveal reveal-hero-sub"}`}
               style={{ transitionDelay: "0.45s" }}
             >
-              Transform your curiosity into university-level research.
+              Test-drive your career before college.
             </p>
             <p
               className={`hc-accent-line ${loaded ? "is-visible" : "scroll-reveal reveal-hero-accent"}`}
               style={{ transitionDelay: "0.55s" }}
             >
-              Build the foundation for future innovation.
+              Turn high school curiosity into professional proof with real-world, simulated industry projects.
             </p>
             <div
               className={`hc-info-strip ${loaded ? "is-visible" : "scroll-reveal reveal-hero-strip"}`}
               style={{ transitionDelay: "0.65s" }}
             >
-              <p className="hc-info-line">Personalized Virtual Research Program for Students (Grades 8–12)</p>
-              <p className="hc-info-line hc-info-line--bold">Guided by PhD Mentors from IITs, IIMs, and IISc</p>
+              <p className="hc-info-line">Personalized Virtual Internship Program for Students (Grades 8–12)</p>
+              <p className="hc-info-line hc-info-line--bold">Guided by Industry Mentors & PhD Experts from IITs, IIMs, and IISc</p>
             </div>
           </div>
         </div>
@@ -286,6 +324,7 @@ function Hero({ scrolled, active, openMenu, drawerOpen, closeDrawer, loaded }) {
           <button className="btn-primary-pill" onClick={() => scrollToId("enquire")}>Apply Now</button>
           <button className="btn-secondary-pill">Download Brochure</button>
         </div>
+        <IncubatedBanner loaded={loaded} />
         <div className="sponsors-row">
           <div
             className={`sponsor-block ${loaded ? "is-visible" : "scroll-reveal reveal-sponsor"}`}
@@ -413,7 +452,7 @@ function ProgramExplorer() {
   }, [activeCategory, searchQuery]);
 
   return (
-    <section id="program" className="program-explorer-section">
+    <section id="projects" className="program-explorer-section">
       <div className="program-explorer-container">
         <SectionHeader
           sub="Explore Our Offerings"
@@ -617,10 +656,10 @@ function ApexDifference() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="apex-difference-section">
+    <section id="program" ref={sectionRef} className="apex-difference-section">
       <SectionHeader
-        sub="The Apex Difference"
-        title={<>Why Parents & Students<br />Choose Apex Scholars</>}
+        sub="The GradCircle Difference"
+        title={<>Why Parents & Students<br />Choose GradCircle</>}
         classes={{ header: "apex-diff-header", sub: "apex-diff-subheading", title: "apex-diff-title" }}
       />
       <div className="apex-diff-list">
@@ -690,7 +729,7 @@ function Deliverables() {
   return (
     <section id="internships" className="deliverables-section">
       <SectionHeader
-        sub="The Apex Advantage"
+        sub="The GradCircle Advantage"
         title="Program Deliverables"
         desc="By the end of this 10-week journey, you will walk away with:"
         classes={{ header: "deliverables-header", sub: "deliverables-subheading", title: "deliverables-title", desc: "deliverables-description" }}
@@ -731,7 +770,7 @@ function DeliverableCard({ title, text, delay }) {
 
 function Logistics() {
   return (
-    <section className="logistics-section">
+    <section id="pricing" className="logistics-section">
       <div className="logistics-container">
         <SectionHeader
           sub="Investment"
@@ -766,7 +805,7 @@ function Founders() {
     <section id="team" className="founders-section">
       <SectionHeader
         sub="Founding Team"
-        title="The Pillars Behind Apex Scholars"
+        title="The Pillars Behind GradCircle"
         classes={{ header: "founders-header", sub: "founders-subheading", title: "founders-title" }}
       />
       <div className="founders-container">
@@ -809,7 +848,7 @@ function TrustedSchools() {
   const left = useMemo(() => [...schoolsLeft, ...schoolsLeft], []);
   const right = useMemo(() => [...schoolsRight, ...schoolsRight], []);
   return (
-    <section className="trusted-schools-section">
+    <section id="testimonials" className="trusted-schools-section">
       <div className="schools-header scroll-reveal reveal-header">
         <span className="schools-subheading">GradCircle Programs Trusted</span>
         <h2 className="schools-title">by Students from 300+ Schools</h2>
@@ -905,7 +944,6 @@ function Footer() {
             <img src="/apex-assets/GC_Logo_footer.webp" alt="GradCircle Logo" style={{ width: 384, maxWidth: "100%", height: "auto" }} />
           </div>
           <div className="footer-sponsors-row">
-            <div className="footer-sponsor-badge"><img className="footer-sponsor-img-1" src="/apex-assets/footer-sponsor-1.webp" alt="GradCircle ApexScholars" /></div>
             <div className="footer-sponsor-badge"><img className="footer-sponsor-img-2" src="/apex-assets/footer-sponsor-2.webp" alt="Bennett University NAAC Grade A+ Accredited University" /></div>
             <div className="footer-sponsor-badge"><img className="footer-sponsor-img-3" src="/apex-assets/footer-sponsor-3.webp" alt="The Times Group" /></div>
           </div>

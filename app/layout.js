@@ -1,7 +1,7 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "GradCircle x Bennett | ApexScholars Program",
+  title: "GradCircle x Bennett | Research Program",
   description:
     "Personalized Virtual Research Program for Students (Grades 8-12). Guided by PhD Mentors from IITs, IIMs, and IISc.",
   icons: {
