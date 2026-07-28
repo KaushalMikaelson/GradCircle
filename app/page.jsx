@@ -352,6 +352,9 @@ function SectionHeader({ sub, title, desc, classes }) {
       <h2 className={classes.title}>{title}</h2>
       {desc ? <p className={classes.desc}>{desc}</p> : null}
     </div>
+  );
+}
+
 function ProgramOverview() {
   return (
     <section className="overview-section">
@@ -1140,6 +1143,7 @@ export default function Page() {
         closeDrawer={() => setDrawerOpen(false)}
         loaded={loaded}
       />
+      <ProgramOverview />
       <ProgramExplorer />
       <ApexDifference />
       <Areas />
