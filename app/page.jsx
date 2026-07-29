@@ -427,7 +427,7 @@ function OverviewFeatureItem({ icon, text, id }) {
 
 function ProgramOverview() {
   return (
-    <section className="overview-section">
+    <section id="program" className="overview-section">
       <div className="overview-container scroll-reveal">
         <div className="overview-card">
           <div className="overview-header-group">
@@ -662,7 +662,7 @@ function ProgramExplorer() {
       <div className="program-explorer-container">
         <SectionHeader
           sub="Explore Our Offerings"
-          title="Featured Programs & Internships"
+          title="Internship Project Catalogue"
           desc="Filter by discipline or search across our specialized research tracks guided by PhD mentors."
           classes={{ header: "program-header", sub: "program-subheading", title: "program-title", desc: "program-description" }}
         />
@@ -839,6 +839,95 @@ function ProgramExplorer() {
   );
 }
 
+const studentTestimonials = [
+  {
+    title: "Learning by Doing",
+    quote: "It gave me hands-on experience in consulting – from research to pitching – something we don't get to do in a classroom.",
+    name: "Devansh",
+    school: "Overseas Family School, Singapore",
+  },
+  {
+    title: "Future-Ready Skillset",
+    quote: "I improved critical skills – research, teamwork, and professional presentations – that apply to any career.",
+    name: "Diya",
+    school: "Indus International School, Pune",
+  },
+  {
+    title: "Prepared for the Real World",
+    quote: "This internship gave me life skills I can use beyond school – a lot of which can be implemented in real life.",
+    name: "Jaskirat",
+    school: "The British Co-Ed High School, Patiala",
+  },
+  {
+    title: "Career Exploration & Clarity",
+    quote: "GradCircle helped me clear my doubts about career options. You think something isn't for you, but after trying it, you realize it is.",
+    name: "Avni",
+    school: "St Constantine's International School, Tanzania",
+  },
+  {
+    title: "Real Industry Exposure",
+    quote: "Corporate and international law now excite me far more than I imagined before starting this program.",
+    name: "Aviraj",
+    school: "Mahindra United World College, Pune",
+  },
+  {
+    title: "Bridging Classroom & Career Choices",
+    quote: "My interest in finance peaked here. It felt more real than just studying in class – school only teaches theory, but this showed me what the career actually involves.",
+    name: "Alisha",
+    school: "Calcutta International School, Kolkata",
+  },
+];
+
+const QuoteMarkSvg = ({ flip = false }) => (
+  <svg
+    width="48"
+    height="38"
+    viewBox="0 0 48 38"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className="st-quote-svg"
+    style={flip ? { transform: "rotate(180deg)" } : undefined}
+  >
+    <path
+      d="M0 24C0 10.5 8.5 1.8 20.5 0V8.5C14 9.8 10.5 13.8 10.5 19.5H21V38H0V24ZM27 24C27 10.5 35.5 1.8 47.5 0V8.5C41 9.8 37.5 13.8 37.5 19.5H48V38H27V24Z"
+      fill="#ea580c"
+    />
+  </svg>
+);
+
+function StudentTestimonials() {
+  return (
+    <section className="student-testimonials-section">
+      <div className="student-testimonials-container">
+        <h2 className="student-testimonials-heading">
+          Real Stories <span className="st-divider">|</span> Real Skills <span className="st-divider">|</span> Real Impact
+        </h2>
+        <div className="student-testimonials-list">
+          {studentTestimonials.map((t, i) => {
+            const isLeft = i % 2 === 0;
+            return (
+              <div className={`st-card ${isLeft ? "st-card-left" : "st-card-right"}`} key={i}>
+                <div className="st-card-header">
+                  {isLeft && <QuoteMarkSvg />}
+                  <h3 className="st-card-title">{t.title}</h3>
+                  <div className="st-header-line" />
+                  {!isLeft && <QuoteMarkSvg flip />}
+                </div>
+                <div className="st-card-body">
+                  <p className="st-card-quote">{t.quote}</p>
+                  <p className="st-card-attribution">
+                    &ndash; {t.name}, {t.school}
+                  </p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function ApexDifference() {
   const [active, setActive] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
@@ -978,28 +1067,54 @@ function Logistics() {
   return (
     <section id="pricing" className="logistics-section">
       <div className="logistics-container">
-        <SectionHeader
-          sub="Investment"
-          title="Program Logistics & Investment"
-          classes={{ header: "logistics-header", sub: "logistics-subheading", title: "logistics-title" }}
-        />
+        <h2 className="logistics-title scroll-reveal reveal-header">
+          Program Logistics &amp; Investment
+        </h2>
         <div className="logistics-card scroll-reveal reveal-logistics-card">
-          {logistics.map(([label, value, sub], i) => (
-            <div
-              className="logistics-row scroll-reveal reveal-logistics-row"
-              key={label}
-              style={{ transitionDelay: `${i * 0.08}s` }}
-            >
-              <div className="logistics-label-col"><span className="logistics-label">{label}</span></div>
-              <div className="logistics-value-col">
-                <span className={`logistics-value ${label === "PROGRAM FEE" ? "fee-value" : ""}`}>{value}</span>
-                {sub ? <span className="logistics-subvalue">{sub}</span> : null}
-              </div>
+          <div className="logistics-row scroll-reveal reveal-logistics-row">
+            <div className="logistics-label-col">
+              <span className="logistics-label">PROGRAM FORMAT</span>
             </div>
-          ))}
+            <div className="logistics-value-col">
+              <span className="logistics-value">100% Virtual, 1-on-1 Mentorship Sessions</span>
+            </div>
+          </div>
+          <div className="logistics-row scroll-reveal reveal-logistics-row" style={{ transitionDelay: "0.08s" }}>
+            <div className="logistics-label-col">
+              <span className="logistics-label">DURATION</span>
+            </div>
+            <div className="logistics-value-col">
+              <span className="logistics-value">4-5 Weekends (2 hours per weekend)</span>
+            </div>
+          </div>
+          <div className="logistics-row scroll-reveal reveal-logistics-row" style={{ transitionDelay: "0.16s" }}>
+            <div className="logistics-label-col">
+              <span className="logistics-label">ELIGIBILITY</span>
+            </div>
+            <div className="logistics-value-col">
+              <span className="logistics-value">Ambitious High School Students (Grades 8–12)</span>
+            </div>
+          </div>
+          <div className="logistics-row scroll-reveal reveal-logistics-row" style={{ transitionDelay: "0.24s" }}>
+            <div className="logistics-label-col">
+              <span className="logistics-label">PROGRAM FEE</span>
+            </div>
+            <div className="logistics-value-col">
+              <span className="logistics-value fee-value">INR 17,500 + 18% GST</span>
+            </div>
+          </div>
         </div>
-        <div className="logistics-cta scroll-reveal reveal-logistics-cta">
-          <button className="btn-primary-pill" onClick={() => scrollToId("enquire")}>Apply Now</button>
+
+        <div className="logistics-cta-block scroll-reveal reveal-logistics-cta">
+          <h3 className="logistics-ready-title">Ready to Enrol?</h3>
+          <div className="logistics-cta-buttons">
+            <button className="btn-primary-pill" onClick={() => scrollToId("enquire")}>
+              Apply Now
+            </button>
+            <button className="btn-pay-now-white" onClick={() => scrollToId("enquire")}>
+              Pay Now
+            </button>
+          </div>
         </div>
       </div>
     </section>
@@ -1274,9 +1389,7 @@ export default function Page() {
       <ProgramOverview />
       <ProgramDeliverables />
       <ProgramExplorer />
-      <ApexDifference />
-      <Areas />
-      <Deliverables />
+      <StudentTestimonials />
       <Logistics />
       <Founders />
       <TrustedSchools />

@@ -1160,6 +1160,137 @@ button:active {
   }
 }
 
+/* ─── Student Testimonials Section ─── */
+
+.student-testimonials-section {
+  padding: 60px 0 80px;
+  background: #ffffff;
+}
+
+.student-testimonials-container {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.student-testimonials-heading {
+  font-family: "Poppins", var(--font-main);
+  font-size: clamp(24px, 3.5vw, 36px);
+  font-weight: 800;
+  color: #003a6c;
+  text-align: center;
+  margin-bottom: 50px;
+  line-height: 1.2;
+}
+
+.st-divider {
+  color: #ea580c;
+  margin: 0 6px;
+  font-weight: 400;
+}
+
+.student-testimonials-list {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+.st-card {
+  position: relative;
+  background: #ffffff;
+  border: 2px solid #ea580c;
+  border-radius: 16px;
+  padding: 0 24px 20px 24px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.st-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(234, 88, 12, 0.12);
+}
+
+.st-card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: -20px;
+  margin-bottom: 12px;
+}
+
+.st-quote-svg {
+  width: 44px;
+  height: 36px;
+  flex-shrink: 0;
+  background: #ffffff;
+  padding: 0 4px;
+}
+
+.st-card-title {
+  font-family: var(--font-main);
+  font-size: clamp(16px, 1.9vw, 20px);
+  font-weight: 800;
+  color: #ea580c;
+  margin: 0;
+  background: #ffffff;
+  padding: 0 8px;
+  white-space: nowrap;
+}
+
+.st-header-line {
+  flex: 1;
+  height: 2px;
+  background: #ea580c;
+}
+
+.st-card-body {
+  padding: 4px 6px 0 6px;
+}
+
+.st-card-quote {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(16px, 1.8vw, 18.5px);
+  font-style: italic;
+  color: #1e3a5f;
+  line-height: 1.55;
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+.st-card-attribution {
+  font-family: var(--font-main);
+  font-size: clamp(13px, 1.5vw, 15px);
+  font-weight: 700;
+  font-style: italic;
+  color: #ea580c;
+  text-align: right;
+  margin: 0;
+}
+
+@media (max-width: 600px) {
+  .student-testimonials-section {
+    padding: 40px 0 50px;
+  }
+  .student-testimonials-heading {
+    font-size: 22px;
+    margin-bottom: 34px;
+  }
+  .st-card {
+    padding: 0 16px 16px 16px;
+  }
+  .st-card-title {
+    white-space: normal;
+    font-size: 15px;
+    padding: 0 4px;
+  }
+  .st-quote-svg {
+    width: 34px;
+    height: 28px;
+  }
+  .st-card-header {
+    margin-top: -16px;
+  }
+}
+
 .hero-cta-group { align-items: center; gap: 20px; margin-top: 28px; margin-bottom: 32px; display: flex; }
 .hero-cta-group .btn-primary-pill, .hero-cta-group .btn-secondary-pill { padding: 14px 36px; font-size: 16px; }
 
@@ -2426,7 +2557,7 @@ button:active {
 .logistics-container { z-index: 2; flex-direction: column; align-items: center; width: 100%; max-width: 1140px; display: flex; position: relative; }
 .logistics-header { text-align: center; margin-bottom: 44px; }
 .logistics-subheading { font-family: var(--font-condensed); color: #fc6a17; letter-spacing: 0.2px; margin-bottom: 8px; font-size: 26px; font-weight: 500; display: block; }
-.logistics-title { color: #fff; letter-spacing: -0.5px; font-size: 42px; font-weight: 800; }
+.logistics-title { color: #fff; letter-spacing: -0.5px; font-size: 42px; font-weight: 800; text-align: center; margin-bottom: 44px; }
 
 .logistics-card {
   background: #fff;
@@ -2452,22 +2583,60 @@ button:active {
   display: flex;
 }
 .logistics-row:last-child { border-bottom: none; }
-.logistics-row:hover { background-color: #f0f7ff; padding-left: 50px; }
+.logistics-row:hover { background-color: #f8fafc; }
 .logistics-label-col { flex-shrink: 0; }
 .logistics-label { color: #003a6c; text-transform: uppercase; letter-spacing: 0.5px; font-size: 14px; font-weight: 700; }
 .logistics-value-col { text-align: right; flex-direction: column; align-items: flex-end; display: flex; }
 .logistics-value { color: #334155; font-size: 15px; font-weight: 600; }
 .fee-value {
   color: #fc6a17;
-  font-size: 22px;
+  font-size: 16px;
   font-weight: 800;
-  display: inline-block;
-  animation: feePulse 3.5s ease-in-out infinite;
 }
-.logistics-subvalue { color: #94a3b8; margin-top: 3px; font-size: 12px; font-weight: 500; }
 
-.logistics-cta { justify-content: center; display: flex; }
-.logistics-cta .btn-primary-pill { padding: 14px 44px; font-size: 16px; box-shadow: 0 10px 28px #fc6a1773; }
+.logistics-cta-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+.logistics-ready-title {
+  color: #ffffff;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+  margin: 0;
+}
+.logistics-cta-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+.btn-pay-now-white {
+  color: #0f172a;
+  cursor: pointer;
+  white-space: nowrap;
+  background: #ffffff;
+  border: none;
+  border-radius: 9999px;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 36px;
+  font-size: 15px;
+  font-weight: 700;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-flex;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+.btn-pay-now-white:hover {
+  background-color: #f8fafc;
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.25);
+}
+.btn-pay-now-white:active {
+  transform: translateY(0) scale(0.96) !important;
+}
 
 @media (max-width: 768px) {
   .logistics-row { flex-direction: column; align-items: flex-start; gap: 8px; padding: 18px 24px; }
