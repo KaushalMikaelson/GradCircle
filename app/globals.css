@@ -1,4 +1,4 @@
-@import "https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Montserrat:wght@400;500;600;700;800&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Montserrat:wght@400;500;600;700;800&family=Poppins:wght@700;800;900&display=swap";
 
 :root {
   --primary-orange: #f26522;
@@ -857,40 +857,54 @@ button:active {
   display: flex;
   flex-direction: column;
   gap: 0;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
 
 .overview-title-solid {
-  font-family: var(--font-main);
-  font-size: clamp(32px, 4vw, 44px);
-  font-weight: 900;
+  font-family: "Poppins", var(--font-main);
+  font-size: clamp(34px, 4.2vw, 48px);
+  font-weight: 800;
   color: #003a6c;
-  line-height: 1.1;
-  letter-spacing: -1px;
+  line-height: 1;
+  letter-spacing: -0.5px;
   margin: 0;
 }
 
 .overview-title-hollow {
-  font-family: var(--font-main);
-  font-size: clamp(36px, 4.5vw, 50px);
-  font-weight: 900;
+  font-family: "Poppins", var(--font-main);
+  font-size: clamp(54px, 7vw, 76px);
+  font-weight: 700;
   color: transparent;
-  -webkit-text-stroke: 2.5px #f97316;
-  line-height: 1.1;
-  letter-spacing: -1px;
+  -webkit-text-stroke: 1.5px #f97316;
+  line-height: 1;
+  letter-spacing: -0.5px;
   margin: 0;
+  padding-bottom: 12px;
+  position: relative;
+}
+
+.overview-title-hollow::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #f97316, #ea580c);
+  border-radius: 2px;
 }
 
 .overview-ribbon {
-  padding: 16px 28px;
-  border-radius: 0 14px 14px 0;
-  margin-left: -45px;
+  padding: 16px 36px 16px 24px;
+  margin-left: -40px;
   margin-right: -10px;
-  margin-bottom: 32px;
+  margin-bottom: 24px;
   position: relative;
   overflow: hidden;
   background: #fff7ed;
   border: 2px solid #f9731640;
+  border-left: none;
+  clip-path: polygon(0 0, 100% 0, calc(100% - 20px) 50%, 100% 100%, 0 100%);
   cursor: pointer;
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
               box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
@@ -901,7 +915,6 @@ button:active {
   position: absolute;
   inset: 0;
   background: linear-gradient(135deg, #f97316, #ea580c);
-  border-radius: 0 14px 14px 0;
   transform: scaleX(0);
   transform-origin: left center;
   transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -918,25 +931,13 @@ button:active {
   border-color: transparent;
 }
 
-.overview-ribbon::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -8px;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 8px 10px 0 0;
-  border-color: #c2410c transparent transparent transparent;
-  z-index: 1;
-}
-
 .overview-ribbon-text {
-  color: #1e3a5f;
-  font-size: clamp(14px, 1.8vw, 16px);
-  line-height: 1.55;
+  font-family: var(--font-main);
+  color: #1e293b;
+  font-size: clamp(17px, 2vw, 20px);
+  line-height: 1.4;
   margin: 0;
-  font-weight: 600;
+  font-weight: 700;
   position: relative;
   z-index: 1;
   transition: color 0.35s ease;
@@ -953,7 +954,7 @@ button:active {
 .overview-features-list {
   display: flex;
   flex-direction: column;
-  gap: 22px;
+  gap: 18px;
 }
 
 .overview-feature-item {
@@ -961,10 +962,10 @@ button:active {
   align-items: center;
   gap: 18px;
   position: relative;
-  padding: 16px 24px;
-  border-radius: 0 14px 14px 0;
-  margin-left: -45px;
+  padding: 16px 36px 16px 24px;
+  margin-left: -40px;
   margin-right: -10px;
+  clip-path: polygon(0 0, 100% 0, calc(100% - 20px) 50%, 100% 100%, 0 100%);
   cursor: pointer;
   overflow: hidden;
   background: #fff7ed;
@@ -981,7 +982,6 @@ button:active {
   position: absolute;
   inset: 0;
   background: linear-gradient(135deg, #f97316, #ea580c);
-  border-radius: 0 14px 14px 0;
   transform: scaleX(0);
   transform-origin: left center;
   transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -1000,16 +1000,17 @@ button:active {
 
 .overview-icon-box {
   flex-shrink: 0;
-  width: 48px;
-  height: 48px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
-  border: 2.5px solid #f97316;
+  border: 3px solid #f97316;
   display: flex;
   align-items: center;
   justify-content: center;
   background: #ffffff;
   position: relative;
   z-index: 1;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   transition: background 0.35s ease,
               border-color 0.35s ease,
               box-shadow 0.35s ease;
@@ -1017,14 +1018,14 @@ button:active {
 
 .overview-feature-item:hover .overview-icon-box {
   background: rgba(255, 255, 255, 0.2);
-  border-color: rgba(255, 255, 255, 0.7);
-  box-shadow: 0 0 12px rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 0 16px rgba(255, 255, 255, 0.4);
 }
 
 .overview-svg-icon {
-  width: 22px;
-  height: 22px;
-  color: #f97316;
+  width: 34px;
+  height: 34px;
+  color: #003a6c;
   transition: color 0.35s ease;
 }
 
@@ -1034,9 +1035,9 @@ button:active {
 
 .overview-feature-text {
   font-family: var(--font-main);
-  font-size: clamp(15px, 1.8vw, 17px);
-  color: #1e3a5f;
-  font-weight: 600;
+  font-size: clamp(17px, 2vw, 20px);
+  color: #1e293b;
+  font-weight: 700;
   line-height: 1.4;
   position: relative;
   z-index: 1;
@@ -1053,24 +1054,24 @@ button:active {
     border-radius: 16px;
   }
   .overview-ribbon {
-    margin-left: -29px;
+    margin-left: -24px;
     margin-right: 0;
     padding: 14px 20px;
   }
   .overview-feature-item {
-    margin-left: -29px;
+    margin-left: -24px;
     margin-right: 0;
     gap: 14px;
     padding: 14px 18px;
     border-radius: 0 12px 12px 0;
   }
   .overview-icon-box {
-    width: 42px;
-    height: 42px;
+    width: 50px;
+    height: 50px;
   }
   .overview-svg-icon {
-    width: 18px;
-    height: 18px;
+    width: 28px;
+    height: 28px;
   }
   .overview-feature-text {
     padding-top: 0;

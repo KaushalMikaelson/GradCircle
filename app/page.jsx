@@ -360,10 +360,13 @@ const overviewFeatures = [
     id: "simulated-projects",
     text: "Real-world simulated projects to build your skills profile",
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="overview-svg-icon">
-        <rect x="3" y="4" width="18" height="16" rx="2" />
-        <path d="M7 14l3-3 3 3 4-4" />
-        <circle cx="17" cy="7" r="1.5" fill="currentColor" />
+      <svg viewBox="0 0 24 24" fill="currentColor" className="overview-svg-icon">
+        <path d="M6 9l6.5-4.5L11 7l8-4.5-2 5-2.5-2L8 10z" />
+        <rect x="6" y="13" width="3" height="8" rx="0.5" />
+        <rect x="10.5" y="10" width="3" height="11" rx="0.5" />
+        <rect x="15" y="7.5" width="3" height="13.5" rx="0.5" />
+        <path d="M12 11.5c-1.65 0-3 1.35-3 3s1.35 3 3 3 3-1.35 3-3-1.35-3-3-3zm0 4.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z" />
+        <path d="M12.75 10.6h-1.5v1.05c-.32.07-.62.19-.9.35l-.74-.75-1.06 1.06.75.74c-.16.28-.28.58-.35.9H7.9v1.5h1.05c.07.32.19.62.35.9l-.75.74 1.06 1.06.74-.75c.28.16.58.28.9.35v1.05h1.5v-1.05c.32-.07.62-.19.9-.35l.74.75 1.06-1.06-.75-.74c.16-.28.28-.58.35-.9h1.05v-1.5h-1.05c-.07-.32-.19-.62-.35-.9l.75-.74-1.06-1.06-.74.75c-.28-.16-.58-.28-.9-.35V10.6z" opacity="0.9" />
       </svg>
     ),
   },
@@ -371,11 +374,11 @@ const overviewFeatures = [
     id: "mentor-engagement",
     text: "Live engagement with mentors from Fortune–500 companies",
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="overview-svg-icon">
-        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-        <circle cx="9" cy="7" r="4" />
-        <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-        <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+      <svg viewBox="0 0 24 24" fill="currentColor" className="overview-svg-icon">
+        <circle cx="16" cy="6" r="2.8" />
+        <path d="M13.8 11.2c.6-.8 1.4-1.2 2.2-1.2.8 0 1.6.4 2.2 1.2 1.2.7 1.8 1.8 1.8 3v4.8h-7.5v-4.8c0-1.2.5-2.3 1.3-3z" opacity="0.8" />
+        <circle cx="8.5" cy="5.5" r="3.2" />
+        <path d="M14 13c0-2.8-2.5-5-5.5-5S3 10.2 3 13v6h11v-6zm-5.5 4.5l-1.3-3.2h2.6L8.5 17.5z" />
       </svg>
     ),
   },
@@ -383,11 +386,14 @@ const overviewFeatures = [
     id: "certificate-lor",
     text: "Certificate & Letter of Recommendation from industry mentors",
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="overview-svg-icon">
-        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-        <polyline points="14 2 14 8 20 8" />
-        <circle cx="10" cy="14" r="2" />
-        <path d="M10 16v3" />
+      <svg viewBox="0 0 24 24" fill="currentColor" className="overview-svg-icon">
+        <path fillRule="evenodd" clipRule="evenodd" d="M2 5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5zm2 0h16v14H4V5z" />
+        <rect x="5.5" y="6.5" width="8" height="1.8" rx="0.9" />
+        <rect x="5.5" y="10" width="7" height="1.5" rx="0.75" />
+        <rect x="5.5" y="13" width="7" height="1.5" rx="0.75" />
+        <rect x="5.5" y="16" width="5" height="1.5" rx="0.75" />
+        <circle cx="16.5" cy="11" r="3" />
+        <path d="M15 13.5L14 18l2.5-1.2L19 18l-1-4.5" />
       </svg>
     ),
   },
@@ -395,10 +401,11 @@ const overviewFeatures = [
     id: "job-clarity",
     text: "Clarity on job roles and responsibilities",
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="overview-svg-icon">
-        <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
-        <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
-        <path d="m9 14 2 2 4-4" />
+      <svg viewBox="0 0 24 24" fill="currentColor" className="overview-svg-icon">
+        <path d="M9 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v1.5H9V5z" />
+        <path fillRule="evenodd" clipRule="evenodd" d="M3 8a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-3.2a4.5 4.5 0 0 0-7.6 0H5a2 2 0 0 1-2-2V8zm2 1.5h14V8H5v1.5z" />
+        <circle cx="17.5" cy="17.5" r="3.5" />
+        <path d="M16 17.5l1 1 2-2" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" fill="none" />
       </svg>
     ),
   },
