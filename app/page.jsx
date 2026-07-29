@@ -355,6 +355,69 @@ function SectionHeader({ sub, title, desc, classes }) {
   );
 }
 
+const overviewFeatures = [
+  {
+    id: "simulated-projects",
+    text: "Real-world simulated projects to build your skills profile",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="overview-svg-icon">
+        <rect x="3" y="4" width="18" height="16" rx="2" />
+        <path d="M7 14l3-3 3 3 4-4" />
+        <circle cx="17" cy="7" r="1.5" fill="currentColor" />
+      </svg>
+    ),
+  },
+  {
+    id: "mentor-engagement",
+    text: "Live engagement with mentors from Fortune–500 companies",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="overview-svg-icon">
+        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+        <circle cx="9" cy="7" r="4" />
+        <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+        <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+      </svg>
+    ),
+  },
+  {
+    id: "certificate-lor",
+    text: "Certificate & Letter of Recommendation from industry mentors",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="overview-svg-icon">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+        <polyline points="14 2 14 8 20 8" />
+        <circle cx="10" cy="14" r="2" />
+        <path d="M10 16v3" />
+      </svg>
+    ),
+  },
+  {
+    id: "job-clarity",
+    text: "Clarity on job roles and responsibilities",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="overview-svg-icon">
+        <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+        <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+        <path d="m9 14 2 2 4-4" />
+      </svg>
+    ),
+  },
+];
+
+function OverviewFeatureItem({ icon, text, id }) {
+  return (
+    <div className="overview-feature-item" id={id}>
+      <div className="overview-feature-bg" />
+      <div className="overview-icon-box">
+        {icon}
+      </div>
+      <span className="overview-feature-text">
+        {text}
+      </span>
+    </div>
+  );
+}
+
 function ProgramOverview() {
   return (
     <section className="overview-section">
@@ -366,6 +429,7 @@ function ProgramOverview() {
           </div>
 
           <div className="overview-ribbon">
+            <div className="overview-ribbon-bg" />
             <p className="overview-ribbon-text">
               Students from Grades 9–12 work with{" "}
               <span className="overview-ribbon-bold">"active industry professionals"</span> on simulated industry-focused projects.
@@ -373,59 +437,14 @@ function ProgramOverview() {
           </div>
 
           <div className="overview-features-list">
-            <div className="overview-feature-item">
-              <div className="overview-icon-box">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="overview-svg-icon">
-                  <rect x="3" y="4" width="18" height="16" rx="2" />
-                  <path d="M7 14l3-3 3 3 4-4" />
-                  <circle cx="17" cy="7" r="1.5" fill="currentColor" />
-                </svg>
-              </div>
-              <span className="overview-feature-text">
-                Real-world simulated projects to build your skills profile
-              </span>
-            </div>
-
-            <div className="overview-feature-item">
-              <div className="overview-icon-box">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="overview-svg-icon">
-                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-                  <circle cx="9" cy="7" r="4" />
-                  <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-                  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                </svg>
-              </div>
-              <span className="overview-feature-text">
-                Live engagement with mentors from Fortune–500 companies
-              </span>
-            </div>
-
-            <div className="overview-feature-item">
-              <div className="overview-icon-box">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="overview-svg-icon">
-                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                  <polyline points="14 2 14 8 20 8" />
-                  <circle cx="10" cy="14" r="2" />
-                  <path d="M10 16v3" />
-                </svg>
-              </div>
-              <span className="overview-feature-text">
-                Certificate & Letter of Recommendation from industry mentors
-              </span>
-            </div>
-
-            <div className="overview-feature-item">
-              <div className="overview-icon-box">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="overview-svg-icon">
-                  <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
-                  <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
-                  <path d="m9 14 2 2 4-4" />
-                </svg>
-              </div>
-              <span className="overview-feature-text">
-                Clarity on job roles and responsibilities
-              </span>
-            </div>
+            {overviewFeatures.map((feature) => (
+              <OverviewFeatureItem
+                key={feature.id}
+                id={feature.id}
+                icon={feature.icon}
+                text={feature.text}
+              />
+            ))}
           </div>
         </div>
       </div>
