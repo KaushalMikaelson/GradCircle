@@ -459,6 +459,108 @@ function ProgramOverview() {
   );
 }
 
+const deliverableItems = [
+  {
+    text: "8-10 hours of virtual live sessions",
+    icon: (
+      <svg className="deliv-svg-icon" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="3" y="6" width="22" height="14" rx="2.5" stroke="currentColor" strokeWidth="1.8" />
+        <path d="M10 24h8" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+        <path d="M14 20v4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+        <circle cx="14" cy="13" r="3" stroke="currentColor" strokeWidth="1.5" />
+        <path d="M14 10v1.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+      </svg>
+    ),
+  },
+  {
+    text: "8-10 hours of teamwork and assignments",
+    icon: (
+      <svg className="deliv-svg-icon" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 18c2-3 4-4 7-4s4 2 7 2 4-1 6-3" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+        <path d="M14 14l-3 3 2 2 5-5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+        <circle cx="8" cy="9" r="3" stroke="currentColor" strokeWidth="1.5" />
+        <circle cx="20" cy="9" r="3" stroke="currentColor" strokeWidth="1.5" />
+      </svg>
+    ),
+  },
+  {
+    text: "Simulated project-based internship",
+    icon: (
+      <svg className="deliv-svg-icon" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="4" y="8" width="20" height="16" rx="2" stroke="currentColor" strokeWidth="1.8" />
+        <path d="M10 8V6a2 2 0 012-2h4a2 2 0 012 2v2" stroke="currentColor" strokeWidth="1.8" />
+        <path d="M4 14h20" stroke="currentColor" strokeWidth="1.5" />
+        <rect x="11" y="12" width="6" height="4" rx="1" stroke="currentColor" strokeWidth="1.3" />
+      </svg>
+    ),
+  },
+  {
+    text: "Project evaluation & comprehensive Skills Report",
+    icon: (
+      <svg className="deliv-svg-icon" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="5" y="3" width="14" height="18" rx="2" stroke="currentColor" strokeWidth="1.8" />
+        <path d="M9 8h6M9 11h4M9 14h6" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
+        <circle cx="20" cy="20" r="5" stroke="currentColor" strokeWidth="1.8" />
+        <path d="M23.5 23.5l2 2" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+      </svg>
+    ),
+  },
+  {
+    text: "Internship Certificate signed by the mentor",
+    icon: (
+      <svg className="deliv-svg-icon" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="3" y="3" width="22" height="16" rx="2.5" stroke="currentColor" strokeWidth="1.8" />
+        <path d="M8 8h12M8 11h8" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
+        <circle cx="14" cy="21" r="3.5" stroke="currentColor" strokeWidth="1.8" />
+        <path d="M12 24l-1 3 3-1.5L17 27l-1-3" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    ),
+  },
+  {
+    text: "Merit-based Letter of Recommendation",
+    icon: (
+      <svg className="deliv-svg-icon" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="5" y="3" width="18" height="22" rx="2" stroke="currentColor" strokeWidth="1.8" />
+        <path d="M9 8h10M9 11h7M9 14h10M9 17h5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
+        <circle cx="19" cy="20" r="2.5" fill="currentColor" opacity="0.3" />
+        <path d="M17.5 19l1.2 1.2 2.3-2.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    ),
+  },
+];
+
+function DeliverableGridItem({ icon, text }) {
+  return (
+    <div className="deliv-grid-card">
+      <div className="deliv-icon-circle">
+        {icon}
+      </div>
+      <span className="deliv-card-text">{text}</span>
+    </div>
+  );
+}
+
+function ProgramDeliverables() {
+  return (
+    <section className="overview-section deliv-section">
+      <div className="overview-container">
+        <div className="overview-card">
+          <div className="overview-header-group">
+            <h2 className="overview-title-solid">Program</h2>
+            <h2 className="overview-title-hollow">Deliverables</h2>
+          </div>
+
+          <div className="deliv-grid">
+            {deliverableItems.map((item, i) => (
+              <DeliverableGridItem key={i} icon={item.icon} text={item.text} />
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function ProgramExplorer() {
   const [activeCategory, setActiveCategory] = useState("All Programs");
   const [searchQuery, setSearchQuery] = useState("");
@@ -1170,6 +1272,7 @@ export default function Page() {
         loaded={loaded}
       />
       <ProgramOverview />
+      <ProgramDeliverables />
       <ProgramExplorer />
       <ApexDifference />
       <Areas />
