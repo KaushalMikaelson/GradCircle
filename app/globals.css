@@ -3027,7 +3027,7 @@ button:active {
   overflow: hidden;
 }
 .footer-container { z-index: 2; flex-direction: column; align-items: center; width: 100%; max-width: 1140px; margin: 0 auto; display: flex; position: relative; }
-.footer-branding-block { text-align: center; flex-direction: column; align-items: center; gap: 28px; width: 100%; margin-bottom: 48px; display: flex; }
+.footer-branding-block { text-align: center; flex-direction: column; align-items: center; gap: 16px; width: 100%; margin-bottom: 24px; display: flex; }
 .footer-main-logo { justify-content: center; display: flex; }
 .footer-sponsors-row { flex-wrap: wrap; justify-content: center; align-items: center; gap: 32px; width: 100%; max-width: 1100px; display: flex; }
 .footer-sponsor-badge {
@@ -3099,7 +3099,7 @@ button:active {
   .footer-sponsor-img-1 { height: 66px; }
   .footer-sponsor-img-2 { height: 77px; }
   .footer-sponsor-img-3 { height: 63px; }
-  .footer-branding-block { min-height: 204px; }
+  .footer-branding-block { min-height: auto; }
   .footer-columns-grid { min-height: 272px; }
 }
 
