@@ -866,6 +866,8 @@ button:active {
   position: relative;
   box-shadow: 0 8px 40px rgba(0, 0, 0, 0.07);
   border-left: 5px solid #003a6c;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .overview-header-group {
@@ -877,7 +879,7 @@ button:active {
 
 .overview-title-solid {
   font-family: "Poppins", var(--font-main);
-  font-size: clamp(34px, 4.2vw, 48px);
+  font-size: clamp(26px, 4.2vw, 48px);
   font-weight: 800;
   color: #003a6c;
   line-height: 1;
@@ -887,7 +889,7 @@ button:active {
 
 .overview-title-hollow {
   font-family: "Poppins", var(--font-main);
-  font-size: clamp(54px, 7vw, 76px);
+  font-size: clamp(32px, 6.5vw, 76px);
   font-weight: 700;
   color: transparent;
   -webkit-text-stroke: 1.5px #f97316;
@@ -912,7 +914,7 @@ button:active {
 .overview-ribbon {
   padding: 16px 36px 16px 24px;
   margin-left: -40px;
-  margin-right: -10px;
+  margin-right: -40px;
   margin-bottom: 24px;
   position: relative;
   overflow: hidden;
@@ -936,11 +938,17 @@ button:active {
   z-index: 0;
 }
 
-.overview-ribbon:hover .overview-ribbon-bg {
+.overview-ribbon:hover .overview-ribbon-bg,
+.overview-ribbon:active .overview-ribbon-bg,
+.overview-ribbon:focus .overview-ribbon-bg,
+.overview-ribbon.is-active .overview-ribbon-bg {
   transform: scaleX(1);
 }
 
-.overview-ribbon:hover {
+.overview-ribbon:hover,
+.overview-ribbon:active,
+.overview-ribbon:focus,
+.overview-ribbon.is-active {
   transform: translateX(4px);
   box-shadow: 0 6px 24px rgba(249, 115, 22, 0.25);
   border-color: transparent;
@@ -958,7 +966,10 @@ button:active {
   transition: color 0.35s ease;
 }
 
-.overview-ribbon:hover .overview-ribbon-text {
+.overview-ribbon:hover .overview-ribbon-text,
+.overview-ribbon:active .overview-ribbon-text,
+.overview-ribbon:focus .overview-ribbon-text,
+.overview-ribbon.is-active .overview-ribbon-text {
   color: #ffffff;
 }
 
@@ -979,7 +990,7 @@ button:active {
   position: relative;
   padding: 16px 36px 16px 24px;
   margin-left: -40px;
-  margin-right: -10px;
+  margin-right: -40px;
   clip-path: polygon(0 0, 100% 0, calc(100% - 20px) 50%, 100% 100%, 0 100%);
   cursor: pointer;
   overflow: hidden;
@@ -1003,11 +1014,17 @@ button:active {
   z-index: 0;
 }
 
-.overview-feature-item:hover .overview-feature-bg {
+.overview-feature-item:hover .overview-feature-bg,
+.overview-feature-item:active .overview-feature-bg,
+.overview-feature-item:focus .overview-feature-bg,
+.overview-feature-item.is-active .overview-feature-bg {
   transform: scaleX(1);
 }
 
-.overview-feature-item:hover {
+.overview-feature-item:hover,
+.overview-feature-item:active,
+.overview-feature-item:focus,
+.overview-feature-item.is-active {
   transform: translateX(4px);
   box-shadow: 0 6px 24px rgba(249, 115, 22, 0.25);
   border-color: transparent;
@@ -1031,7 +1048,10 @@ button:active {
               box-shadow 0.35s ease;
 }
 
-.overview-feature-item:hover .overview-icon-box {
+.overview-feature-item:hover .overview-icon-box,
+.overview-feature-item:active .overview-icon-box,
+.overview-feature-item:focus .overview-icon-box,
+.overview-feature-item.is-active .overview-icon-box {
   background: rgba(255, 255, 255, 0.2);
   border-color: rgba(255, 255, 255, 0.85);
   box-shadow: 0 0 16px rgba(255, 255, 255, 0.4);
@@ -1044,7 +1064,10 @@ button:active {
   transition: color 0.35s ease;
 }
 
-.overview-feature-item:hover .overview-svg-icon {
+.overview-feature-item:hover .overview-svg-icon,
+.overview-feature-item:active .overview-svg-icon,
+.overview-feature-item:focus .overview-svg-icon,
+.overview-feature-item.is-active .overview-svg-icon {
   color: #ffffff;
 }
 
@@ -1059,37 +1082,54 @@ button:active {
   transition: color 0.35s ease;
 }
 
-.overview-feature-item:hover .overview-feature-text {
+.overview-feature-item:hover .overview-feature-text,
+.overview-feature-item:active .overview-feature-text,
+.overview-feature-item:focus .overview-feature-text,
+.overview-feature-item.is-active .overview-feature-text {
   color: #ffffff;
 }
 
 @media (max-width: 600px) {
+  .overview-container {
+    padding: 0 12px !important;
+  }
   .overview-card {
-    padding: 32px 24px 28px;
-    border-radius: 16px;
+    padding: 24px 16px 20px !important;
+    border-radius: 16px !important;
+  }
+  .overview-title-solid {
+    font-size: clamp(22px, 6vw, 32px) !important;
+  }
+  .overview-title-hollow {
+    font-size: clamp(30px, 8vw, 46px) !important;
+    -webkit-text-stroke: 1.2px #f97316 !important;
   }
   .overview-ribbon {
-    margin-left: -24px;
-    margin-right: 0;
-    padding: 14px 20px;
+    margin-left: -16px !important;
+    margin-right: -16px !important;
+    padding: 12px 16px 12px 14px !important;
+    clip-path: polygon(0 0, 100% 0, calc(100% - 12px) 50%, 100% 100%, 0 100%) !important;
   }
   .overview-feature-item {
-    margin-left: -24px;
-    margin-right: 0;
-    gap: 14px;
-    padding: 14px 18px;
-    border-radius: 0 12px 12px 0;
+    margin-left: -16px !important;
+    margin-right: -16px !important;
+    gap: 12px !important;
+    padding: 12px 16px 12px 14px !important;
+    clip-path: polygon(0 0, 100% 0, calc(100% - 12px) 50%, 100% 100%, 0 100%) !important;
   }
   .overview-icon-box {
-    width: 50px;
-    height: 50px;
+    width: 42px !important;
+    height: 42px !important;
+    border-width: 2px !important;
   }
   .overview-svg-icon {
-    width: 28px;
-    height: 28px;
+    width: 22px !important;
+    height: 22px !important;
   }
+  .overview-ribbon-text,
   .overview-feature-text {
-    padding-top: 0;
+    font-size: clamp(13px, 3.4vw, 16px) !important;
+    line-height: 1.35 !important;
   }
 }
 
@@ -1118,7 +1158,10 @@ button:active {
               background 0.3s ease;
 }
 
-.deliv-grid-card:hover {
+.deliv-grid-card:hover,
+.deliv-grid-card:active,
+.deliv-grid-card:focus,
+.deliv-grid-card.is-active {
   transform: translateY(-3px);
   box-shadow: 0 8px 28px rgba(14, 42, 71, 0.35);
   background: #133557;
@@ -1137,7 +1180,10 @@ button:active {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.deliv-grid-card:hover .deliv-icon-circle {
+.deliv-grid-card:hover .deliv-icon-circle,
+.deliv-grid-card:active .deliv-icon-circle,
+.deliv-grid-card:focus .deliv-icon-circle,
+.deliv-grid-card.is-active .deliv-icon-circle {
   transform: scale(1.08);
   box-shadow: 0 6px 20px rgba(249, 115, 22, 0.5);
 }
@@ -1156,22 +1202,34 @@ button:active {
   line-height: 1.4;
 }
 
+@media (max-width: 768px) {
+  .deliv-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+}
+
 @media (max-width: 600px) {
   .deliv-grid {
     grid-template-columns: 1fr;
     gap: 12px;
   }
   .deliv-grid-card {
-    padding: 18px 16px;
-    gap: 14px;
+    padding: 14px 16px;
+    gap: 12px;
+    border-radius: 12px;
   }
   .deliv-icon-circle {
-    width: 48px;
-    height: 48px;
+    width: 44px;
+    height: 44px;
   }
   .deliv-svg-icon {
-    width: 24px;
-    height: 24px;
+    width: 22px;
+    height: 22px;
+  }
+  .deliv-card-text {
+    font-size: clamp(13px, 3.4vw, 15px);
+    line-height: 1.35;
   }
 }
 

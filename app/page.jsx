@@ -411,9 +411,36 @@ const overviewFeatures = [
   },
 ];
 
-function OverviewFeatureItem({ icon, text, id }) {
+function OverviewRibbon() {
+  const [active, setActive] = useState(false);
   return (
-    <div className="overview-feature-item" id={id}>
+    <div
+      className={`overview-ribbon ${active ? "is-active" : ""}`}
+      onMouseEnter={() => setActive(true)}
+      onMouseLeave={() => setActive(false)}
+      onTouchStart={() => setActive(true)}
+      onTouchEnd={() => setActive(false)}
+    >
+      <div className="overview-ribbon-bg" />
+      <p className="overview-ribbon-text">
+        Students from Grades 9–12 work with{" "}
+        <span className="overview-ribbon-bold">"active industry professionals"</span> on simulated industry-focused projects.
+      </p>
+    </div>
+  );
+}
+
+function OverviewFeatureItem({ icon, text, id }) {
+  const [active, setActive] = useState(false);
+  return (
+    <div
+      className={`overview-feature-item ${active ? "is-active" : ""}`}
+      id={id}
+      onMouseEnter={() => setActive(true)}
+      onMouseLeave={() => setActive(false)}
+      onTouchStart={() => setActive(true)}
+      onTouchEnd={() => setActive(false)}
+    >
       <div className="overview-feature-bg" />
       <div className="overview-icon-box">
         {icon}
@@ -435,13 +462,7 @@ function ProgramOverview() {
             <h2 className="overview-title-hollow">Overview</h2>
           </div>
 
-          <div className="overview-ribbon">
-            <div className="overview-ribbon-bg" />
-            <p className="overview-ribbon-text">
-              Students from Grades 9–12 work with{" "}
-              <span className="overview-ribbon-bold">"active industry professionals"</span> on simulated industry-focused projects.
-            </p>
-          </div>
+          <OverviewRibbon />
 
           <div className="overview-features-list">
             {overviewFeatures.map((feature) => (
@@ -530,8 +551,15 @@ const deliverableItems = [
 ];
 
 function DeliverableGridItem({ icon, text }) {
+  const [active, setActive] = useState(false);
   return (
-    <div className="deliv-grid-card">
+    <div
+      className={`deliv-grid-card ${active ? "is-active" : ""}`}
+      onMouseEnter={() => setActive(true)}
+      onMouseLeave={() => setActive(false)}
+      onTouchStart={() => setActive(true)}
+      onTouchEnd={() => setActive(false)}
+    >
       <div className="deliv-icon-circle">
         {icon}
       </div>
