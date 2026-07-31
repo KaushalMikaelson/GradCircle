@@ -246,17 +246,17 @@ function IncubatedBanner({ loaded }) {
           <p className="incubated-box-sub">Founded by Alumni from:</p>
           <div className="incubated-logos-badge">
             <div className="uni-logo-item">
-              <img src="/pdf/mit.jpg" alt="MIT Management Sloan School" style={{ height: 60, width: "auto", objectFit: "contain" }} />
+              <img className="uni-logo-img uni-logo-mit" src="/pdf/mit.jpg" alt="MIT Management Sloan School" />
             </div>
             <div className="uni-logo-divider" />
             <div className="uni-logo-item">
-              <img src="/pdf/yale.png" alt="Yale University" style={{ height: 58, width: "auto", objectFit: "contain" }} />
-              <span className="yale-text" style={{ fontSize: 34 }}>Yale</span>
+              <img className="uni-logo-img uni-logo-yale" src="/pdf/yale.png" alt="Yale University" />
+              <span className="yale-text">Yale</span>
             </div>
             <div className="uni-logo-divider" />
-            <div className="uni-logo-item" style={{ flexDirection: "column", gap: 4 }}>
-              <img src="/pdf/iit.jpg" alt="IIT Delhi" style={{ height: 56, width: "auto", objectFit: "contain" }} />
-              <span className="iitd-text" style={{ fontSize: 18, fontWeight: 900, color: "#1e293b", lineHeight: 1 }}>IIT Delhi</span>
+            <div className="uni-logo-item uni-logo-item-col">
+              <img className="uni-logo-img uni-logo-iit" src="/pdf/iit.jpg" alt="IIT Delhi" />
+              <span className="iitd-text">IIT Delhi</span>
             </div>
           </div>
         </div>
