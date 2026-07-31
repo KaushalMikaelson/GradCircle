@@ -584,11 +584,10 @@ function DeliverableEnterpriseCard({ item, index, activeIndex, setActiveIndex })
 
   return (
     <div
-      className={`deliv-enterprise-card ${isActive ? "is-active" : ""}`}
+      className={`deliv-enterprise-card deliv-minimal-card ${isActive ? "is-active" : ""}`}
       onMouseEnter={() => setActiveIndex(index)}
       onTouchStart={() => setActiveIndex(index)}
     >
-      {/* Top Ambient Highlight Glow */}
       <div className="deliv-card-top-glow" />
 
       {/* Header Tag Pill */}
@@ -599,27 +598,8 @@ function DeliverableEnterpriseCard({ item, index, activeIndex, setActiveIndex })
         <span>{item.tag}</span>
       </div>
 
-      {/* Main Headline */}
+      {/* Main Headline Line Only (No Extra Info) */}
       <h3 className="deliv-card-headline">{item.title}</h3>
-
-      {/* Checklist bullets */}
-      <ul className="deliv-checklist-list">
-        {item.bullets.map((bullet, i) => (
-          <li key={i} className="deliv-checklist-item">
-            <svg className="deliv-check-icon" viewBox="0 0 20 20" fill="currentColor">
-              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-            </svg>
-            <span>{bullet}</span>
-          </li>
-        ))}
-      </ul>
-
-      {/* Bottom CTA Button */}
-      <div className="deliv-btn-wrapper">
-        <button type="button" className="deliv-btn-gradient">
-          Explore Deliverable
-        </button>
-      </div>
     </div>
   );
 }
@@ -671,50 +651,161 @@ function DelivCenter3DCard() {
   );
 }
 
+function DelivOrbitRing({ items, activeIndex, setActiveIndex, onCardClick }) {
+  const [angle, setAngle] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const requestRef = useRef();
+
+  useEffect(() => {
+    let lastTime = performance.now();
+    const animate = (now) => {
+      const delta = now - lastTime;
+      lastTime = now;
+      if (!isPaused) {
+        setAngle((prev) => (prev + delta * 0.025) % 360);
+      }
+      requestRef.current = requestAnimationFrame(animate);
+    };
+    requestRef.current = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(requestRef.current);
+  }, [isPaused]);
+
+  // Radii for Vertical Bottom-to-Top 3D Orbit
+  const radiusX = 350;
+  const radiusY = 190;
+
+  return (
+    <div
+      className="deliv-revolve-stage"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+    >
+      <div className="deliv-revolve-container">
+        {/* Central Tilted 3D Card (Click to expand) */}
+        <div className="deliv-revolve-center" onClick={() => onCardClick && onCardClick(0)}>
+          <DelivCenter3DCard />
+        </div>
+
+        {/* 6 Revolving Small Pill Buttons */}
+        {items.map((item, i) => {
+          const itemAngleDeg = (angle + i * (360 / items.length)) % 360;
+          const rad = (itemAngleDeg * Math.PI) / 180;
+
+          // Bottom to Top vertical cylinder math:
+          const x = Math.sin(rad) * radiusX;
+          const y = -Math.cos(rad) * radiusY; // Moves vertically from bottom (+Y) to top (-Y)
+
+          // Front vs Back Depth
+          const z = Math.sin(rad);
+          const depth = (z + 1) / 2;
+          const scale = 0.8 + depth * 0.32;
+          const opacity = 0.7 + depth * 0.3;
+          const zIndex = Math.round(depth * 100);
+
+          const isActive = activeIndex === i;
+
+          return (
+            <div
+              key={i}
+              className={`deliv-orbit-mini-pill-btn ${isActive ? "is-active" : ""}`}
+              style={{
+                transform: `translate3d(${x}px, ${y}px, 0) scale(${scale})`,
+                opacity: opacity,
+                zIndex: zIndex,
+              }}
+              onClick={() => {
+                setActiveIndex(i);
+                if (onCardClick) onCardClick(i);
+              }}
+            >
+              <span className="deliv-pill-radio">
+                <span className="deliv-radio-inner" />
+              </span>
+              <span className="deliv-mini-pill-text">{item.tag}</span>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
 function ProgramDeliverables() {
   const [activeIndex, setActiveIndex] = useState(1);
+  const [viewMode, setViewMode] = useState("revolve"); // "revolve" | "grid"
 
   const leftCards = enterpriseDeliverableItems.slice(0, 3);
   const rightCards = enterpriseDeliverableItems.slice(3, 6);
+
+  const handleRevolveCardClick = (index) => {
+    setActiveIndex(index);
+    setViewMode("grid");
+  };
 
   return (
     <section className="overview-section deliv-section">
       <div className="overview-container deliv-surround-container">
         <div className="overview-card deliv-surround-card">
-          <div className="deliv-surround-layout">
-
-            {/* Left Column (3 cards) */}
-            <div className="deliv-column deliv-column-left">
-              {leftCards.map((item, i) => (
-                <DeliverableEnterpriseCard
-                  key={i}
-                  item={item}
-                  index={i}
-                  activeIndex={activeIndex}
-                  setActiveIndex={setActiveIndex}
-                />
-              ))}
-            </div>
-
-            {/* Center Column (Centered 3D Metallic Glass Card) */}
-            <div className="deliv-column deliv-column-center">
-              <DelivCenter3DCard />
-            </div>
-
-            {/* Right Column (3 cards) */}
-            <div className="deliv-column deliv-column-right">
-              {rightCards.map((item, i) => (
-                <DeliverableEnterpriseCard
-                  key={i + 3}
-                  item={item}
-                  index={i + 3}
-                  activeIndex={activeIndex}
-                  setActiveIndex={setActiveIndex}
-                />
-              ))}
-            </div>
-
+          <div className="deliv-mode-toggle-bar">
+            <button
+              type="button"
+              className={`deliv-toggle-btn ${viewMode === "revolve" ? "is-active" : ""}`}
+              onClick={() => setViewMode("revolve")}
+            >
+              Orbit View ✦
+            </button>
+            <button
+              type="button"
+              className={`deliv-toggle-btn ${viewMode === "grid" ? "is-active" : ""}`}
+              onClick={() => setViewMode("grid")}
+            >
+              Full Cards View ☷
+            </button>
           </div>
+
+          {viewMode === "revolve" ? (
+            /* Revolving Short Cards View */
+            <DelivOrbitRing
+              items={enterpriseDeliverableItems}
+              activeIndex={activeIndex}
+              setActiveIndex={setActiveIndex}
+              onCardClick={handleRevolveCardClick}
+            />
+          ) : (
+            /* Expanded Surround View with FULL CARDS */
+            <div className="deliv-surround-layout">
+              {/* Left Column (3 full cards) */}
+              <div className="deliv-column deliv-column-left">
+                {leftCards.map((item, i) => (
+                  <DeliverableEnterpriseCard
+                    key={i}
+                    item={item}
+                    index={i}
+                    activeIndex={activeIndex}
+                    setActiveIndex={setActiveIndex}
+                  />
+                ))}
+              </div>
+
+              {/* Center Column (Centered 3D Card) */}
+              <div className="deliv-column deliv-column-center">
+                <DelivCenter3DCard />
+              </div>
+
+              {/* Right Column (3 full cards) */}
+              <div className="deliv-column deliv-column-right">
+                {rightCards.map((item, i) => (
+                  <DeliverableEnterpriseCard
+                    key={i + 3}
+                    item={item}
+                    index={i + 3}
+                    activeIndex={activeIndex}
+                    setActiveIndex={setActiveIndex}
+                  />
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </section>
