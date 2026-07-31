@@ -348,8 +348,8 @@ function Hero({ scrolled, active, openMenu, drawerOpen, closeDrawer, loaded }) {
 function SectionHeader({ sub, title, desc, classes }) {
   return (
     <div className={`${classes.header} scroll-reveal reveal-header`}>
-      <span className={classes.sub}>{sub}</span>
-      <h2 className={classes.title}>{title}</h2>
+      {sub ? <span className={classes.sub}>{sub}</span> : null}
+      {title ? <h2 className={classes.title}>{title}</h2> : null}
       {desc ? <p className={classes.desc}>{desc}</p> : null}
     </div>
   );
@@ -1126,17 +1126,9 @@ function Founders() {
     <section id="team" className="founders-section">
       <SectionHeader
         sub="Founding Team"
-        title="The Pillars Behind GradCircle"
         classes={{ header: "founders-header", sub: "founders-subheading", title: "founders-title" }}
       />
       <div className="founders-container">
-        <div className="gradcircle-info-card scroll-reveal reveal-gradcircle-info">
-          <div className="gradcircle-logo-col">
-            <img src="/apex-assets/GC_Logo.webp" alt="GradCircle Logo" style={{ width: 256, maxWidth: "100%", height: "auto" }} />
-          </div>
-          <div className="gradcircle-divider" />
-          <p className="gradcircle-info-text">Founded by alumni from MIT (USA), Yale, and IIT Delhi, GradCircle is a premier educational organization dedicated to experiential learning and future-readiness.</p>
-        </div>
         <div className="founders-cards-grid">
           {[
             ["/apex-assets/founder-prashant.webp", "Prashant Tibrewal – MIT Alum & Experience Career Coach"],
@@ -1152,6 +1144,48 @@ function Founders() {
             </div>
           ))}
         </div>
+      </div>
+    </section>
+  );
+}
+
+function SampleCertificate() {
+  return (
+    <section className="sample-cert-section">
+      <div className="sample-cert-outer-card scroll-reveal reveal-certificate">
+        <span className="sample-cert-header-title">Sample Certificate</span>
+
+        <div className="sample-cert-dots-side sample-cert-dots-left" aria-hidden="true">
+          {Array.from({ length: 15 }).map((_, i) => (
+            <span
+              key={i}
+              className={`sample-cert-dot-node ${
+                (Math.floor(i / 3) + (i % 3)) % 2 === 0 ? "hollow" : "solid"
+              }`}
+            />
+          ))}
+        </div>
+
+        <div className="sample-cert-dots-side sample-cert-dots-right" aria-hidden="true">
+          {Array.from({ length: 15 }).map((_, i) => (
+            <span
+              key={i}
+              className={`sample-cert-dot-node ${
+                (Math.floor(i / 3) + (i % 3)) % 2 === 1 ? "hollow" : "solid"
+              }`}
+            />
+          ))}
+        </div>
+
+        <div className="sample-cert-frame">
+          <img
+            className="certificate-img"
+            src="/pdf/Sample Certificate.png"
+            alt="Sample Certificate - GradCircle"
+          />
+        </div>
+
+        <div className="sample-cert-blue-bar" />
       </div>
     </section>
   );
@@ -1392,6 +1426,7 @@ export default function Page() {
       <StudentTestimonials />
       <Logistics />
       <Founders />
+      <SampleCertificate />
       <TrustedSchools />
       <Enquire />
       <Footer />
