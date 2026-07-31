@@ -357,22 +357,46 @@ function SectionHeader({ sub, title, desc, classes }) {
 
 const overviewFeatures = [
   {
-    id: "simulated-projects",
-    text: "Real-world simulated projects to build your skills profile",
+    id: "launchpad",
+    text: "Launchpad for college applications and career readiness",
+    stepClass: "stair-step-4",
     icon: (
       <svg viewBox="0 0 24 24" fill="currentColor" className="overview-svg-icon">
-        <path d="M6 9l6.5-4.5L11 7l8-4.5-2 5-2.5-2L8 10z" />
-        <rect x="6" y="13" width="3" height="8" rx="0.5" />
-        <rect x="10.5" y="10" width="3" height="11" rx="0.5" />
-        <rect x="15" y="7.5" width="3" height="13.5" rx="0.5" />
-        <path d="M12 11.5c-1.65 0-3 1.35-3 3s1.35 3 3 3 3-1.35 3-3-1.35-3-3-3zm0 4.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z" />
-        <path d="M12.75 10.6h-1.5v1.05c-.32.07-.62.19-.9.35l-.74-.75-1.06 1.06.75.74c-.16.28-.28.58-.35.9H7.9v1.5h1.05c.07.32.19.62.35.9l-.75.74 1.06 1.06.74-.75c.28.16.58.28.9.35v1.05h1.5v-1.05c.32-.07.62-.19.9-.35l.74.75 1.06-1.06-.75-.74c.16-.28.28-.58.35-.9h1.05v-1.5h-1.05c-.07-.32-.19-.62-.35-.9l.75-.74-1.06-1.06-.74.75c-.28-.16-.58-.28-.9-.35V10.6z" opacity="0.9" />
+        <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3z" />
+        <path d="M3.8 12.3v4.2c0 2.2 3.7 4 8.2 4s8.2-1.8 8.2-4v-4.2l-8.2 4.5-8.2-4.5z" />
+        <polygon points="19.5,8 21.5,8 20.5,12" />
+      </svg>
+    ),
+  },
+  {
+    id: "portfolio",
+    text: "Develop a professional portfolio of real-world experiences",
+    stepClass: "stair-step-3",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="currentColor" className="overview-svg-icon">
+        <path d="M20 7h-4V5c0-1.1-.9-2-2-2h-4c-1.1 0-2 .9-2 2v2H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V9c0-1.1-.9-2-2-2zM10 5h4v2h-4V5zm6.5 9.5l-4.5 4.5L9.5 16l1.4-1.4 1.1 1.1 3.1-3.1 1.4 1.4z" />
+      </svg>
+    ),
+  },
+  {
+    id: "certificate-lor",
+    text: "Certificate & Letter of Recommendation from industry mentors",
+    stepClass: "stair-step-2",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="currentColor" className="overview-svg-icon">
+        <path fillRule="evenodd" clipRule="evenodd" d="M2 5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5zm2 0h16v14H4V5z" />
+        <rect x="5.5" y="6.5" width="8" height="1.8" rx="0.9" />
+        <rect x="5.5" y="10" width="7" height="1.5" rx="0.75" />
+        <rect x="5.5" y="13" width="7" height="1.5" rx="0.75" />
+        <circle cx="16.5" cy="11" r="3" />
+        <path d="M15 13.5L14 18l2.5-1.2L19 18l-1-4.5" />
       </svg>
     ),
   },
   {
     id: "mentor-engagement",
-    text: "Live engagement with mentors from Fortune–500 companies",
+    text: "Live engagement with mentors from Fortune-500 companies",
+    stepClass: "stair-step-1",
     icon: (
       <svg viewBox="0 0 24 24" fill="currentColor" className="overview-svg-icon">
         <circle cx="16" cy="6" r="2.8" />
@@ -383,71 +407,32 @@ const overviewFeatures = [
     ),
   },
   {
-    id: "certificate-lor",
-    text: "Certificate & Letter of Recommendation from industry mentors",
+    id: "simulated-projects",
+    text: "Real-world simulated projects to build your skills profile",
+    stepClass: "stair-step-0",
     icon: (
       <svg viewBox="0 0 24 24" fill="currentColor" className="overview-svg-icon">
-        <path fillRule="evenodd" clipRule="evenodd" d="M2 5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5zm2 0h16v14H4V5z" />
-        <rect x="5.5" y="6.5" width="8" height="1.8" rx="0.9" />
-        <rect x="5.5" y="10" width="7" height="1.5" rx="0.75" />
-        <rect x="5.5" y="13" width="7" height="1.5" rx="0.75" />
-        <rect x="5.5" y="16" width="5" height="1.5" rx="0.75" />
-        <circle cx="16.5" cy="11" r="3" />
-        <path d="M15 13.5L14 18l2.5-1.2L19 18l-1-4.5" />
-      </svg>
-    ),
-  },
-  {
-    id: "job-clarity",
-    text: "Clarity on job roles and responsibilities",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="currentColor" className="overview-svg-icon">
-        <path d="M9 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v1.5H9V5z" />
-        <path fillRule="evenodd" clipRule="evenodd" d="M3 8a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-3.2a4.5 4.5 0 0 0-7.6 0H5a2 2 0 0 1-2-2V8zm2 1.5h14V8H5v1.5z" />
-        <circle cx="17.5" cy="17.5" r="3.5" />
-        <path d="M16 17.5l1 1 2-2" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-5h2v5zm4 0h-2v-9h2v9zm4 0h-2v-4h2v4z" />
       </svg>
     ),
   },
 ];
 
-function OverviewRibbon() {
-  const [active, setActive] = useState(false);
+function OverviewFeatureCard({ icon, text, id, delay = 0, stepClass = "" }) {
   return (
     <div
-      className={`overview-ribbon ${active ? "is-active" : ""}`}
-      onMouseEnter={() => setActive(true)}
-      onMouseLeave={() => setActive(false)}
-      onTouchStart={() => setActive(true)}
-      onTouchEnd={() => setActive(false)}
-    >
-      <div className="overview-ribbon-bg" />
-      <p className="overview-ribbon-text">
-        Students from Grades 9–12 work with{" "}
-        <span className="overview-ribbon-bold">"active industry professionals"</span> on simulated industry-focused projects.
-      </p>
-    </div>
-  );
-}
-
-function OverviewFeatureItem({ icon, text, id }) {
-  const [active, setActive] = useState(false);
-  return (
-    <div
-      className={`overview-feature-item ${active ? "is-active" : ""}`}
+      className={`overview-stair-card scroll-reveal reveal-deliverable-card ${stepClass}`}
       id={id}
-      onMouseEnter={() => setActive(true)}
-      onMouseLeave={() => setActive(false)}
-      onTouchStart={() => setActive(true)}
-      onTouchEnd={() => setActive(false)}
+      style={{ transitionDelay: `${delay}s` }}
+      onPointerEnter={(e) => e.currentTarget.classList.add("is-hovered")}
+      onPointerLeave={(e) => e.currentTarget.classList.remove("is-hovered")}
+      onTouchStart={(e) => e.currentTarget.classList.add("is-hovered")}
+      onTouchEnd={(e) => e.currentTarget.classList.remove("is-hovered")}
     >
-      <div className="overview-feature-bg" />
-      <div className="overview-icon-box">
+      <div className="stair-icon-circle">
         {icon}
       </div>
-      <span className="overview-feature-text">
-        {text}
-      </span>
+      <span className="stair-card-text">{text}</span>
     </div>
   );
 }
@@ -455,25 +440,36 @@ function OverviewFeatureItem({ icon, text, id }) {
 function ProgramOverview() {
   return (
     <section id="program" className="overview-section">
-      <div className="overview-container scroll-reveal">
-        <div className="overview-card">
-          <div className="overview-header-group">
-            <h2 className="overview-title-solid">Program</h2>
-            <h2 className="overview-title-hollow">Overview</h2>
+      <div className="overview-container overview-container-stair">
+        <div className="overview-stair-layout">
+          
+          {/* Left Column: Title & Description */}
+          <div className="overview-stair-left">
+            <div className="overview-header-group scroll-reveal reveal-header">
+              <h2 className="overview-title-solid">Program</h2>
+              <h2 className="overview-title-hollow">Overview</h2>
+            </div>
+
+            <p className="overview-left-desc scroll-reveal reveal-hero-sub">
+              Students from Class 8–12 work with{" "}
+              <span className="overview-bold-text">"active industry professionals"</span> on simulated industry-focused projects.
+            </p>
           </div>
 
-          <OverviewRibbon />
-
-          <div className="overview-features-list">
-            {overviewFeatures.map((feature) => (
-              <OverviewFeatureItem
+          {/* Right Column: Staircase Pill Cards */}
+          <div className="overview-stair-right">
+            {overviewFeatures.map((feature, i) => (
+              <OverviewFeatureCard
                 key={feature.id}
                 id={feature.id}
                 icon={feature.icon}
                 text={feature.text}
+                delay={0.08 * i}
+                stepClass={feature.stepClass}
               />
             ))}
           </div>
+
         </div>
       </div>
     </section>
@@ -572,15 +568,15 @@ function ProgramDeliverables() {
   return (
     <section className="overview-section deliv-section">
       <div className="overview-container">
-        <div className="overview-card">
-          <div className="overview-header-group">
+        <div className="overview-card scroll-reveal reveal-apex-card">
+          <div className="overview-header-group scroll-reveal reveal-header">
             <h2 className="overview-title-solid">Program</h2>
             <h2 className="overview-title-hollow">Deliverables</h2>
           </div>
 
           <div className="deliv-grid">
             {deliverableItems.map((item, i) => (
-              <DeliverableGridItem key={i} icon={item.icon} text={item.text} />
+              <DeliverableGridItem key={i} icon={item.icon} text={item.text} delay={0.06 * i} />
             ))}
           </div>
         </div>

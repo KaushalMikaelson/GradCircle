@@ -1,4 +1,4 @@
-@import "https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Montserrat:wght@400;500;600;700;800&family=Poppins:wght@700;800;900&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Montserrat:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&family=Poppins:wght@700;800;900&display=swap";
 
 :root {
   --primary-orange: #f26522;
@@ -853,50 +853,34 @@ button:active {
   background-image: repeating-linear-gradient(-45deg, #f0f4f8b3, #f0f4f8b3 1px, #0000 1px 28px);
 }
 
-.overview-container {
-  width: 100%;
-  max-width: 700px;
-  padding: 0 24px;
-}
-
-.overview-card {
-  background: #ffffff;
-  border-radius: 20px;
-  padding: 44px 40px 40px;
-  position: relative;
-  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.07);
-  border-left: 5px solid #003a6c;
-  box-sizing: border-box;
-  overflow: hidden;
-}
-
+/* ─── Program Overview Staircase Layout (Matching Reference Screenshot) ─── */
 .overview-header-group {
   display: flex;
   flex-direction: column;
   gap: 0;
-  margin-bottom: 24px;
+  margin-bottom: 0;
 }
 
 .overview-title-solid {
   font-family: "Poppins", var(--font-main);
-  font-size: clamp(26px, 4.2vw, 48px);
+  font-size: clamp(32px, 4.8vw, 56px);
   font-weight: 800;
   color: #003a6c;
   line-height: 1;
-  letter-spacing: -0.5px;
+  letter-spacing: -0.8px;
   margin: 0;
 }
 
 .overview-title-hollow {
   font-family: "Poppins", var(--font-main);
-  font-size: clamp(32px, 6.5vw, 76px);
+  font-size: clamp(42px, 7.2vw, 88px);
   font-weight: 700;
   color: transparent;
-  -webkit-text-stroke: 1.5px #f97316;
+  -webkit-text-stroke: 2px #f97316;
   line-height: 1;
-  letter-spacing: -0.5px;
+  letter-spacing: -0.8px;
   margin: 0;
-  padding-bottom: 12px;
+  padding-bottom: 14px;
   position: relative;
 }
 
@@ -906,230 +890,144 @@ button:active {
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 3px;
+  height: 4px;
   background: linear-gradient(90deg, #f97316, #ea580c);
   border-radius: 2px;
 }
 
-.overview-ribbon {
-  padding: 16px 36px 16px 24px;
-  margin-left: -40px;
-  margin-right: -40px;
-  margin-bottom: 24px;
-  position: relative;
-  overflow: hidden;
-  background: #fff7ed;
-  border: 2px solid #f9731640;
-  border-left: none;
-  clip-path: polygon(0 0, 100% 0, calc(100% - 20px) 50%, 100% 100%, 0 100%);
-  cursor: pointer;
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-              box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-              border-color 0.35s ease;
+.overview-container-stair {
+  max-width: 1240px;
+  width: 100%;
+  padding: 0 24px;
 }
 
-.overview-ribbon-bg {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, #f97316, #ea580c);
-  transform: scaleX(0);
-  transform-origin: left center;
-  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: 0;
+.overview-stair-layout {
+  display: grid;
+  grid-template-columns: 400px 1fr;
+  gap: 48px;
+  align-items: center;
+  width: 100%;
+  padding: 32px 0;
 }
 
-.overview-ribbon:hover .overview-ribbon-bg,
-.overview-ribbon:active .overview-ribbon-bg,
-.overview-ribbon:focus .overview-ribbon-bg,
-.overview-ribbon.is-active .overview-ribbon-bg {
-  transform: scaleX(1);
+.overview-stair-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-right: 10px;
 }
 
-.overview-ribbon:hover,
-.overview-ribbon:active,
-.overview-ribbon:focus,
-.overview-ribbon.is-active {
-  transform: translateX(4px);
-  box-shadow: 0 6px 24px rgba(249, 115, 22, 0.25);
-  border-color: transparent;
-}
-
-.overview-ribbon-text {
-  font-family: var(--font-main);
+.overview-left-desc {
+  font-family: "Plus Jakarta Sans", var(--font-main);
+  font-size: clamp(18px, 2.2vw, 22px);
   color: #1e293b;
-  font-size: clamp(17px, 2vw, 20px);
-  line-height: 1.4;
-  margin: 0;
   font-weight: 700;
-  position: relative;
-  z-index: 1;
-  transition: color 0.35s ease;
+  line-height: 1.5;
+  margin-top: 28px;
+  margin-bottom: 0;
 }
 
-.overview-ribbon:hover .overview-ribbon-text,
-.overview-ribbon:active .overview-ribbon-text,
-.overview-ribbon:focus .overview-ribbon-text,
-.overview-ribbon.is-active .overview-ribbon-text {
-  color: #ffffff;
-}
-
-.overview-ribbon-bold {
+.overview-bold-text {
+  color: #003a6c;
   font-weight: 800;
 }
 
-.overview-features-list {
+/* Staircase Right Container */
+.overview-stair-right {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 24px;
+  width: 100%;
 }
 
-.overview-feature-item {
+/* Individual Stair Cards */
+.overview-stair-card {
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 20px;
   position: relative;
-  padding: 16px 36px 16px 24px;
-  margin-left: -40px;
-  margin-right: -40px;
-  clip-path: polygon(0 0, 100% 0, calc(100% - 20px) 50%, 100% 100%, 0 100%);
+  padding: 20px 28px 20px 22px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #ffffff, #f0f9ff);
+  border: 2px solid #bae6fd;
+  box-shadow: 0 10px 28px rgba(14, 165, 233, 0.12), inset 0 1px 0 #ffffff;
   cursor: pointer;
   overflow: hidden;
-  background: #fff7ed;
-  border: 2px solid #f9731640;
-  border-left: none;
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-              box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-              border-color 0.35s ease;
-  z-index: 0;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.35s ease,
+              border-color 0.35s ease,
+              background 0.35s ease;
+  width: 100%;
+  max-width: 580px;
 }
 
-/* Orange sweep background layer */
-.overview-feature-bg {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, #f97316, #ea580c);
-  transform: scaleX(0);
-  transform-origin: left center;
-  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: 0;
-}
+/* Staircase offset classes moving up to top-right */
+.stair-step-4 { margin-left: 200px; }
+.stair-step-3 { margin-left: 145px; }
+.stair-step-2 { margin-left: 95px; }
+.stair-step-1 { margin-left: 45px; }
+.stair-step-0 { margin-left: 0px; }
 
-.overview-feature-item:hover .overview-feature-bg,
-.overview-feature-item:active .overview-feature-bg,
-.overview-feature-item:focus .overview-feature-bg,
-.overview-feature-item.is-active .overview-feature-bg {
-  transform: scaleX(1);
-}
-
-.overview-feature-item:hover,
-.overview-feature-item:active,
-.overview-feature-item:focus,
-.overview-feature-item.is-active {
-  transform: translateX(4px);
-  box-shadow: 0 6px 24px rgba(249, 115, 22, 0.25);
-  border-color: transparent;
-}
-
-.overview-icon-box {
+.stair-icon-circle {
   flex-shrink: 0;
   width: 60px;
   height: 60px;
   border-radius: 50%;
+  background: #ffffff;
   border: 3px solid #f97316;
+  box-shadow: 0 4px 16px rgba(249, 115, 22, 0.32);
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #ffffff;
   position: relative;
   z-index: 1;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  transition: background 0.35s ease,
-              border-color 0.35s ease,
-              box-shadow 0.35s ease;
+  transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
-.overview-feature-item:hover .overview-icon-box,
-.overview-feature-item:active .overview-icon-box,
-.overview-feature-item:focus .overview-icon-box,
-.overview-feature-item.is-active .overview-icon-box {
-  background: rgba(255, 255, 255, 0.2);
-  border-color: rgba(255, 255, 255, 0.85);
-  box-shadow: 0 0 16px rgba(255, 255, 255, 0.4);
-}
-
-.overview-svg-icon {
-  width: 34px;
-  height: 34px;
-  color: #003a6c;
-  transition: color 0.35s ease;
-}
-
-.overview-feature-item:hover .overview-svg-icon,
-.overview-feature-item:active .overview-svg-icon,
-.overview-feature-item:focus .overview-svg-icon,
-.overview-feature-item.is-active .overview-svg-icon {
-  color: #ffffff;
-}
-
-.overview-feature-text {
-  font-family: var(--font-main);
-  font-size: clamp(17px, 2vw, 20px);
-  color: #1e293b;
+.stair-card-text {
+  font-family: "Plus Jakarta Sans", "Poppins", var(--font-main);
+  font-size: clamp(16px, 1.8vw, 18.5px);
+  color: #0f172a;
   font-weight: 700;
-  line-height: 1.4;
+  line-height: 1.42;
+  letter-spacing: -0.2px;
   position: relative;
   z-index: 1;
-  transition: color 0.35s ease;
+  transition: color 0.3s ease;
 }
 
-.overview-feature-item:hover .overview-feature-text,
-.overview-feature-item:active .overview-feature-text,
-.overview-feature-item:focus .overview-feature-text,
-.overview-feature-item.is-active .overview-feature-text {
-  color: #ffffff;
+/* Card Hover & Pointer Interactions */
+.overview-stair-card:hover,
+.overview-stair-card.is-hovered {
+  transform: translateY(-4px) scale(1.02);
+  border-color: #f97316;
+  background: linear-gradient(135deg, #ffffff, #fff7ed);
+  box-shadow: 0 16px 36px rgba(249, 115, 22, 0.25);
 }
 
-@media (max-width: 600px) {
-  .overview-container {
-    padding: 0 12px !important;
+.overview-stair-card:hover .stair-icon-circle,
+.overview-stair-card.is-hovered .stair-icon-circle {
+  transform: scale(1.1);
+  border-color: #ea580c;
+}
+
+@media (max-width: 960px) {
+  .overview-stair-layout {
+    grid-template-columns: 1fr !important;
+    gap: 28px !important;
   }
-  .overview-card {
-    padding: 24px 16px 20px !important;
-    border-radius: 16px !important;
+  .overview-stair-right {
+    align-items: flex-start;
   }
-  .overview-title-solid {
-    font-size: clamp(22px, 6vw, 32px) !important;
+  .overview-stair-card {
+    max-width: 100% !important;
   }
-  .overview-title-hollow {
-    font-size: clamp(30px, 8vw, 46px) !important;
-    -webkit-text-stroke: 1.2px #f97316 !important;
-  }
-  .overview-ribbon {
-    margin-left: -16px !important;
-    margin-right: -16px !important;
-    padding: 12px 16px 12px 14px !important;
-    clip-path: polygon(0 0, 100% 0, calc(100% - 12px) 50%, 100% 100%, 0 100%) !important;
-  }
-  .overview-feature-item {
-    margin-left: -16px !important;
-    margin-right: -16px !important;
-    gap: 12px !important;
-    padding: 12px 16px 12px 14px !important;
-    clip-path: polygon(0 0, 100% 0, calc(100% - 12px) 50%, 100% 100%, 0 100%) !important;
-  }
-  .overview-icon-box {
-    width: 42px !important;
-    height: 42px !important;
-    border-width: 2px !important;
-  }
-  .overview-svg-icon {
-    width: 22px !important;
-    height: 22px !important;
-  }
-  .overview-ribbon-text,
-  .overview-feature-text {
-    font-size: clamp(13px, 3.4vw, 16px) !important;
-    line-height: 1.35 !important;
+  .stair-step-4,
+  .stair-step-3,
+  .stair-step-2,
+  .stair-step-1,
+  .stair-step-0 {
+    margin-left: 0 !important;
   }
 }
 
@@ -1137,6 +1035,16 @@ button:active {
 
 .deliv-section {
   padding-top: 0;
+}
+
+.deliv-title-solid {
+  font-family: "Poppins", var(--font-main);
+  font-size: clamp(28px, 4.5vw, 48px);
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1.05;
+  letter-spacing: -0.5px;
+  margin: 0;
 }
 
 .deliv-grid {
