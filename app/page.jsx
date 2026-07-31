@@ -655,7 +655,26 @@ function DelivCenter3DCard({ onClick }) {
 function DelivOrbitRing({ items, activeIndex, setActiveIndex, onCenterClick, onPillClick }) {
   const [angle, setAngle] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [radii, setRadii] = useState({ rx: 420, ry: 220 });
   const requestRef = useRef();
+
+  useEffect(() => {
+    const handleResize = () => {
+      const w = window.innerWidth;
+      if (w <= 480) {
+        setRadii({ rx: 145, ry: 155 });
+      } else if (w <= 768) {
+        setRadii({ rx: 250, ry: 175 });
+      } else if (w <= 1024) {
+        setRadii({ rx: 330, ry: 195 });
+      } else {
+        setRadii({ rx: 420, ry: 220 });
+      }
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     let lastTime = performance.now();
@@ -671,9 +690,9 @@ function DelivOrbitRing({ items, activeIndex, setActiveIndex, onCenterClick, onP
     return () => cancelAnimationFrame(requestRef.current);
   }, [isPaused]);
 
-  // Radii for Vertical Bottom-to-Top 3D Orbit (Expanded for clearance)
-  const radiusX = 420;
-  const radiusY = 220;
+  // Dynamic Radii for Responsive Vertical 3D Orbit
+  const radiusX = radii.rx;
+  const radiusY = radii.ry;
 
   return (
     <div

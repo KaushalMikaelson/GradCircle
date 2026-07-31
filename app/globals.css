@@ -1208,6 +1208,122 @@ button:active {
   letter-spacing: 0.2px;
 }
 
+/* Responsive adjustments for 3D central card and orbit on smaller screens */
+@media (max-width: 960px) {
+  .deliv-revolve-stage {
+    height: 520px;
+  }
+  .deliv-orbit-path-ellipse {
+    width: 620px;
+    height: 380px;
+  }
+  .deliv-center-3d-card-wrapper {
+    max-width: 380px;
+  }
+  .deliv-center-glass-card {
+    min-height: 200px;
+    padding: 32px 24px;
+  }
+  .deliv-title-solid-light {
+    font-size: 34px !important;
+  }
+  .deliv-title-hollow-gold {
+    font-size: 40px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .deliv-revolve-stage {
+    height: 480px;
+  }
+  .deliv-orbit-path-ellipse {
+    width: 500px;
+    height: 340px;
+  }
+  .deliv-center-3d-card-wrapper {
+    max-width: 210px;
+  }
+  .deliv-center-glass-card {
+    width: 210px !important;
+    height: 210px !important;
+    min-height: 210px !important;
+    border-radius: 50% !important;
+    padding: 0 !important;
+  }
+  .deliv-title-solid-light {
+    font-size: 22px !important;
+    letter-spacing: 0 !important;
+    color: #ffffff !important;
+    font-weight: 800 !important;
+  }
+  .deliv-title-hollow-gold {
+    font-size: 24px !important;
+    letter-spacing: 0 !important;
+    color: #f97316 !important;
+    -webkit-text-stroke: 0 !important;
+    font-weight: 800 !important;
+  }
+  .deliv-title-hollow-gold::after {
+    height: 3px !important;
+    bottom: -2px !important;
+    background: #f97316 !important;
+    box-shadow: 0 0 8px rgba(249, 115, 22, 0.6) !important;
+  }
+  .deliv-orbit-mini-pill-btn {
+    padding: 8px 14px;
+    margin-left: -75px;
+  }
+  .deliv-mini-pill-text {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .deliv-revolve-stage {
+    height: 440px;
+  }
+  .deliv-orbit-path-ellipse {
+    width: 290px;
+    height: 310px;
+  }
+  .deliv-center-3d-card-wrapper {
+    max-width: 165px;
+  }
+  .deliv-center-glass-card {
+    width: 165px !important;
+    height: 165px !important;
+    min-height: 165px !important;
+    border-radius: 50% !important;
+    padding: 0 !important;
+  }
+  .deliv-title-solid-light {
+    font-size: 17px !important;
+    letter-spacing: 0 !important;
+    color: #ffffff !important;
+    font-weight: 800 !important;
+  }
+  .deliv-title-hollow-gold {
+    font-size: 18px !important;
+    letter-spacing: 0 !important;
+    color: #f97316 !important;
+    -webkit-text-stroke: 0 !important;
+    font-weight: 800 !important;
+  }
+  .deliv-title-hollow-gold::after {
+    height: 2px !important;
+    bottom: -2px !important;
+    background: #f97316 !important;
+  }
+  .deliv-orbit-mini-pill-btn {
+    padding: 6px 12px;
+    margin-left: -60px;
+    gap: 6px;
+  }
+  .deliv-mini-pill-text {
+    font-size: 11px;
+  }
+}
+
 .deliv-revolve-card:hover,
 .deliv-revolve-card.is-active {
   border-color: #f97316;
