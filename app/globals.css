@@ -1031,10 +1031,345 @@ button:active {
   }
 }
 
-/* ─── Program Deliverables Section ─── */
+/* ─── Program Deliverables Surrounded Layout (Header Center, Cards Left & Right) ─── */
+.deliv-surround-container {
+  max-width: 1280px;
+  width: 100%;
+}
 
-.deliv-section {
-  padding-top: 0;
+.deliv-surround-card {
+  padding: 44px 36px !important;
+  background: #ffffff;
+  border-radius: 24px;
+}
+
+.deliv-surround-layout {
+  display: grid;
+  grid-template-columns: 1fr 450px 1fr;
+  gap: 24px;
+  align-items: center;
+  width: 100%;
+}
+
+.deliv-column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.deliv-column-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0;
+}
+
+/* Central 3D Golden Glassmorphic Card (Landscape Wide Aspect Ratio) */
+/* Central 3D Blue Glassmorphic Card (Deep Navy Card + Solid White Project + Hollow Orange Deliverables) */
+.deliv-center-3d-card-wrapper {
+  width: 100%;
+  max-width: 450px;
+  margin: 0 auto;
+  cursor: pointer;
+}
+
+.deliv-center-glass-card {
+  position: relative;
+  width: 100%;
+  min-height: 240px;
+  padding: 40px 32px;
+  border-radius: 28px;
+  background: linear-gradient(145deg, #08223c 0%, #031424 100%);
+  border: 1.5px solid rgba(56, 189, 248, 0.4);
+  box-shadow: -15px 25px 50px rgba(0, 0, 0, 0.4),
+              0 0 40px rgba(249, 115, 22, 0.2),
+              inset 0 1px 1px rgba(255, 255, 255, 0.2);
+  overflow: hidden;
+  transform-style: preserve-3d;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.deliv-card-spotlight {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 260px;
+  height: 260px;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.3) 0%, rgba(249, 115, 22, 0.2) 45%, transparent 70%);
+  filter: blur(24px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.deliv-card-inner-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  min-height: 160px;
+}
+
+.deliv-center-title-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.deliv-title-solid-light {
+  font-family: "Poppins", var(--font-main);
+  font-size: clamp(32px, 4vw, 46px);
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1;
+  letter-spacing: -0.8px;
+  margin: 0;
+}
+
+.deliv-title-hollow-gold {
+  font-family: "Poppins", var(--font-main);
+  font-size: clamp(36px, 4.6vw, 54px);
+  font-weight: 700;
+  color: transparent;
+  -webkit-text-stroke: 2px #f97316;
+  line-height: 1;
+  letter-spacing: -0.8px;
+  margin: 0;
+  padding-bottom: 0;
+}
+
+.deliv-title-hollow-gold::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 15%;
+  width: 70%;
+  height: 3px;
+  background: linear-gradient(90deg, #facc15, #eab308);
+  border-radius: 2px;
+}
+
+.deliv-center-card-desc {
+  font-family: "Plus Jakarta Sans", var(--font-main);
+  font-size: 13.5px;
+  color: #e2e8f0;
+  font-weight: 600;
+  line-height: 1.5;
+  margin-top: 14px;
+  margin-bottom: 0;
+}
+
+@media (max-width: 1120px) {
+  .deliv-surround-layout {
+    grid-template-columns: 1fr !important;
+    gap: 36px !important;
+  }
+  .deliv-column-center {
+    order: -1;
+  }
+  .deliv-column-left,
+  .deliv-column-right {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+}
+
+.deliv-enterprise-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  width: 100%;
+  margin-top: 32px;
+}
+
+.deliv-enterprise-card {
+  position: relative;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  border: 2px solid #e2e8f0;
+  border-radius: 20px;
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 360px;
+  cursor: pointer;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+              border-color 0.35s ease,
+              box-shadow 0.35s ease,
+              background 0.35s ease;
+}
+
+.deliv-card-top-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: radial-gradient(circle at 50% 0%, rgba(168, 85, 247, 0.15) 0%, rgba(249, 115, 22, 0.08) 50%, transparent 80%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+
+.deliv-enterprise-card:hover,
+.deliv-enterprise-card.is-active {
+  transform: translateY(-5px);
+  border-color: #a855f7;
+  box-shadow: 0 16px 36px rgba(168, 85, 247, 0.18);
+  background: linear-gradient(180deg, #ffffff 0%, #faf5ff 100%);
+}
+
+.deliv-enterprise-card:hover .deliv-card-top-glow,
+.deliv-enterprise-card.is-active .deliv-card-top-glow {
+  opacity: 1;
+}
+
+/* Card Header Tag Pill */
+.deliv-card-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  align-self: flex-start;
+  background: #f1f5f9;
+  color: #6b21a8;
+  font-family: var(--font-main);
+  font-size: 12.5px;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: 100px;
+  border: 1px solid #e2e8f0;
+  transition: all 0.3s ease;
+}
+
+.deliv-enterprise-card:hover .deliv-card-pill,
+.deliv-enterprise-card.is-active .deliv-card-pill {
+  background: #f3e8ff;
+  color: #7e22ce;
+  border-color: #d8b4fe;
+}
+
+.deliv-pill-radio {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1.5px solid #94a3b8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.deliv-enterprise-card:hover .deliv-pill-radio,
+.deliv-enterprise-card.is-active .deliv-pill-radio {
+  border-color: #9333ea;
+}
+
+.deliv-radio-inner {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: transparent;
+  transition: background 0.3s ease;
+}
+
+.deliv-enterprise-card:hover .deliv-radio-inner,
+.deliv-enterprise-card.is-active .deliv-radio-inner {
+  background: #9333ea;
+}
+
+/* Headline */
+.deliv-card-headline {
+  font-family: "Plus Jakarta Sans", var(--font-main);
+  font-size: clamp(16px, 1.7vw, 19px);
+  font-weight: 800;
+  color: #003a6c;
+  line-height: 1.4;
+  margin-top: 20px;
+  margin-bottom: 16px;
+}
+
+/* Checklist */
+.deliv-checklist-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.deliv-checklist-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-main);
+  font-size: 13.5px;
+  color: #475569;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.deliv-check-icon {
+  width: 18px;
+  height: 18px;
+  color: #9333ea;
+  flex-shrink: 0;
+}
+
+/* Button Wrapper */
+.deliv-btn-wrapper {
+  width: 100%;
+  margin-top: auto;
+}
+
+.deliv-btn-gradient {
+  width: 100%;
+  padding: 12px 18px;
+  border-radius: 12px;
+  font-family: var(--font-main);
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #ffffff;
+  background: linear-gradient(90deg, #2563eb 0%, #9333ea 50%, #f97316 100%);
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(147, 51, 234, 0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.deliv-enterprise-card:hover .deliv-btn-gradient,
+.deliv-enterprise-card.is-active .deliv-btn-gradient {
+  transform: scale(1.02);
+  box-shadow: 0 8px 22px rgba(147, 51, 234, 0.38);
+}
+
+@media (max-width: 1024px) {
+  .deliv-enterprise-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .deliv-enterprise-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .deliv-enterprise-card {
+    padding: 24px 20px !important;
+    min-height: auto !important;
+  }
 }
 
 .deliv-title-solid {

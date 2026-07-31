@@ -546,38 +546,174 @@ const deliverableItems = [
   },
 ];
 
-function DeliverableGridItem({ icon, text }) {
-  const [active, setActive] = useState(false);
+const enterpriseDeliverableItems = [
+  {
+    tag: "Live Sessions",
+    title: "8–10 hours of virtual live sessions without the noise.",
+    bullets: ["Interactive mentorship with industry leads", "Real-time Q&A & direct guidance"],
+  },
+  {
+    tag: "Teamwork & Execution",
+    title: "8–10 hours of teamwork and practical assignments.",
+    bullets: ["Collaborative peer team scope alignment", "End-to-end project accountability"],
+  },
+  {
+    tag: "Simulated Internship",
+    title: "Simulated project-based virtual internship experience.",
+    bullets: ["Real-world industry problem solving", "Spec and domain fit validations"],
+  },
+  {
+    tag: "Skills Evaluation",
+    title: "Project evaluation & comprehensive Skills Report.",
+    bullets: ["Uninterrupted skill metrics assessment", "Decision-ready competency roadmaps"],
+  },
+  {
+    tag: "Official Certificate",
+    title: "Internship Certificate signed by industry mentors.",
+    bullets: ["Verified credential & mentor seal", "Shareable digital achievement badge"],
+  },
+  {
+    tag: "Letter of Recommendation",
+    title: "Merit-based Letter of Recommendation for college apps.",
+    bullets: ["Personalized mentor endorsement", "Verified clean handoffs for admissions"],
+  },
+];
+
+function DeliverableEnterpriseCard({ item, index, activeIndex, setActiveIndex }) {
+  const isActive = activeIndex === index;
+
   return (
     <div
-      className={`deliv-grid-card ${active ? "is-active" : ""}`}
-      onMouseEnter={() => setActive(true)}
-      onMouseLeave={() => setActive(false)}
-      onTouchStart={() => setActive(true)}
-      onTouchEnd={() => setActive(false)}
+      className={`deliv-enterprise-card ${isActive ? "is-active" : ""}`}
+      onMouseEnter={() => setActiveIndex(index)}
+      onTouchStart={() => setActiveIndex(index)}
     >
-      <div className="deliv-icon-circle">
-        {icon}
+      {/* Top Ambient Highlight Glow */}
+      <div className="deliv-card-top-glow" />
+
+      {/* Header Tag Pill */}
+      <div className="deliv-card-pill">
+        <span className="deliv-pill-radio">
+          <span className="deliv-radio-inner" />
+        </span>
+        <span>{item.tag}</span>
       </div>
-      <span className="deliv-card-text">{text}</span>
+
+      {/* Main Headline */}
+      <h3 className="deliv-card-headline">{item.title}</h3>
+
+      {/* Checklist bullets */}
+      <ul className="deliv-checklist-list">
+        {item.bullets.map((bullet, i) => (
+          <li key={i} className="deliv-checklist-item">
+            <svg className="deliv-check-icon" viewBox="0 0 20 20" fill="currentColor">
+              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+            </svg>
+            <span>{bullet}</span>
+          </li>
+        ))}
+      </ul>
+
+      {/* Bottom CTA Button */}
+      <div className="deliv-btn-wrapper">
+        <button type="button" className="deliv-btn-gradient">
+          Explore Deliverable
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function DelivCenter3DCard() {
+  const cardRef = useRef(null);
+  const BASE_RX = 10;
+  const BASE_RY = -16;
+  const [tilt, setTilt] = useState({ rx: BASE_RX, ry: BASE_RY, isHovered: false });
+
+  const handleMouseMove = (e) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+    const mouseRx = -(y / (rect.height / 2)) * 10;
+    const mouseRy = (x / (rect.width / 2)) * 10;
+    setTilt({ rx: BASE_RX + mouseRx, ry: BASE_RY + mouseRy, isHovered: true });
+  };
+
+  const handleMouseLeave = () => {
+    setTilt({ rx: BASE_RX, ry: BASE_RY, isHovered: false });
+  };
+
+  return (
+    <div
+      ref={cardRef}
+      className="deliv-center-3d-card-wrapper"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{ perspective: "1000px" }}
+    >
+      <div
+        className="deliv-center-glass-card"
+        style={{
+          transform: `rotateX(${tilt.rx}deg) rotateY(${tilt.ry}deg) rotateZ(2deg)`,
+          transition: !tilt.isHovered ? "transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)" : "none",
+        }}
+      >
+        <div className="deliv-card-spotlight" />
+        <div className="deliv-card-inner-content">
+          <div className="deliv-center-title-group">
+            <h2 className="deliv-title-solid-light">Project</h2>
+            <h2 className="deliv-title-hollow-gold">Deliverables</h2>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
 
 function ProgramDeliverables() {
+  const [activeIndex, setActiveIndex] = useState(1);
+
+  const leftCards = enterpriseDeliverableItems.slice(0, 3);
+  const rightCards = enterpriseDeliverableItems.slice(3, 6);
+
   return (
     <section className="overview-section deliv-section">
-      <div className="overview-container">
-        <div className="overview-card scroll-reveal reveal-apex-card">
-          <div className="overview-header-group scroll-reveal reveal-header">
-            <h2 className="overview-title-solid">Program</h2>
-            <h2 className="overview-title-hollow">Deliverables</h2>
-          </div>
+      <div className="overview-container deliv-surround-container">
+        <div className="overview-card deliv-surround-card">
+          <div className="deliv-surround-layout">
 
-          <div className="deliv-grid">
-            {deliverableItems.map((item, i) => (
-              <DeliverableGridItem key={i} icon={item.icon} text={item.text} delay={0.06 * i} />
-            ))}
+            {/* Left Column (3 cards) */}
+            <div className="deliv-column deliv-column-left">
+              {leftCards.map((item, i) => (
+                <DeliverableEnterpriseCard
+                  key={i}
+                  item={item}
+                  index={i}
+                  activeIndex={activeIndex}
+                  setActiveIndex={setActiveIndex}
+                />
+              ))}
+            </div>
+
+            {/* Center Column (Centered 3D Metallic Glass Card) */}
+            <div className="deliv-column deliv-column-center">
+              <DelivCenter3DCard />
+            </div>
+
+            {/* Right Column (3 cards) */}
+            <div className="deliv-column deliv-column-right">
+              {rightCards.map((item, i) => (
+                <DeliverableEnterpriseCard
+                  key={i + 3}
+                  item={item}
+                  index={i + 3}
+                  activeIndex={activeIndex}
+                  setActiveIndex={setActiveIndex}
+                />
+              ))}
+            </div>
+
           </div>
         </div>
       </div>
