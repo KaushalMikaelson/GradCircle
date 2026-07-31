@@ -1213,7 +1213,7 @@ function TrustedSchools() {
         <div className="marquee-track marquee-track-right">{right.map((school, i) => <SchoolLogo key={`${school[0]}-${i}`} school={school} />)}</div>
       </div>
       <div className="ready-cta-subsection scroll-reveal reveal-header">
-        <h2 className="ready-cta-title">Ready to start your research journey?</h2>
+        <h2 className="ready-cta-title">Ready to build your first internship project?</h2>
         <p className="ready-cta-subtitle">Spots fill up quickly on a rolling basis.</p>
         <div className="ready-cta-buttons">
           <button className="btn-primary-pill" onClick={() => scrollToId("enquire")}>Apply Now</button>
@@ -1227,30 +1227,7 @@ function TrustedSchools() {
 function Enquire() {
   return (
     <section id="enquire" className="enquire-section">
-      <SectionHeader
-        sub="Enquire Now"
-        title="Secure Your Spot Today"
-        classes={{ header: "enquire-header", sub: "enquire-subheading", title: "enquire-title" }}
-      />
-      <div className="enquire-steps-container">
-        {[
-          ["01", "Submit Your Profile", "Fill out our brief online application detailing your academic interests."],
-          ["02", "Mentor Matching", "Our academic board will match you with a specialized mentor based on your proposed research area."],
-          ["03", "Acceptance & Onboarding", "Receive your official acceptance, complete your registration, and begin your research journey!"]
-        ].map(([num, title, desc], i) => (
-          <div
-            className="enquire-step-card scroll-reveal reveal-step-card"
-            key={title}
-            style={{ transitionDelay: `${i * 0.08}s` }}
-          >
-            <span className="step-badge">{num}</span>
-            <div className="step-content">
-              <h3 className="step-title">{title}</h3>
-              <p className="step-desc">{desc}</p>
-            </div>
-          </div>
-        ))}
-      </div>
+
       <div className="enquire-form-card scroll-reveal reveal-form-card">
         <FormGroup label="Full Name" />
         <div className="form-row">
@@ -1298,19 +1275,16 @@ function Footer() {
           <div className="footer-main-logo">
             <img src="/apex-assets/GC_Logo_footer.webp" alt="GradCircle Logo" style={{ width: 384, maxWidth: "100%", height: "auto" }} />
           </div>
-          <div className="footer-sponsors-row">
-            <div className="footer-sponsor-badge"><img className="footer-sponsor-img-2" src="/apex-assets/footer-sponsor-2.webp" alt="Bennett University NAAC Grade A+ Accredited University" /></div>
-            <div className="footer-sponsor-badge"><img className="footer-sponsor-img-3" src="/apex-assets/footer-sponsor-3.webp" alt="The Times Group" /></div>
-          </div>
+
         </div>
         <div className="footer-columns-grid">
           <div className="footer-col">
-            <p className="contact-text">OneLeap Educonnect Pvt. Ltd.<br />Workafella Business Centre, 1,<br />Infantry Rd, opp. Commissioner<br />Office, Vasanth Nagar,<br />Bengaluru, Karnataka 560001</p>
-            <a className="contact-link" href="mailto:info@mygradcircle.com">info@mygradcircle.com</a>
-            <a className="contact-link" href="tel:+919066090251">+91 90660 90251</a>
+            <p className="contact-text" style={{ marginBottom: 16 }}>OneLeap Educonnect Pvt. Ltd.<br />Workafella Business Centre, 1,<br />Infantry Rd, opp. Commissioner<br />Office, Vasanth Nagar,<br />Bengaluru, Karnataka 560001</p>
+            <a className="contact-link" href="mailto:info@mygradcircle.com" style={{ display: 'block', marginBottom: 8 }}>info@mygradcircle.com</a>
+            <a className="contact-link" href="tel:+919066090251" style={{ display: 'block' }}>+91 90660 90251</a>
           </div>
-          <FooterMenu title="HOME" items={["Career Labs", "Mentors", "Campus Life", "Dates & Fees"]} />
-          <FooterMenu title="PAGES" items={["Home", "AI Summer Residency", "Entrepreneurship Residency", "Career Labs Residency"]} />
+          <FooterMenu title="HOME" items={["Project Catalogue", "Program Details", "Pricing", "Team"]} />
+          <FooterMenu title="PAGES" items={["Home", "High-school Research Projects", "Past Workshops"]} />
           <div className="footer-col">
             <h3 className="footer-col-title">SOCIAL</h3>
             <div className="footer-social-icons">
