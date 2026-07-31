@@ -604,7 +604,7 @@ function DeliverableEnterpriseCard({ item, index, activeIndex, setActiveIndex })
   );
 }
 
-function DelivCenter3DCard() {
+function DelivCenter3DCard({ onClick }) {
   const cardRef = useRef(null);
   const BASE_RX = 10;
   const BASE_RY = -16;
@@ -630,6 +630,7 @@ function DelivCenter3DCard() {
       className="deliv-center-3d-card-wrapper"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
+      onClick={onClick}
       style={{ perspective: "1000px" }}
     >
       <div
@@ -651,7 +652,7 @@ function DelivCenter3DCard() {
   );
 }
 
-function DelivOrbitRing({ items, activeIndex, setActiveIndex, onCardClick }) {
+function DelivOrbitRing({ items, activeIndex, setActiveIndex, onCenterClick, onPillClick }) {
   const [angle, setAngle] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const requestRef = useRef();
@@ -670,9 +671,9 @@ function DelivOrbitRing({ items, activeIndex, setActiveIndex, onCardClick }) {
     return () => cancelAnimationFrame(requestRef.current);
   }, [isPaused]);
 
-  // Radii for Vertical Bottom-to-Top 3D Orbit
-  const radiusX = 350;
-  const radiusY = 190;
+  // Radii for Vertical Bottom-to-Top 3D Orbit (Expanded for clearance)
+  const radiusX = 420;
+  const radiusY = 220;
 
   return (
     <div
@@ -681,12 +682,15 @@ function DelivOrbitRing({ items, activeIndex, setActiveIndex, onCardClick }) {
       onMouseLeave={() => setIsPaused(false)}
     >
       <div className="deliv-revolve-container">
-        {/* Central Tilted 3D Card (Click to expand) */}
-        <div className="deliv-revolve-center" onClick={() => onCardClick && onCardClick(0)}>
-          <DelivCenter3DCard />
+        {/* Orbital Trajectory Dashed Path Line */}
+        <div className="deliv-orbit-path-ellipse" />
+
+        {/* Central Tilted 3D Card (Click to toggle) */}
+        <div className="deliv-revolve-center">
+          <DelivCenter3DCard onClick={onCenterClick} />
         </div>
 
-        {/* 6 Revolving Small Pill Buttons */}
+        {/* 6 Revolving Premium Glassmorphic Pill Buttons */}
         {items.map((item, i) => {
           const itemAngleDeg = (angle + i * (360 / items.length)) % 360;
           const rad = (itemAngleDeg * Math.PI) / 180;
@@ -698,8 +702,8 @@ function DelivOrbitRing({ items, activeIndex, setActiveIndex, onCardClick }) {
           // Front vs Back Depth
           const z = Math.sin(rad);
           const depth = (z + 1) / 2;
-          const scale = 0.8 + depth * 0.32;
-          const opacity = 0.7 + depth * 0.3;
+          const scale = 0.82 + depth * 0.32;
+          const opacity = 0.75 + depth * 0.25;
           const zIndex = Math.round(depth * 100);
 
           const isActive = activeIndex === i;
@@ -715,11 +719,12 @@ function DelivOrbitRing({ items, activeIndex, setActiveIndex, onCardClick }) {
               }}
               onClick={() => {
                 setActiveIndex(i);
-                if (onCardClick) onCardClick(i);
+                if (onPillClick) onPillClick(i);
               }}
             >
-              <span className="deliv-pill-radio">
-                <span className="deliv-radio-inner" />
+              {/* Neon Radio Indicator */}
+              <span className="deliv-pill-neon-dot">
+                <span className="deliv-neon-dot-inner" />
               </span>
               <span className="deliv-mini-pill-text">{item.tag}</span>
             </div>
@@ -737,7 +742,11 @@ function ProgramDeliverables() {
   const leftCards = enterpriseDeliverableItems.slice(0, 3);
   const rightCards = enterpriseDeliverableItems.slice(3, 6);
 
-  const handleRevolveCardClick = (index) => {
+  const toggleViewMode = () => {
+    setViewMode((prev) => (prev === "revolve" ? "grid" : "revolve"));
+  };
+
+  const handlePillClick = (index) => {
     setActiveIndex(index);
     setViewMode("grid");
   };
@@ -769,7 +778,8 @@ function ProgramDeliverables() {
               items={enterpriseDeliverableItems}
               activeIndex={activeIndex}
               setActiveIndex={setActiveIndex}
-              onCardClick={handleRevolveCardClick}
+              onCenterClick={toggleViewMode}
+              onPillClick={handlePillClick}
             />
           ) : (
             /* Expanded Surround View with FULL CARDS */
@@ -787,9 +797,9 @@ function ProgramDeliverables() {
                 ))}
               </div>
 
-              {/* Center Column (Centered 3D Card) */}
+              {/* Center Column (Centered 3D Card - Click to close back to Orbit) */}
               <div className="deliv-column deliv-column-center">
-                <DelivCenter3DCard />
+                <DelivCenter3DCard onClick={toggleViewMode} />
               </div>
 
               {/* Right Column (3 full cards) */}
