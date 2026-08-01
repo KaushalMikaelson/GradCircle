@@ -1654,13 +1654,13 @@ function Footer() {
   return (
     <footer className="footer-section">
       <div className="footer-container">
-        <div className="footer-branding-block">
+        <div className="footer-branding-block scroll-reveal reveal-header">
           <div className="footer-main-logo">
             <img src="/apex-assets/GC_Logo_footer.webp" alt="GradCircle Logo" style={{ width: 384, maxWidth: "100%", height: "auto" }} />
           </div>
 
         </div>
-        <div className="footer-columns-grid">
+        <div className="footer-columns-grid scroll-reveal reveal-why-card" style={{ transitionDelay: "0.1s" }}>
           <div className="footer-col">
             <p className="contact-text" style={{ marginBottom: 16 }}>OneLeap Educonnect Pvt. Ltd.<br />Workafella Business Centre, 1,<br />Infantry Rd, opp. Commissioner<br />Office, Vasanth Nagar,<br />Bengaluru, Karnataka 560001</p>
             <a className="contact-link" href="mailto:info@mygradcircle.com" style={{ display: 'block', marginBottom: 8 }}>info@mygradcircle.com</a>
@@ -1688,7 +1688,7 @@ function Footer() {
             </div>
           </div>
         </div>
-        <div className="footer-bottom-bar">
+        <div className="footer-bottom-bar scroll-reveal reveal-hero-sub" style={{ transitionDelay: "0.2s" }}>
           <p className="footer-bottom-left">
             © 2025 Gradcircle. All Rights Reserved. &nbsp;|&nbsp; <a className="footer-sublink" href="https://mygradcircle.com/privacy-policy">Privacy Policy</a> &nbsp;|&nbsp; <a className="footer-sublink" href="https://mygradcircle.com/terms-and-conditions">Terms of Service</a>
           </p>
