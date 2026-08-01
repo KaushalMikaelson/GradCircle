@@ -581,10 +581,27 @@ const enterpriseDeliverableItems = [
 
 function DeliverableEnterpriseCard({ item, index, activeIndex, setActiveIndex }) {
   const isActive = activeIndex === index;
+  const cardRef = useRef(null);
+
+  useEffect(() => {
+    const el = cardRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setActiveIndex(index);
+        }
+      },
+      { threshold: 0.5, rootMargin: "-10% 0px -20% 0px" }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [index, setActiveIndex]);
 
   return (
     <div
-      className={`deliv-enterprise-card deliv-minimal-card ${isActive ? "is-active" : ""}`}
+      ref={cardRef}
+      className={`deliv-enterprise-card deliv-minimal-card scroll-reveal reveal-deliverable-card ${isActive ? "is-active" : ""}`}
       onMouseEnter={() => setActiveIndex(index)}
       onTouchStart={() => setActiveIndex(index)}
     >
@@ -727,13 +744,19 @@ function DelivOrbitRing({ items, activeIndex, setActiveIndex, onCenterClick, onP
 
           const isActive = activeIndex === i;
 
+          const xVal = Number(x.toFixed(2));
+          const yVal = Number(y.toFixed(2));
+          const scaleVal = Number(scale.toFixed(4));
+          const opacityVal = Number(opacity.toFixed(4));
+
           return (
             <div
               key={i}
               className={`deliv-orbit-mini-pill-btn ${isActive ? "is-active" : ""}`}
+              suppressHydrationWarning
               style={{
-                transform: `translate3d(${x}px, ${y}px, 0) scale(${scale})`,
-                opacity: opacity,
+                transform: `translate3d(${xVal}px, ${yVal}px, 0) scale(${scaleVal})`,
+                opacity: opacityVal,
                 zIndex: zIndex,
               }}
               onClick={() => {
@@ -1049,7 +1072,7 @@ function ProgramExplorer() {
           <div className="program-cards-grid">
             {filteredPrograms.map((prog, i) => (
               <div
-                className="program-card-item is-visible"
+                className="program-card-item scroll-reveal reveal-deliverable-card"
                 key={prog.id}
                 style={{ transitionDelay: `${(i % 3) * 0.08}s` }}
               >
@@ -1179,14 +1202,18 @@ function StudentTestimonials() {
   return (
     <section className="student-testimonials-section">
       <div className="student-testimonials-container">
-        <h2 className="student-testimonials-heading">
+        <h2 className="student-testimonials-heading scroll-reveal reveal-header">
           Real Stories <span className="st-divider">|</span> Real Skills <span className="st-divider">|</span> Real Impact
         </h2>
         <div className="student-testimonials-list">
           {studentTestimonials.map((t, i) => {
             const isLeft = i % 2 === 0;
             return (
-              <div className={`st-card ${isLeft ? "st-card-left" : "st-card-right"}`} key={i}>
+              <div
+                className={`st-card ${isLeft ? "st-card-left" : "st-card-right"} scroll-reveal reveal-why-card`}
+                key={i}
+                style={{ transitionDelay: `${i * 0.1}s` }}
+              >
                 <div className="st-card-header">
                   {isLeft && <QuoteMarkSvg />}
                   <h3 className="st-card-title">{t.title}</h3>
@@ -1212,6 +1239,7 @@ function ApexDifference() {
   const [active, setActive] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
+  const cardsRef = useRef([]);
 
   useEffect(() => {
     const el = sectionRef.current;
@@ -1224,10 +1252,32 @@ function ApexDifference() {
           setIsVisible(false);
         }
       },
-      { threshold: 0.15 }
+      { threshold: 0.1 }
     );
     observer.observe(el);
     return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const cardElements = cardsRef.current.filter(Boolean);
+    if (!cardElements.length) return;
+
+    const cardObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const idx = Number(entry.target.getAttribute("data-index"));
+            if (!isNaN(idx)) {
+              setActive(idx);
+            }
+          }
+        });
+      },
+      { threshold: 0.4, rootMargin: "-10% 0px -20% 0px" }
+    );
+
+    cardElements.forEach((card) => cardObserver.observe(card));
+    return () => cardObserver.disconnect();
   }, []);
 
   return (
@@ -1240,10 +1290,13 @@ function ApexDifference() {
       <div className="apex-diff-list">
         {differenceCards.map(([title, text, img], i) => (
           <div
-            className={`apex-diff-card ${isVisible ? "is-visible" : ""} ${active === i ? "active" : ""}`}
+            className={`apex-diff-card scroll-reveal ${isVisible ? "is-visible" : ""} ${active === i ? "active" : ""}`}
             key={title}
+            data-index={i}
+            ref={(el) => (cardsRef.current[i] = el)}
             style={{ transitionDelay: `${i * 0.15}s` }}
             onMouseEnter={() => setActive(i)}
+            onTouchStart={() => setActive(i)}
           >
             <div className={`apex-diff-icon-badge ${active === i ? "active-badge" : ""}`}>
               <img className="apex-diff-icon" src={img} alt={title} />
@@ -1401,7 +1454,67 @@ function Logistics() {
   );
 }
 
+function FounderCard({ src, alt, index }) {
+  const cardRef = useRef(null);
+  const [tilt, setTilt] = useState({ rx: 0, ry: 0, isHovered: false });
+  const [revealed, setRevealed] = useState(false);
+
+  useEffect(() => {
+    const el = cardRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setRevealed(true);
+      },
+      { threshold: 0.15 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  const handleMouseMove = (e) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+    const rx = -(y / (rect.height / 2)) * 7;
+    const ry = (x / (rect.width / 2)) * 7;
+    setTilt({ rx, ry, isHovered: true });
+  };
+
+  const handleMouseLeave = () => {
+    setTilt({ rx: 0, ry: 0, isHovered: false });
+  };
+
+  return (
+    <div
+      ref={cardRef}
+      className={`founder-card-item founder-card-reveal ${revealed ? "is-visible" : ""}`}
+      style={tilt.isHovered ? {
+        transform: `perspective(1000px) rotateX(${tilt.rx.toFixed(2)}deg) rotateY(${tilt.ry.toFixed(2)}deg) translateY(-8px) scale(1.02)`,
+        transition: "none",
+      } : undefined}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      onTouchStart={() => setRevealed(true)}
+    >
+      <div className="founder-card-shimmer" />
+      <img className="founder-card-img" src={src} alt={alt} />
+      <div className="founder-card-glass-badge">
+        <span className="founder-badge-dot" />
+        <span className="founder-badge-text">GradCircle Leadership</span>
+      </div>
+    </div>
+  );
+}
+
 function Founders() {
+  const foundersList = [
+    ["/apex-assets/founder-prashant.webp", "Prashant Tibrewal – MIT Alum & Experience Career Coach"],
+    ["/apex-assets/founder-aditi.webp", "Aditi Arya Kotak – Yale University Alum & Miss India 2015"],
+    ["/apex-assets/founder-neelabh.webp", "Neelabh Prabhat – IIT Delhi Alum & Ex-Citybank"],
+  ];
+
   return (
     <section id="team" className="founders-section">
       <SectionHeader
@@ -1410,18 +1523,8 @@ function Founders() {
       />
       <div className="founders-container">
         <div className="founders-cards-grid">
-          {[
-            ["/apex-assets/founder-prashant.webp", "Prashant Tibrewal – MIT Alum & Experience Career Coach"],
-            ["/apex-assets/founder-aditi.webp", "Aditi Arya Kotak – Yale University Alum & Miss India 2015"],
-            ["/apex-assets/founder-neelabh.webp", "Neelabh Prabhat – IIT Delhi Alum & Ex-Citybank"]
-          ].map(([src, alt], i) => (
-            <div
-              className="founder-card-item scroll-reveal reveal-founder-card"
-              key={src}
-              style={{ transitionDelay: `${i * 0.1}s` }}
-            >
-              <img className="founder-card-img" src={src} alt={alt} />
-            </div>
+          {foundersList.map(([src, alt], i) => (
+            <FounderCard key={src} src={src} alt={alt} index={i} />
           ))}
         </div>
       </div>
@@ -1645,7 +1748,7 @@ export default function Page() {
           }
         });
       },
-      { threshold: 0.08, rootMargin: "0px 0px -40px 0px" }
+      { threshold: 0.04, rootMargin: "0px 0px 0px 0px" }
     );
 
     const revealItems = document.querySelectorAll(".scroll-reveal");
