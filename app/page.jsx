@@ -601,7 +601,7 @@ function DeliverableEnterpriseCard({ item, index, activeIndex, setActiveIndex })
   return (
     <div
       ref={cardRef}
-      className={`deliv-enterprise-card deliv-minimal-card scroll-reveal reveal-deliverable-card ${isActive ? "is-active" : ""}`}
+      className={`deliv-enterprise-card deliv-minimal-card ${isActive ? "is-active" : ""}`}
       onMouseEnter={() => setActiveIndex(index)}
       onTouchStart={() => setActiveIndex(index)}
     >
