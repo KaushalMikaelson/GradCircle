@@ -13,47 +13,29 @@ const navItems = [
 
 const programsData = [
   {
-    id: "psychology",
-    category: "Psychology",
-    title: "Psychology & Behavioral Neuroscience",
-    subtitle: "Conduct behavioral studies, cognitive analysis, mental health research, and psychological experiments.",
-    image: "/pdf/Carousel - Psychology.svg",
-    pdf: "/pdf/Internship Details - Psychology.pdf",
-    tags: ["Cognitive Science", "Behavioral Analysis", "Experimental Design", "Neuropsychology"]
+    id: "architecture-design",
+    category: "Architecture & Design",
+    title: "Architecture, Design & Sustainability",
+    subtitle: "Explore sustainable urban design, architectural concepts, environmental modeling, and spatial innovation.",
+    image: "/pdf/Carousel Large - Architecture, Design & Sustainability.svg",
+    pdf: "/pdf/Internship Details - Business and Strategy.pdf",
+    tags: ["Urban Design", "Sustainable Architecture", "Spatial Planning", "Environmental Design"]
   },
   {
-    id: "finance",
-    category: "Finance",
-    title: "Corporate Finance & Investment Banking",
-    subtitle: "Analyze capital markets, financial statements, valuation methodologies, and investment portfolios.",
-    image: "/pdf/Carousel - Finance.svg",
-    pdf: "/pdf/Internship Details - Finance.pdf",
-    tags: ["Financial Valuation", "Capital Markets", "Portfolio Analysis", "Risk Assessment"]
-  },
-  {
-    id: "healthcare",
-    category: "Healthcare",
-    title: "Healthcare, Public Health & Medical Research",
-    subtitle: "Investigate clinical research methodologies, epidemiology, public health policies, and medical innovation.",
-    image: "/pdf/Carousel - Healthcare.svg",
-    pdf: "/pdf/Internship Details - Healthcare.pdf",
-    tags: ["Clinical Research", "Epidemiology", "Medical Ethics", "Healthcare Systems"]
-  },
-  {
-    id: "law",
-    category: "Law",
-    title: "Corporate Law & International Policy",
-    subtitle: "Examine legal frameworks, intellectual property, international human rights law, and jurisprudence.",
-    image: "/pdf/Carousel - Law.svg",
-    pdf: "/pdf/Internship Details - Law.pdf",
-    tags: ["Constitutional Law", "IP & Corporate Law", "Legal Writing", "Case Analysis"]
+    id: "brand-management",
+    category: "Brand Management",
+    title: "Brand Management & Strategic Marketing",
+    subtitle: "Master brand architecture, positioning, digital campaign strategies, and consumer behavior analysis.",
+    image: "/pdf/Carousel Large - Brand Management.svg",
+    pdf: "/pdf/Internship Details - Brand Management.pdf",
+    tags: ["Brand Positioning", "Digital Campaigns", "Consumer Behavior", "Market Analysis"]
   },
   {
     id: "business-strategy",
     category: "Business & Strategy",
     title: "Business Strategy & Management Consulting",
     subtitle: "Explore competitive analysis, corporate growth strategies, venture creation, and strategic planning.",
-    image: "/pdf/Carousel - Business & Strategy.svg",
+    image: "/pdf/Carousel Large - Business & Strategy.svg",
     pdf: "/pdf/Internship Details - Business and Strategy.pdf",
     tags: ["Corporate Strategy", "Venture Growth", "Market Research", "Financial Modeling"]
   },
@@ -62,28 +44,58 @@ const programsData = [
     category: "Data Science & AI",
     title: "Data Science, Machine Learning & AI",
     subtitle: "Develop predictive models, perform big data analytics, and implement machine learning algorithms.",
-    image: "/pdf/Carousel - Data Science & AI.svg",
+    image: "/pdf/Carousel Large - Data Science & AI.svg",
     pdf: "/pdf/Internship Details - Data Science and AI.pdf",
     tags: ["Python & ML", "Neural Networks", "Data Visualization", "AI Ethics"]
   },
   {
-    id: "brand-management",
-    category: "Brand Management",
-    title: "Brand Management & Strategic Marketing",
-    subtitle: "Master brand architecture, positioning, digital campaign strategies, and consumer behavior analysis.",
-    image: "/pdf/Carousel - Brand Management.svg",
-    pdf: "/pdf/Internship Details - Brand Management.pdf",
-    tags: ["Brand Positioning", "Digital Campaigns", "Consumer Behavior", "Market Analysis"]
+    id: "finance",
+    category: "Finance",
+    title: "Corporate Finance & Investment Banking",
+    subtitle: "Analyze capital markets, financial statements, valuation methodologies, and investment portfolios.",
+    image: "/pdf/Carousel Large - Finance.svg",
+    pdf: "/pdf/Internship Details - Finance.pdf",
+    tags: ["Financial Valuation", "Capital Markets", "Portfolio Analysis", "Risk Assessment"]
+  },
+  {
+    id: "healthcare",
+    category: "Healthcare",
+    title: "Healthcare, Public Health & Medical Research",
+    subtitle: "Investigate clinical research methodologies, epidemiology, public health policies, and medical innovation.",
+    image: "/pdf/Carousel Large - Healthcare.svg",
+    pdf: "/pdf/Internship Details - Healthcare.pdf",
+    tags: ["Clinical Research", "Epidemiology", "Medical Ethics", "Healthcare Systems"]
+  },
+  {
+    id: "law",
+    category: "Law",
+    title: "Corporate Law & International Policy",
+    subtitle: "Examine legal frameworks, intellectual property, international human rights law, and jurisprudence.",
+    image: "/pdf/Carousel Large - Law.svg",
+    pdf: "/pdf/Internship Details - Law.pdf",
+    tags: ["Constitutional Law", "IP & Corporate Law", "Legal Writing", "Case Analysis"]
+  },
+  {
+    id: "psychology",
+    category: "Psychology",
+    title: "Psychology & Behavioral Neuroscience",
+    subtitle: "Conduct behavioral studies, cognitive analysis, mental health research, and psychological experiments.",
+    image: "/pdf/Carousel Large - Psychology.svg",
+    pdf: "/pdf/Internship Details - Psychology.pdf",
+    tags: ["Cognitive Science", "Behavioral Analysis", "Experimental Design", "Neuropsychology"]
   }
 ];
 
 const categories = [
   "All Programs",
-  "Psychology",
+  "Architecture & Design",
+  "Brand Management",
+  "Business & Strategy",
+  "Data Science & AI",
   "Finance",
   "Healthcare",
   "Law",
-  "Brand Management",
+  "Psychology",
   "Cognitive Science",
   "Financial Valuation",
   "Clinical Research",
